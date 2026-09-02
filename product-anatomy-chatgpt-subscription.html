@@ -11,7 +11,7 @@
 :root{--bg:#f6f3ee;--surface:#fff;--surface-2:#efebe2;--border:#e2ddd2;--border-strong:#d3cbba;--text:#1e1c18;--text-muted:#6f6656;--text-faint:#a89d89;--accent:#9c7a3f;--accent-soft:#f1e6d3;--shadow:0 1px 2px rgba(30,28,24,.04),0 6px 16px -8px rgba(30,28,24,.1)}
 *{box-sizing:border-box}html,body{margin:0;padding:0}body{min-width:320px;background:var(--bg);color:var(--text);font-family:"Inter",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding:40px 48px 64px}.mono{font-family:"JetBrains Mono","SFMono-Regular",Consolas,monospace}.page{max-width:1600px;margin:0 auto}
 .crumb{display:flex;align-items:center;gap:8px;margin-bottom:22px;color:var(--text-faint);font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}.crumb .tag{padding:3px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:600}
-.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--border-strong)}.masthead h1{margin:0 0 6px;font-size:30px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}.masthead .sub{max-width:58ch;margin:0;color:var(--text-muted);font-size:14.5px}.stats{display:flex;flex-shrink:0;gap:28px;margin:0;padding-bottom:3px}.stat{text-align:right}.stat dd,.stat dt{margin:0}.stat .n{color:var(--text);font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}.stat .l{margin-top:3px;color:var(--text-faint);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase}
+.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--border-strong)}.masthead h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}.masthead .title-detail{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:0}.stats{display:flex;flex-shrink:0;gap:28px;margin:0;padding-bottom:3px}.stat{text-align:left}.stat dd,.stat dt{margin:0}.stat .n{color:var(--text);font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}.stat .l{margin-top:3px;color:var(--text-faint);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase}
 summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}.chev{display:inline-block;color:var(--text-faint);font-size:13px;line-height:1;transition:transform .15s ease,color .15s ease}details[open]>summary .chev{transform:rotate(90deg);color:var(--accent)}
 .canvas-scroll{overflow-x:auto;padding-bottom:8px}.l1-row{display:flex;gap:22px;min-width:1280px}.l1{display:flex;flex:2 1 0;flex-direction:column;gap:16px;min-width:0}.l1-head{overflow:hidden;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}.l1-summary{display:flex;align-items:stretch;gap:12px;padding:16px 20px}.l1-head .code{display:flex;width:42px;height:42px;flex-shrink:0;align-items:center;justify-content:center;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:17px;font-weight:700}.l1-head .eyebrow{margin:0 0 2px;color:var(--text-faint);font-size:10.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l1-head h2{margin:0;font-size:19px;font-weight:700;letter-spacing:.01em}
 .l2-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px}.l2{min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}.l2-head{border-bottom:1px solid var(--border)}.l2-summary{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-height:82px;padding:13px 14px 12px;background:var(--surface-2)}.l2-head .code{display:block;margin-bottom:4px;color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700}.l2-head h3{margin:0 0 4px;font-size:14.5px;font-weight:700}.l2-head .meta{display:flex;align-items:center;gap:6px;margin:0;color:var(--text-muted);font-size:11px}.l2-head .meta .eyebrow{color:var(--text-faint);font-size:9.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l2-head .meta .sep{color:var(--text-faint)}
@@ -21,13 +21,13 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
 </head>
 <body>
 <main class="page">
-  <div class="crumb"><span>Product anatomy</span><span>›</span><span>One subscription</span><span class="tag">v1</span></div>
+    <div class="crumb"><span>Product anatomy</span><span>›</span><span>One subscription</span><span class="tag">v3</span></div>
   <header class="masthead">
-    <div><h1>Product Anatomy: A ChatGPT subscription example</h1><p class="sub">By taking this through a real use case I will check whether these categories are sufficient</p></div>
+      <h1><span>Product Anatomy</span><span class="title-detail">A ChatGPT subscription example</span></h1>
     <dl class="stats" aria-label="Card structure">
       <div class="stat"><dd class="n">2</dd><dt class="l">Parts of scope</dt></div>
       <div class="stat"><dd class="n">4</dd><dt class="l">Category groups</dt></div>
-      <div class="stat"><dd class="n">10</dd><dt class="l">Categories to define</dt></div>
+      <div class="stat"><dd class="n">11</dd><dt class="l">Categories to define</dt></div>
     </dl>
   </header>
   <div class="canvas-scroll"><div class="l1-row">
@@ -43,7 +43,7 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
           </ul>
         </section>
         <section class="l2">
-          <div class="l2-head"><div class="l2-summary"><div><span class="code">1.2</span><h3>Decision flow</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>3 fields</span></p></div></div></div>
+          <div class="l2-head"><div class="l2-summary"><div><span class="code">1.2</span><h3>Decision flow</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>4 fields</span></p></div></div></div>
           <ul class="fields">
             <li class="field-item"><details class="field"><summary><span class="pos mono">121</span><span class="name">Questions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
               <li><span class="item-code">1211</span><span>How much have I spent on X in Y period?</span></li>
@@ -52,15 +52,27 @@ summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:n
               <li><span class="item-code">1214</span><span>Is my spending in line with the value I receive from this subscription?</span></li>
               <li><span class="item-code">1215</span><span>Do I need to action anything wrt to this subscription?</span></li>
             </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">122</span><span class="name">Decisions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1221</span><span>Review spend</span></li><li><span class="item-code">1222</span><span>Manage subscription</span></li>
+            <li class="field-item"><details class="field"><summary><span class="pos mono">122</span><span class="name">Activities</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
+              <li><span class="item-code">1221</span><span>Review spend</span></li>
+              <li><span class="item-code">1222</span><span>Assess subscription value</span></li>
+              <li><span class="item-code">1223</span><span>Determine subscription treatment</span></li>
             </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">123</span><span class="name">Actions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1231</span><span>Manage subscription<ol class="numbered-list nested-list"><li><span class="item-code">12311</span><span>Start</span></li><li><span class="item-code">12312</span><span>Cancel</span></li><li><span class="item-code">12313</span><span>Change tier</span></li></ol></span></li>
-              <li><span class="item-code">1232</span><span>Contact company support service</span></li>
-              <li><span class="item-code">1233</span><span>Look up information</span></li>
-              <li><span class="item-code">1234</span><span>Follow up (defer action)</span></li>
-              <li><span class="item-code">1235</span><span>Do nothing (at this time)</span></li>
+            <li class="field-item"><details class="field"><summary><span class="pos mono">123</span><span class="name">Decisions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
+              <li><span class="item-code">1231</span><span>Start subscription</span></li>
+              <li><span class="item-code">1232</span><span>Keep current state</span></li>
+              <li><span class="item-code">1233</span><span>Change tier</span></li>
+              <li><span class="item-code">1234</span><span>Cancel subscription</span></li>
+              <li><span class="item-code">1235</span><span>Investigate before deciding</span></li>
+              <li><span class="item-code">1236</span><span>Defer decision until later</span></li>
+            </ol></div></details></li>
+            <li class="field-item"><details class="field"><summary><span class="pos mono">124</span><span class="name">Actions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
+              <li><span class="item-code">1241</span><span>Start subscription</span></li>
+              <li><span class="item-code">1242</span><span>Cancel subscription</span></li>
+              <li><span class="item-code">1243</span><span>Change tier</span></li>
+              <li><span class="item-code">1244</span><span>Look up information</span></li>
+              <li><span class="item-code">1245</span><span>Contact company support</span></li>
+              <li><span class="item-code">1246</span><span>Schedule follow-up</span></li>
+              <li><span class="item-code">1247</span><span>Do nothing</span></li>
             </ol></div></details></li>
           </ul>
         </section>
