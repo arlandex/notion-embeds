@@ -2,7 +2,7 @@
 
 ## Live pages
 
-- [Product Anatomy — Card explainer](https://arlandex.github.io/notion-embeds/product-anatomy-card-explainer.html)
-- [Product Anatomy — GPT example](https://arlandex.github.io/notion-embeds/product-anatomy-example.html)
+- [C1 — Use Case Card (master)](https://arlandex.github.io/notion-embeds/c1-use-case-card.html)
+- [C2 — Product Anatomy Card (master)](https://arlandex.github.io/notion-embeds/c2-product-anatomy-card.html)
+- [C2 — Product Anatomy Card (ChatGPT example)](https://arlandex.github.io/notion-embeds/c2-product-anatomy-card-example-chatgpt.html)
 - [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
-- [Use case card](https://arlandex.github.io/notion-embeds/usecasecard26082026.html)

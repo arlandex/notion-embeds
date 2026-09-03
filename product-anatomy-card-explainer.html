@@ -1,91 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Anatomy: Card explainer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<style>
-:root{color-scheme:light;--bg:#f1f5ef;--surface:#fbfcfa;--surface-2:#e7eee3;--border:#d6e0d2;--border-strong:#c1d0bb;--text:#253028;--text-muted:#5f6d61;--text-faint:#899888;--accent:#6e8768;--accent-soft:#dce8d7;--body-copy:#48494b;--shadow:0 1px 2px rgba(37,48,40,.04),0 6px 16px -8px rgba(37,48,40,.1)}
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{min-width:320px;background:var(--bg);color:var(--text);font-family:"Inter",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding:40px 48px 64px}.mono{font-family:"JetBrains Mono","SFMono-Regular",Consolas,monospace}.page{max-width:1600px;margin:0 auto}
-.crumb{display:flex;align-items:center;gap:8px;margin-bottom:22px;color:var(--text-faint);font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}.crumb .tag{padding:3px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:600;text-transform:none}
-.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--border-strong)}.masthead h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}.masthead .title-detail{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:0}.masthead-actions{display:flex;flex-shrink:0;align-items:flex-end;gap:18px}.stats{display:flex;flex-shrink:0;gap:28px;margin:0;padding-bottom:3px}.stat{text-align:left}.stat dd,.stat dt{margin:0}.stat .n{color:var(--text);font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}.stat .l{margin-top:3px;color:var(--text-faint);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase}
-.toggle-all{display:inline-flex;align-items:flex-end;gap:10px;margin:0 0 3px;padding:0;border:0;border-radius:0;background:transparent;color:var(--text-faint);font:inherit;font-size:10.5px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}.toggle-all .chev{color:var(--accent);font-size:19px;font-weight:700;line-height:.75}.toggle-all:hover{color:var(--text)}.toggle-all:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.toggle-all[aria-expanded=true] .chev{transform:rotate(90deg);color:var(--accent)}
-summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}.chev{display:inline-block;color:var(--text-faint);font-size:13px;line-height:1;transition:transform .15s ease,color .15s ease}details[open]>summary .chev{transform:rotate(90deg);color:var(--accent)}
-.canvas-scroll{overflow-x:auto;padding-bottom:8px}.l1-row{display:flex;gap:22px;min-width:1280px}.l1{display:flex;flex:2 1 0;flex-direction:column;gap:16px;min-width:0}.l1-head{overflow:hidden;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}.l1-summary{display:flex;align-items:stretch;gap:12px;padding:16px 20px}.l1-summary>div{display:flex;min-height:42px;flex-direction:column;justify-content:flex-end;transform:translateY(-4px)}.l1-head>summary .chev{align-self:center;margin-left:auto;font-size:15px}.l1-head>.desc-panel{padding:2px 20px 20px}.l1-head .code{display:flex;width:42px;height:42px;flex-shrink:0;align-items:center;justify-content:center;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:17px;font-weight:700}.l1-head .eyebrow{margin:0 0 2px;color:var(--text-faint);font-size:10.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l1-head h2{margin:0;font-size:19px;font-weight:700;letter-spacing:.01em}
-.l2-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px}.l2{min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}.l2-head{border-bottom:1px solid var(--border)}.l2-head>summary{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-height:82px;padding:13px 14px 12px;background:var(--surface-2)}.l2-head>summary .chev{margin-top:2px}.l2-head>.desc-panel{padding:12px 14px 16px;background:var(--surface)}.l2-head .code{display:block;margin-bottom:4px;color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700}.l2-head h3{margin:0 0 4px;font-size:14.5px;font-weight:700}.l2-head .meta{display:flex;align-items:center;gap:6px;margin:0;color:var(--text-muted);font-size:11px}.l2-head .meta .eyebrow{color:var(--text-faint);font-size:9.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l2-head .meta .sep{color:var(--text-faint)}
-.fields{margin:0;padding:4px 0;list-style:none}.field-item{border-bottom:1px solid var(--border)}.field-item:last-child{border-bottom:none}.field-item>details>summary{display:flex;align-items:center;gap:10px;padding:9px 14px}.field-item>details>summary:hover{background:var(--surface-2)}.field .pos{width:26px;flex-shrink:0;color:var(--text-muted);font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700}.field .name{flex:1;min-width:0;overflow:hidden;color:var(--text);font-size:13px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}.field .desc-panel{padding:12px 44px 14px 50px}.category-copy{color:var(--body-copy);font-size:11.5px;line-height:1.42}.category-copy p{margin:0}
-textarea{display:block;field-sizing:content;width:100%;min-height:calc(1.42em * 2);resize:vertical;overflow:hidden;border:0;background:transparent;color:var(--body-copy);font-family:"Inter",sans-serif;font-size:11.5px;line-height:1.42;padding:0}textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
-@media(max-width:720px){body{padding:28px 18px 48px}.masthead{flex-direction:column;align-items:flex-start}.stats{padding-bottom:0}.masthead-actions{width:100%;flex-wrap:nowrap}.toggle-all{margin:0 0 0 auto}}
-@media(prefers-reduced-motion:reduce){.chev{transition:none}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Anatomy Card moved</title>
+<meta http-equiv="refresh" content="0; url=./c2-product-anatomy-card.html">
+<link rel="canonical" href="./c2-product-anatomy-card.html">
+<script>location.replace("./c2-product-anatomy-card.html" + location.search + location.hash)</script>
 </head>
 <body>
-<main class="page">
-  <div class="crumb"><span>Product anatomy</span><span aria-hidden="true">›</span><span>Card explainer</span><span class="tag">V5 | 3 September 2026</span></div>
-  <header class="masthead">
-    <h1><span>Product Anatomy</span><span class="title-detail">A guide to defining each part of the product anatomy</span></h1>
-    <div class="masthead-actions">
-      <dl class="stats" aria-label="Card structure">
-        <div class="stat"><dd class="n">2</dd><dt class="l">Distinct parts of scope</dt></div>
-        <div class="stat"><dd class="n">4</dd><dt class="l">Category groups</dt></div>
-        <div class="stat"><dd class="n">11</dd><dt class="l">Categories to define</dt></div>
-      </dl>
-      <button type="button" class="toggle-all" aria-expanded="false"><span>Toggle all</span><span class="chev" aria-hidden="true">›</span></button>
-    </div>
-  </header>
-  <div class="canvas-scroll"><div class="l1-row">
-    <section class="l1" aria-labelledby="scope-1">
-      <details class="l1-head"><summary class="l1-summary"><span class="code">1</span><div><p class="eyebrow">Level 1</p><h2 id="scope-1">Business / Transformation Scope</h2></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="5">What business critical missions and goals do we have, and what would need to occur for us to achieve them?</textarea></div></details>
-      <div class="l2-row">
-        <section class="l2" aria-labelledby="group-1-1">
-          <details class="l2-head"><summary><div><span class="code">1.1</span><h3 id="group-1-1">Use case definition</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>3 fields</span></p></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="6">What are we trying to do? What value do we want to create?</textarea></div></details>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">111</span><span class="name">Business Outcome</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What result do we want to see in the world? What needs to be true, once this is delivered?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">112</span><span class="name">Business Processes or Use Case</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What needs to happen, in order to deliver this outcome? What are the “jobs to be done”?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">113</span><span class="name">Persona</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>Who needs to make it happen?</p></div></details></li>
-          </ul>
-        </section>
-        <section class="l2" aria-labelledby="group-1-2">
-          <details class="l2-head"><summary><div><span class="code">1.2</span><h3 id="group-1-2">Decision flow</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>4 fields</span></p></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="6">What do we need to know, and what will we do with this information, once we have it?</textarea></div></details>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">121</span><span class="name">Questions</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What do we need to know (in order to take action?)</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">122</span><span class="name">Activities</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What specific activities may we need to take, to complete the process?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">123</span><span class="name">Decisions</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What is the (possible and likely) decision tree in this situation?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">124</span><span class="name">Actions</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What action might we feasibly take (once we have the above information)?</p></div></details></li>
-          </ul>
-        </section>
-      </div>
-    </section>
-    <section class="l1" aria-labelledby="scope-2">
-      <details class="l1-head"><summary class="l1-summary"><span class="code">2</span><div><p class="eyebrow">Level 1</p><h2 id="scope-2">Data, Insights &amp; Analytics Scope</h2></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="5">What solutions will help us achieve our business goals, and what needs to be true about them?</textarea></div></details>
-      <div class="l2-row">
-        <section class="l2" aria-labelledby="group-2-1">
-          <details class="l2-head"><summary><div><span class="code">2.1</span><h3 id="group-2-1">Product and insight</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>2 fields</span></p></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="6">What do we want to see on the screen, that will help us do our role more effectively?</textarea></div></details>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">211</span><span class="name">User-facing product</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>Where do they need to do it (which digital product)?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">212</span><span class="name">KPIs</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What insight do they need to do it?</p></div></details></li>
-          </ul>
-        </section>
-        <section class="l2" aria-labelledby="group-2-2">
-          <details class="l2-head"><summary><div><span class="code">2.2</span><h3 id="group-2-2">Data and technology</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>2 fields</span></p></div><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel"><textarea rows="6">What is required to enable the digital solution to work? What specific technology and tooling choices are the best fit for what we need to bring into existence via the digital product?</textarea></div></details>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">221</span><span class="name">Data Assets</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What underlying data is required to surface the needed KPIs? Which sources and/or systems does it come from?</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">222</span><span class="name">Technology &amp; tooling</span><span class="chev" aria-hidden="true">›</span></summary><div class="desc-panel category-copy"><p>What technology should power the solution we interacts with, and why this one?</p></div></details></li>
-          </ul>
-        </section>
-      </div>
-    </section>
-  </div></div>
-</main>
-<script>
-const toggleAll=document.querySelector('.toggle-all');
-const allDetails=()=>Array.from(document.querySelectorAll('details'));
-const syncToggle=()=>toggleAll.setAttribute('aria-expanded',String(allDetails().every(item=>item.open)));
-toggleAll.addEventListener('click',()=>{const shouldOpen=!allDetails().every(item=>item.open);allDetails().forEach(item=>item.open=shouldOpen);syncToggle()});
-allDetails().forEach(item=>item.addEventListener('toggle',syncToggle));
-</script>
+<p>This page has moved to <a href="./c2-product-anatomy-card.html">c2-product-anatomy-card.html</a>.</p>
 </body>
 </html>
