@@ -3,100 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Anatomy: A ChatGPT subscription example</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f1f5ef;--surface:#fbfcfa;--surface-2:#e7eee3;--border:#d6e0d2;--border-strong:#c1d0bb;--text:#253028;--text-muted:#5f6d61;--text-faint:#899888;--accent:#6e8768;--accent-soft:#dce8d7;--shadow:0 1px 2px rgba(37,48,40,.04),0 6px 16px -8px rgba(37,48,40,.1)}
-*{box-sizing:border-box}html,body{margin:0;padding:0}body{min-width:320px;background:var(--bg);color:var(--text);font-family:"Inter",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;padding:40px 48px 64px}.mono{font-family:"JetBrains Mono","SFMono-Regular",Consolas,monospace}.page{max-width:1600px;margin:0 auto}
-.crumb{display:flex;align-items:center;gap:8px;margin-bottom:22px;color:var(--text-faint);font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}.crumb .tag{padding:3px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent);font-weight:600}
-.masthead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;padding-bottom:26px;margin-bottom:30px;border-bottom:1px solid var(--border-strong)}.masthead h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}.masthead .title-detail{display:block;margin-top:8px;font-size:21px;font-weight:700;letter-spacing:0}.stats{display:flex;flex-shrink:0;gap:28px;margin:0;padding-bottom:3px}.stat{text-align:left}.stat dd,.stat dt{margin:0}.stat .n{color:var(--text);font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}.stat .l{margin-top:3px;color:var(--text-faint);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase}
-summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}.chev{display:inline-block;color:var(--text-faint);font-size:13px;line-height:1;transition:transform .15s ease,color .15s ease}details[open]>summary .chev{transform:rotate(90deg);color:var(--accent)}
-.canvas-scroll{overflow-x:auto;padding-bottom:8px}.l1-row{display:flex;gap:22px;min-width:1280px}.l1{display:flex;flex:2 1 0;flex-direction:column;gap:16px;min-width:0}.l1-head{overflow:hidden;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface);box-shadow:var(--shadow)}.l1-summary{display:flex;align-items:stretch;gap:12px;padding:16px 20px}.l1-head .code{display:flex;width:42px;height:42px;flex-shrink:0;align-items:center;justify-content:center;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:17px;font-weight:700}.l1-head .eyebrow{margin:0 0 2px;color:var(--text-faint);font-size:10.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l1-head h2{margin:0;font-size:19px;font-weight:700;letter-spacing:.01em}
-.l2-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px}.l2{min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:var(--shadow)}.l2-head{border-bottom:1px solid var(--border)}.l2-summary{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-height:82px;padding:13px 14px 12px;background:var(--surface-2)}.l2-head .code{display:block;margin-bottom:4px;color:var(--accent);font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700}.l2-head h3{margin:0 0 4px;font-size:14.5px;font-weight:700}.l2-head .meta{display:flex;align-items:center;gap:6px;margin:0;color:var(--text-muted);font-size:11px}.l2-head .meta .eyebrow{color:var(--text-faint);font-size:9.5px;font-weight:400;letter-spacing:.08em;text-transform:uppercase}.l2-head .meta .sep{color:var(--text-faint)}
-.fields{margin:0;padding:4px 0;list-style:none}.field-item{border-bottom:1px solid var(--border)}.field-item:last-child{border-bottom:none}.field-item>details>summary{display:flex;align-items:center;gap:10px;padding:9px 14px}.field-item>details>summary:hover{background:var(--surface-2)}.field .pos{width:26px;flex-shrink:0;color:var(--text-muted);font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:700}.field .name{flex:1;min-width:0;overflow:hidden;color:var(--text);font-size:13px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}.field .desc-panel{padding:12px 14px 14px 50px}.category-copy{color:var(--text);font-size:11.5px;line-height:1.42}.category-copy p,.category-copy ul,.category-copy ol{margin:0}.category-copy ul{padding-left:16px}.category-copy li+li{margin-top:5px}.numbered-list{padding:0;list-style:none}.numbered-list>li{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:start;gap:10px}.numbered-list .item-code{color:var(--text-muted);font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.64}.numbered-list.nested-list{margin-top:6px}
-@media(max-width:720px){body{padding:28px 18px 48px}.masthead{flex-direction:column;align-items:flex-start}.stats{padding-bottom:0}}@media(prefers-reduced-motion:reduce){.chev{transition:none}}
-</style>
+<title>Product Anatomy page moved</title>
+<meta http-equiv="refresh" content="0; url=./product-anatomy-card-explainer.html">
+<link rel="canonical" href="https://arlandex.github.io/notion-embeds/product-anatomy-card-explainer.html">
+<script>location.replace("./product-anatomy-card-explainer.html" + location.search + location.hash);</script>
 </head>
 <body>
-<main class="page">
-    <div class="crumb"><span>Product anatomy</span><span>›</span><span>Example</span><span class="tag">v4</span></div>
-  <header class="masthead">
-      <h1><span>Product Anatomy</span><span class="title-detail">Reviewing an existing paid ChatGPT subscription</span></h1>
-    <dl class="stats" aria-label="Card structure">
-      <div class="stat"><dd class="n">2</dd><dt class="l">Parts of scope</dt></div>
-      <div class="stat"><dd class="n">4</dd><dt class="l">Category groups</dt></div>
-      <div class="stat"><dd class="n">11</dd><dt class="l">Categories to define</dt></div>
-    </dl>
-  </header>
-  <div class="canvas-scroll"><div class="l1-row">
-    <section class="l1" data-share="2">
-      <div class="l1-head"><div class="l1-summary"><span class="code">1</span><div><p class="eyebrow">Level 1</p><h2>Business / Transformation Scope</h2></div></div></div>
-      <div class="l2-row">
-        <section class="l2">
-          <div class="l2-head"><div class="l2-summary"><div><span class="code">1.1</span><h3>Use case definition</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>3 fields</span></p></div></div></div>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">111</span><span class="name">Business Outcome</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><p>Get access to a valuable digital service (usually, paid)</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">112</span><span class="name">Business Processes or Use Case</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><p>Manage paid subscription to a digital service</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">113</span><span class="name">Persona</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><p>Nataliya, the user</p></div></details></li>
-          </ul>
-        </section>
-        <section class="l2">
-          <div class="l2-head"><div class="l2-summary"><div><span class="code">1.2</span><h3>Decision flow</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>4 fields</span></p></div></div></div>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">121</span><span class="name">Questions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1211</span><span>How much am I spending on this subscription?</span></li>
-              <li><span class="item-code">1212</span><span>Is the spend in line with expectations?</span></li>
-              <li><span class="item-code">1213</span><span>What explains changes in charges?</span></li>
-              <li><span class="item-code">1214</span><span>Is the spending in line with the value received?</span></li>
-              <li><span class="item-code">1215</span><span>Does anything need actioning?</span></li>
-            </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">122</span><span class="name">Activities</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1221</span><span>Review spend</span></li>
-              <li><span class="item-code">1222</span><span>Assess value</span></li>
-              <li><span class="item-code">1223</span><span>Determine treatment</span></li>
-            </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">123</span><span class="name">Decisions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1231</span><span>Keep</span></li>
-              <li><span class="item-code">1232</span><span>Change tier</span></li>
-              <li><span class="item-code">1233</span><span>Cancel</span></li>
-              <li><span class="item-code">1234</span><span>Investigate</span></li>
-            </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">124</span><span class="name">Actions</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">1241</span><span>Do nothing</span></li>
-              <li><span class="item-code">1242</span><span>Change tier</span></li>
-              <li><span class="item-code">1243</span><span>Cancel</span></li>
-              <li><span class="item-code">1244</span><span>Find information</span></li>
-            </ol></div></details></li>
-          </ul>
-        </section>
-      </div>
-    </section>
-    <section class="l1" data-share="2">
-      <div class="l1-head"><div class="l1-summary"><span class="code">2</span><div><p class="eyebrow">Level 1</p><h2>Data, Insights &amp; Analytics Scope</h2></div></div></div>
-      <div class="l2-row">
-        <section class="l2">
-          <div class="l2-head"><div class="l2-summary"><div><span class="code">2.1</span><h3>Product and insight</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>2 fields</span></p></div></div></div>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">211</span><span class="name">User-facing product</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><p>Personal advisor Caia</p></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">212</span><span class="name">KPIs</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">2121</span><span>Total spend in €</span></li><li><span class="item-code">2122</span><span>Change in spend in € and %</span></li><li><span class="item-code">2123</span><span>Average spend per X period in €</span></li><li><span class="item-code">2124</span><span>% this item makes in its category (by Buxfer tag)</span></li>
-            </ol></div></details></li>
-          </ul>
-        </section>
-        <section class="l2">
-          <div class="l2-head"><div class="l2-summary"><div><span class="code">2.2</span><h3>Data and technology</h3><p class="meta"><span class="eyebrow">Level 2</span><span class="sep">|</span><span>2 fields</span></p></div></div></div>
-          <ul class="fields">
-            <li class="field-item"><details class="field"><summary><span class="pos mono">221</span><span class="name">Data Assets</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><ol class="numbered-list">
-              <li><span class="item-code">2211</span><span>Buxfer layer assigns tags to each transaction</span></li><li><span class="item-code">2212</span><span>Bank apps provide transaction-level data by account</span></li>
-            </ol></div></details></li>
-            <li class="field-item"><details class="field"><summary><span class="pos mono">222</span><span class="name">Technology &amp; tooling</span><span class="chev">›</span></summary><div class="desc-panel category-copy"><p>HTML with an interactive interface</p></div></details></li>
-          </ul>
-        </section>
-      </div>
-    </section>
-  </div></div>
-</main>
+<p>This page has moved to <a href="./product-anatomy-card-explainer.html">Product Anatomy — Card explainer</a>.</p>
 </body>
 </html>
