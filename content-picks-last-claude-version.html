@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Content Picks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---- Design system tokens (Element Sheet V4): Milk Frost / Soft Ivory / Pale Sand / Fog Stone / Ink ----
+     Lightest carries the field, darkest carries the focal point; everything between recedes in order. */
+  :root {
+    --milk-frost: #f8f7f4;
+    --soft-ivory: #f2f0ea;
+    --pale-sand: #ded0b0;
+    --fog-stone: #6f6a60;
+    --ink: #17140f;
+    --sage: #7c8570;
+
+    --bg: #f1ede0;
+    --canvas-bg: #f8f5ec;
+    --canvas-border: #ddd4bb;
+    --block-bg: #fffdf9;
+    --block-border: #e7e2d2;
+    --divider: #ebe6d8;
+    --text-primary: var(--ink);
+    --text-secondary: var(--fog-stone);
+    --text-muted: #a8a396;
+    --field-bg: #ffffff;
+    --field-border: #c9c2ab;
+    --focal: var(--ink);
+    --focal-strong: #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: var(--ink);
+      --canvas-bg: #221e16;
+      --canvas-border: #4c4736;
+      --block-bg: #322c21;
+      --block-border: #58513e;
+      --divider: #3c362a;
+      --text-primary: var(--milk-frost);
+      --text-secondary: #b0aa98;
+      --text-muted: #746e5e;
+      --field-bg: #3a3325;
+      --field-border: #4a473e;
+      --focal: var(--milk-frost);
+      --focal-strong: #ffffff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: var(--ink);
+    --canvas-bg: #221e16;
+    --canvas-border: #4c4736;
+    --block-bg: #322c21;
+    --block-border: #58513e;
+    --divider: #3c362a;
+    --text-primary: var(--milk-frost);
+    --text-secondary: #b0aa98;
+    --text-muted: #746e5e;
+    --field-bg: #3a3325;
+    --field-border: #4a473e;
+    --focal: var(--milk-frost);
+    --focal-strong: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 12.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .canvas-outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  .canvas {
+    width: 660px;
+    flex: none;
+    margin: 0 auto;
+    background: var(--canvas-bg);
+    border: 1.5px solid var(--canvas-border);
+    border-radius: 10px;
+    padding: 18px 28px;
+    transform-origin: center center;
+  }
+  .wf-label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  .wf-label .wf-idx {
+    letter-spacing: 0.02em;
+    margin-right: 3px;
+  }
+  .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    border-bottom: 2px solid var(--block-border);
+    padding-bottom: 9px;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .page-title span {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .block {
+    border: 1.5px solid var(--block-border);
+    border-radius: 6px;
+    padding: 16px 16px 9px;
+    margin-bottom: 16px;
+    background: var(--block-bg);
+  }
+  .block.optional {
+    background: repeating-linear-gradient(45deg, var(--block-bg), var(--block-bg) 10px, var(--divider) 10px, var(--divider) 20px);
+    opacity: 0.85;
+  }
+  .block-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 0 0 9px;
+  }
+  .badge {
+    display: inline-block;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--pale-sand);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 8px;
+    margin-left: 8px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
+  /* Source picker */
+  .chip-row { display: flex; gap: 6px; flex-wrap: nowrap; }
+  .chip {
+    border: 1.5px solid var(--field-border);
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 11.5px;
+    background: var(--field-bg);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: all .12s ease;
+    white-space: nowrap;
+    flex: none;
+  }
+  .chip:hover { border-color: var(--focal); }
+  .chip.checked {
+    border-color: var(--focal);
+    background: var(--field-bg);
+    color: var(--text-primary);
+  }
+  .checkbox {
+    width: 13px; height: 13px;
+    border: 1.5px solid currentColor;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .checkbox.on {
+    background: var(--focal-strong);
+    border-color: var(--focal-strong);
+  }
+  .chip.all {
+    background: var(--divider);
+    border-style: dashed;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .chip.all input {
+    border: none;
+    background: transparent;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-primary);
+    outline: none;
+    width: 90px;
+    display: none;
+  }
+  .chip.all.editing input { display: inline-block; }
+  .chip.all.editing .add-label { display: none; }
+
+  /* Topic prompt */
+  .prompt-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  .input-box {
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    background: var(--field-bg);
+    padding: 8px 10px;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    width: 100%;
+    font-family: inherit;
+    outline: none;
+  }
+  .input-box:focus { border-color: var(--focal); }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    border: 1px solid var(--field-border);
+    border-radius: 14px;
+    padding: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--block-bg);
+    cursor: pointer;
+  }
+  .tag:hover { border-color: var(--focal); color: var(--text-primary); }
+  .action-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 6px 0 0;
+  }
+
+  .go-btn {
+    display: block;
+    flex: 1;
+    background: var(--focal);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .go-btn:hover { background: var(--focal-strong); }
+  .go-btn:active { transform: translateY(1px); }
+
+  .trending-btn {
+    display: block;
+    flex: 1;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1.5px solid var(--focal);
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .trending-btn:hover { background: var(--divider); }
+  .trending-btn:active { transform: translateY(1px); }
+
+  /* Trending */
+  .trending-list { display: flex; gap: 10px; flex-wrap: wrap; }
+  .trending-pill {
+    border: 1px dashed var(--field-border);
+    border-radius: 14px;
+    padding: 5px 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* Column picker */
+  .col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 34px);
+    grid-auto-flow: column;
+    gap: 2px 16px;
+  }
+  .col-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--divider);
+    padding: 8px 0;
+    cursor: pointer;
+    user-select: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .col-item--bold { font-weight: 700; }
+  .col-hint {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+  .col-note {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 5px;
+    font-style: italic;
+  }
+  .col-item .checkbox { color: var(--focal); }
+  .col-item.unticked { color: var(--text-secondary); }
+  .col-item.unticked .checkbox { color: var(--text-muted); }
+  .extra-slot { cursor: text; }
+  .extra-input {
+    flex: 1;
+    min-width: 0;
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 4px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-primary);
+    outline: none;
+    background: var(--field-bg);
+    line-height: 20px;
+  }
+  .extra-input::placeholder { color: var(--text-muted); }
+  .extra-input:focus { border-color: var(--focal); }
+  .filter-item { flex-wrap: wrap; }
+  .filter-item .checkbox,
+  .extra-slot .checkbox {
+    margin-top: -1.5px;
+  }
+  .length-input {
+    width: 46px;
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-primary);
+    text-align: center;
+    outline: none;
+    margin: 0 2px;
+    line-height: 20px;
+    background: var(--field-bg);
+    -moz-appearance: textfield;
+  }
+  .length-input::-webkit-inner-spin-button,
+  .length-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .length-input:focus { border-color: var(--focal); }
+
+  /* Output table preview */
+  .table-wrap { overflow-x: auto; }
+  table.preview {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  table.preview th {
+    background: var(--pale-sand);
+    border: 1px solid var(--block-border);
+    padding: 6px 8px;
+    text-align: left;
+    color: var(--ink);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  table.preview td {
+    border: 1px solid var(--divider);
+    padding: 6px 8px;
+    color: var(--text-secondary);
+    max-width: 220px;
+  }
+  table.preview td.muted { color: var(--text-muted); }
+  .status-line {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    min-height: 14px;
+  }
+  .param-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .param-row:last-of-type { border-bottom: none; }
+  .param-label {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+  .param-inline { display: flex; gap: 8px; }
+  .param-number {
+    width: 46px;
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-primary);
+    text-align: center;
+    outline: none;
+    line-height: 20px;
+    background: var(--field-bg);
+    -moz-appearance: textfield;
+  }
+  .param-number::-webkit-inner-spin-button,
+  .param-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .param-number:focus { border-color: var(--focal); }
+  .param-select {
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    padding: 0 8px;
+    font-size: 12px;
+    font-family: inherit;
+    line-height: 18px;
+    color: var(--text-primary);
+    background: var(--field-bg);
+    outline: none;
+  }
+  .param-select:focus { border-color: var(--focal); }
+  .horizon-row {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .horizon-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .horizon-set {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .horizon-set + .horizon-set {
+    margin-left: 22px;
+  }
+  .horizon-sublabel {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .horizon-pair { display: flex; align-items: center; gap: 4px; }
+  .horizon-number {
+    width: 46px;
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-primary);
+    text-align: center;
+    outline: none;
+    line-height: 20px;
+    background: var(--field-bg);
+    -moz-appearance: textfield;
+  }
+  .horizon-number::-webkit-inner-spin-button,
+  .horizon-number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .horizon-number:focus { border-color: var(--focal); }
+  .horizon-select {
+    height: 20px;
+    border: 1.5px solid var(--field-border);
+    border-radius: 6px;
+    padding: 0 4px;
+    font-size: 10.5px;
+    font-family: inherit;
+    line-height: 18px;
+    color: var(--text-primary);
+    background: var(--field-bg);
+    outline: none;
+  }
+  .horizon-select:focus { border-color: var(--focal); }
+  .copy-box {
+    max-width: 700px;
+    margin: 10px auto 0;
+    background: var(--block-bg);
+    border: 1.5px solid var(--sage);
+    border-radius: 6px;
+    padding: 9px 11px;
+  }
+  .copy-box-label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--sage);
+    margin-bottom: 5px;
+  }
+  .copy-box-text {
+    width: 100%;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--text-primary);
+    border: 1px solid var(--field-border);
+    border-radius: 4px;
+    padding: 7px 9px;
+    resize: vertical;
+    background: var(--field-bg);
+  }
+</style>
+</head>
+<body>
+<div class="canvas-outer">
+<div class="canvas" id="canvasEl">
+
+  <div class="page-title">
+    Content Picks
+    <span>latest</span>
+  </div>
+
+  <!-- TOPIC -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">01 |</span>TOPIC</div>
+    <div class="prompt-text">What are we learning about today?</div>
+    <hr class="section-divider">
+    <input class="input-box" id="topicInput" placeholder="" />
+  </div>
+
+  <!-- SOURCES -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">02 |</span>SOURCES</div>
+    <div class="block-title">Where should we look?</div>
+    <hr class="section-divider">
+    <div class="chip-row" id="sourceRow">
+      <div class="chip" data-source="Economist"><span class="checkbox"></span>Economist</div>
+      <div class="chip" data-source="Fast Company"><span class="checkbox"></span>Fast Company</div>
+      <div class="chip" data-source="Inc."><span class="checkbox"></span>Inc.</div>
+      <div class="chip" data-source="Wired"><span class="checkbox"></span>Wired</div>
+      <div class="chip" data-source="Monocle"><span class="checkbox"></span>Monocle</div>
+      <div class="chip" data-source="Gartner"><span class="checkbox"></span>Gartner</div>
+    </div>
+  </div>
+
+  <!-- PARAMETERS -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">03 |</span>PARAMETERS</div>
+    <div class="block-title">How many, and how recent?</div>
+    <hr class="section-divider">
+    <div class="param-row">
+      <label class="param-label" for="articleCount">Total number to aim for <span style="font-weight:400;color:#888;">(articles for a pull, topics for trending)</span></label>
+      <input class="param-number" id="articleCount" type="number" min="1" max="50" value="5" />
+    </div>
+    <div class="param-row horizon-row">
+      <label class="param-label">Time horizon</label>
+      <div class="horizon-group">
+        <div class="horizon-set">
+          <div class="horizon-pair">
+            <input class="horizon-number" id="horizonValue" type="number" min="1" max="365" value="3" />
+            <select class="horizon-select" id="horizonUnit">
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months" selected>Months</option>
+              <option value="quarters">Quarters</option>
+              <option value="years">Years</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMN PICKER -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">04 |</span>OUTPUT FORMAT</div>
+    <div class="block-title">Choose properties to show</div>
+    <hr class="section-divider">
+    <div class="col-grid" id="colGrid">
+      <div class="col-item" data-col="Article name"><span class="checkbox on"></span>Article name</div>
+      <div class="col-item" data-col="Publication"><span class="checkbox on"></span>Publication</div>
+      <div class="col-item" data-col="Tag or topic"><span class="checkbox on"></span>Tag or topic</div>
+      <div class="col-item" data-col="Date published"><span class="checkbox on"></span>Date published</div>
+      <div class="col-item" data-col="Audio length"><span class="checkbox on"></span>Audio length</div>
+      <div class="col-item" data-col="Key point"><span class="checkbox on"></span>Key point</div>
+      <div class="col-item unticked" data-col="Theme"><span class="checkbox"></span>Theme</div>
+      <div class="col-item filter-item unticked" id="lengthFilterItem"><span class="checkbox" id="lengthFilterCheckbox"></span>Audio under <input class="length-input" id="lengthFilterValue" type="number" min="1" max="120" value="10" />&nbsp;min</div>
+      <div class="col-item extra-slot unticked" id="extraSlot1"><span class="checkbox" id="extraSlot1Checkbox"></span>Add&nbsp;<input class="extra-input" id="extraSlot1Input" placeholder="Name" /></div>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button class="trending-btn" id="trendingBtn">See what's trending →</button>
+    <button class="go-btn" id="searchBtn">Search articles to spec →</button>
+  </div>
+  <div class="copy-box" id="copyBox" style="display:none;">
+    <div class="copy-box-label" id="copyBoxLabel">Copied to clipboard — paste this into your Claude chat to run it:</div>
+    <textarea class="copy-box-text" id="copyBoxText" readonly rows="4"></textarea>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function fitCanvas() {
+    const el = document.getElementById('canvasEl');
+    el.style.transform = 'scale(1)';
+    const rect = el.getBoundingClientRect();
+    const margin = 24;
+    const scaleW = (window.innerWidth - margin) / rect.width;
+    const scaleH = (window.innerHeight - margin) / rect.height;
+    const scale = Math.min(scaleW, scaleH, 1.6);
+    el.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('load', fitCanvas);
+  window.addEventListener('resize', fitCanvas);
+
+  const CORE_COLS = ["Article name","Audio (Y/N)","Audio length","Topic","Date published","Key point","Link","Comments","Read status"];
+  const DEFAULT_ON = new Set(["Article name","Audio (Y/N)","Audio length","Topic","Date published","Key point","Link","Comments"]);
+
+  // ----- Sources -----
+  document.querySelectorAll('#sourceRow .chip[data-source]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('checked');
+      chip.querySelector('.checkbox').classList.toggle('on');
+    });
+  });
+
+  // ----- Topic -----
+  const topicInput = document.getElementById('topicInput');
+
+  // ----- Column picker -----
+  document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+    item.addEventListener('click', () => {
+      const turningOn = item.classList.contains('unticked');
+      item.classList.toggle('unticked');
+      item.querySelector('.checkbox').classList.toggle('on');
+
+      // Manually ticking Theme is exclusive — it means "just show me themes",
+      // so untick every other property in this section when it's turned on.
+      if (item.dataset.col === 'Theme' && turningOn) {
+        document.querySelectorAll('#colGrid .col-item[data-col]').forEach(other => {
+          if (other === item) return;
+          other.classList.add('unticked');
+          other.querySelector('.checkbox').classList.remove('on');
+        });
+      }
+    });
+  });
+
+  function extraSlotLabel(id) {
+    const el = document.getElementById(id).querySelector('input');
+    return el.value.trim();
+  }
+
+  // ----- Extra columns (auto-tick to match the "Audio under" look) -----
+  ['extraSlot1'].forEach(id => {
+    const item = document.getElementById(id);
+    const input = document.getElementById(id + 'Input');
+    const checkbox = document.getElementById(id + 'Checkbox');
+    input.addEventListener('click', (e) => e.stopPropagation());
+    input.addEventListener('input', () => {
+      const active = input.value.trim().length > 0;
+      item.classList.toggle('unticked', !active);
+      checkbox.classList.toggle('on', active);
+    });
+  });
+
+  function activeColumns() {
+    const cols = [];
+    document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+      if (!item.classList.contains('unticked')) cols.push(item.dataset.col);
+    });
+    return cols;
+  }
+
+  // These aren't extra output columns — they're additional search criteria
+  // the articles themselves need to match (e.g. "founder-led", "under $10M raised").
+  function extraSearchCriteria() {
+    const criteria = [];
+    const e1 = extraSlotLabel('extraSlot1');
+    if (e1) criteria.push(e1);
+    return criteria;
+  }
+
+  // ----- Article length filter -----
+  const lengthFilterItem = document.getElementById('lengthFilterItem');
+  const lengthFilterValue = document.getElementById('lengthFilterValue');
+  lengthFilterValue.addEventListener('click', (e) => e.stopPropagation());
+  lengthFilterItem.addEventListener('click', () => {
+    lengthFilterItem.classList.toggle('unticked');
+    document.getElementById('lengthFilterCheckbox').classList.toggle('on');
+  });
+
+  function lengthFilterActive() {
+    if (lengthFilterItem.classList.contains('unticked')) return null;
+    const v = parseInt(lengthFilterValue.value, 10);
+    return (v && v > 0) ? v : null;
+  }
+
+  // ----- Unit pluralization ("1 week", but "3 weeks") -----
+  function unitLabel(value, unit) {
+    const n = parseFloat(value);
+    const singular = unit.replace(/s$/, '');
+    return (Math.abs(n) === 1) ? singular : unit;
+  }
+
+  // Keep the dropdown's own option text singular/plural too, live as the number changes
+  const UNIT_BASE = { days: 'Day', weeks: 'Week', months: 'Month', quarters: 'Quarter', years: 'Year' };
+  function syncUnitOptions(numberEl, selectEl) {
+    const isSingular = Math.abs(parseFloat(numberEl.value)) === 1;
+    [...selectEl.options].forEach(opt => {
+      const base = UNIT_BASE[opt.value];
+      if (base) opt.textContent = isSingular ? base : base + 's';
+    });
+  }
+  [['horizonValue', 'horizonUnit']].forEach(([numId, selId]) => {
+    const numberEl = document.getElementById(numId);
+    const selectEl = document.getElementById(selId);
+    const sync = () => syncUnitOptions(numberEl, selectEl);
+    numberEl.addEventListener('input', sync);
+    selectEl.addEventListener('change', sync);
+    sync();
+  });
+
+  // ----- Trending: per the IA map (§6), workflow A only ever shows the
+  // properties marked "Yes" for Trending — Theme and Publication. Set
+  // Section 04 to exactly that state whenever the Trending button is pressed.
+  function applyTrendingColumnDefaults() {
+    const onlyTicked = new Set(['Theme', 'Publication']);
+    document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+      const shouldTick = onlyTicked.has(item.dataset.col);
+      item.classList.toggle('unticked', !shouldTick);
+      item.querySelector('.checkbox').classList.toggle('on', shouldTick);
+    });
+    // Audio filter and custom-property slots never apply to Trending — force off.
+    document.getElementById('lengthFilterItem').classList.add('unticked');
+    document.getElementById('lengthFilterCheckbox').classList.remove('on');
+    document.getElementById('extraSlot1').classList.add('unticked');
+    document.getElementById('extraSlot1Checkbox').classList.remove('on');
+  }
+
+  // ----- Trending -----
+  document.getElementById('trendingBtn').addEventListener('click', () => {
+    applyTrendingColumnDefaults();
+    const sources = Array.from(document.querySelectorAll('#sourceRow .chip.checked')).map(c => c.dataset.source);
+    const topicCount = document.getElementById('articleCount').value || '5';
+    const horizonValue = document.getElementById('horizonValue').value || '1';
+    const horizonUnit = document.getElementById('horizonUnit').value;
+    const cols = activeColumns();
+    const copyBox = document.getElementById('copyBox');
+    const copyBoxLabel = document.getElementById('copyBoxLabel');
+    const copyBoxText = document.getElementById('copyBoxText');
+
+    if (sources.length === 0) {
+      copyBoxLabel.textContent = "Pick at least one source above, then see what's trending.";
+      copyBoxText.value = '';
+      copyBox.style.display = 'block';
+      return;
+    }
+
+    const requestText =
+`Show me what's trending on: ${sources.join(', ')}
+Target number of trending topics: ${topicCount}
+Trending time horizon: last ${horizonValue} ${unitLabel(horizonValue, horizonUnit)} (approximate — based on homepage/section front pages, not individually verified per article; edit if you want a tighter or looser window)
+Columns: ${cols.join(', ')}
+Give me a distilled list of trending topics — concepts and themes I could research, not full article titles or headlines.`;
+
+    copyBoxText.value = requestText;
+    copyBox.style.display = 'block';
+
+    const showCopied = () => {
+      copyBoxLabel.textContent = `Copied — paste into your Claude chat to get a trending topics list (sources: ${sources.join(', ')}).`;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(requestText).then(showCopied).catch(() => {
+        copyBoxText.select();
+        copyBoxLabel.textContent = `Couldn't auto-copy — the request is selected below, copy it manually.`;
+      });
+    } else {
+      copyBoxText.select();
+      copyBoxLabel.textContent = `Auto-copy isn't available here — the request is selected below, copy it manually.`;
+    }
+  });
+
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const sources = Array.from(document.querySelectorAll('#sourceRow .chip.checked')).map(c => c.dataset.source);
+    const topic = topicInput.value.trim() || "(no topic set)";
+    const articleCount = document.getElementById('articleCount').value || '6';
+    const horizonValue = document.getElementById('horizonValue').value || '1';
+    const horizonUnit = document.getElementById('horizonUnit').value;
+    const copyBox = document.getElementById('copyBox');
+    const copyBoxLabel = document.getElementById('copyBoxLabel');
+    const copyBoxText = document.getElementById('copyBoxText');
+
+    if (sources.length === 0) {
+      copyBoxLabel.textContent = "Pick at least one source above, then search.";
+      copyBoxText.value = '';
+      copyBox.style.display = 'block';
+      return;
+    }
+
+    // ----- Build the real request text and copy it -----
+    const cols = activeColumns();
+    const maxLength = lengthFilterActive();
+    const criteria = extraSearchCriteria();
+    const notionTitle = `Listen: ${topic}*`;
+    const requestText =
+`Run the Content Picks workflow:
+Topic: ${topic}
+Sources: ${sources.join(', ')}
+Columns: ${cols.join(', ')}
+Target number of articles: ${articleCount}
+Article time horizon: last ${horizonValue} ${unitLabel(horizonValue, horizonUnit)}${maxLength ? `
+Only include articles with audio length under ${maxLength} minutes` : ''}${criteria.length ? `
+Additional search criteria: ${criteria.join(', ')}` : ''}
+Notion destination: new page in Actions db titled "${notionTitle}"`;
+
+    copyBoxText.value = requestText;
+    copyBox.style.display = 'block';
+
+    const showCopied = () => {
+      copyBoxLabel.textContent = `Copied — paste into your Claude chat to run this for real (sources: ${sources.join(', ')} · topic: ${topic}).`;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(requestText).then(showCopied).catch(() => {
+        copyBoxText.select();
+        copyBoxLabel.textContent = `Couldn't auto-copy — the request is selected below, copy it manually.`;
+      });
+    } else {
+      copyBoxText.select();
+      copyBoxLabel.textContent = `Auto-copy isn't available here — the request is selected below, copy it manually.`;
+    }
+  });
+</script>
+</body>
