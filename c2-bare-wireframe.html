@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Anatomy — C2 Bare Wireframe</title>
+  <style>
+    body { margin: 2rem; color: #000; background: #fff; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 80%; }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    td { width: 50%; padding: 0 1rem; vertical-align: top; }
+    td + td { border-left: 1px solid #000; }
+    fieldset { min-width: 0; margin: 0 0 1rem; padding: 1rem; border: 1px solid #000; }
+    fieldset fieldset { margin-top: 1rem; }
+    details { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #000; }
+    details:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+    .response-area { min-height: 2rem; border: 1px solid #000; }
+    button, input { font: inherit; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p>Product anatomy / C2 bare wireframe</p>
+      <p>V1 | 4 September 2026</p>
+      <h1>Product Anatomy</h1>
+      <p>A guide to defining each part of the product anatomy</p>
+      <p><button type="button" id="toggle-all">Open all sections</button></p>
+    </header>
+
+    <table>
+      <tr>
+        <td valign="top">
+          <fieldset>
+            <legend><strong>1 Business / Transformation Scope</strong></legend>
+            <p>What business critical missions and goals do we have, and what would need to occur for us to achieve them?</p>
+            <fieldset>
+              <legend><strong>1.1 Use case definition</strong></legend>
+              <p>What are we trying to do? What value do we want to create?</p>
+              <details>
+                <summary><strong>111 Business Outcome</strong></summary>
+                <p>What result do we want to see in the world? What needs to be true, once this is delivered?</p>
+                <div class="response-area" aria-label="1111 response area"></div>
+              </details>
+              <details>
+                <summary><strong>112 Business Processes or Use Case</strong></summary>
+                <p>What needs to happen, in order to deliver this outcome? What are the “jobs to be done”?</p>
+                <div class="response-area" aria-label="1121 response area"></div>
+              </details>
+              <details>
+                <summary><strong>113 Persona</strong></summary>
+                <p>Who needs to make it happen?</p>
+                <div class="response-area" aria-label="1131 response area"></div>
+              </details>
+            </fieldset>
+            <fieldset>
+              <legend><strong>1.2 Decision flow</strong></legend>
+              <p>What do we need to know, and what will we do with this information, once we have it?</p>
+              <details>
+                <summary><strong>121 Questions</strong></summary>
+                <p>What do we need to know (in order to take action?)</p>
+                <div class="response-area" aria-label="121 response area"></div>
+              </details>
+              <details>
+                <summary><strong>122 Activities</strong></summary>
+                <p>What specific activities may we need to take, to complete the process?</p>
+                <div class="response-area" aria-label="122 response area"></div>
+              </details>
+              <details>
+                <summary><strong>123 Decisions</strong></summary>
+                <p>What is the (possible and likely) decision tree in this situation?</p>
+                <div class="response-area" aria-label="123 response area"></div>
+              </details>
+              <details>
+                <summary><strong>124 Actions</strong></summary>
+                <p>What action might we feasibly take (once we have the above information)?</p>
+                <div class="response-area" aria-label="124 response area"></div>
+              </details>
+            </fieldset>
+          </fieldset>
+        </td>
+        <td valign="top">
+          <fieldset>
+            <legend><strong>2 Data, Insights &amp; Analytics Scope</strong></legend>
+            <p>What solutions will help us achieve our business goals, and what needs to be true about them?</p>
+            <fieldset>
+              <legend><strong>2.1 Product and insight</strong></legend>
+              <p>What do we want to see on the screen, that will help us do our role more effectively?</p>
+              <details>
+                <summary><strong>211 User-facing product</strong></summary>
+                <p>Where do they need to do it (which digital product)?</p>
+                <div class="response-area" aria-label="2111 response area"></div>
+              </details>
+              <details>
+                <summary><strong>212 KPIs</strong></summary>
+                <p>What insight do they need to do it?</p>
+                <div class="response-area" aria-label="212 response area"></div>
+              </details>
+            </fieldset>
+            <fieldset>
+              <legend><strong>2.2 Data and technology</strong></legend>
+              <p>What is required to enable the digital solution to work? What specific technology and tooling choices are the best fit for what we need to bring into existence via the digital product?</p>
+              <details>
+                <summary><strong>221 Data Assets</strong></summary>
+                <p>What underlying data is required to surface the needed KPIs? Which sources and/or systems does it come from?</p>
+                <div class="response-area" aria-label="221 response area"></div>
+              </details>
+              <details>
+                <summary><strong>222 Technology &amp; tooling</strong></summary>
+                <p>What technology should power the solution we interacts with, and why this one?</p>
+                <div class="response-area" aria-label="2221 response area"></div>
+              </details>
+            </fieldset>
+          </fieldset>
+        </td>
+      </tr>
+    </table>
+  </main>
+  <script>
+    const button = document.querySelector('#toggle-all');
+    const sections = () => [...document.querySelectorAll('details')];
+    button.addEventListener('click', () => {
+      const open = sections().some(section => !section.open);
+      sections().forEach(section => { section.open = open; });
+      button.textContent = open ? 'Close all sections' : 'Open all sections';
+    });
+  </script>
+</body>
+</html>
