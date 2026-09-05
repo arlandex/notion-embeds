@@ -18,8 +18,8 @@
 body { margin:0; background:var(--milk-frost); color:var(--body-ink); font-family:"Source Sans 3",sans-serif; font-size:15.5px; line-height:1.4; }
 .canvas-outer { padding:32px; }
 .canvas { width:100%; max-width:760px; margin:0 auto; padding:24px 32px; background:var(--milk-frost); border:1px solid var(--pale-sand); border-radius:12px; transform:none !important; }
-.page-title { font-size:20px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--pale-sand); padding-bottom:16px; margin-bottom:24px; }
-.page-title .release-pill { display:table; margin-top:16px; padding:6px 10px; border-radius:6px; background:var(--soft-ivory); font:500 11px "IBM Plex Mono",monospace; letter-spacing:.08em; color:var(--fog-stone); }
+.page-title { display:flex; align-items:center; flex-wrap:wrap; gap:16px; font-size:20px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--pale-sand); padding-bottom:16px; margin-bottom:24px; }
+.page-title .release-pill { display:inline-block; margin-top:0; padding:6px 10px; border-radius:6px; background:var(--soft-ivory); font:500 11px "IBM Plex Mono",monospace; letter-spacing:.08em; color:var(--fog-stone); }
 .block { background:var(--soft-ivory); border:1px solid var(--pale-sand); border-radius:10px; padding:16px; margin-bottom:16px; }
 .wf-label { font:700 16.5px/1.4 "Source Sans 3",sans-serif; color:var(--ink); text-transform:uppercase; }
 .wf-idx { font:inherit; color:inherit; }
@@ -50,6 +50,7 @@ input,select,textarea { color:var(--body-ink); background:var(--milk-frost); bor
 .filter-item { gap:8px; white-space:nowrap; }
 .action-row { display:flex; gap:16px; margin-top:24px; }
 .go-btn,.trending-btn { flex:1; padding:8px 16px; border:1px solid var(--body-ink); border-radius:8px; font-size:15.5px; font-weight:600; cursor:pointer; }
+.button-chevron { display:inline-block; font-size:150%; line-height:1; margin-left:4px; vertical-align:-.06em; }
 .go-btn { background:var(--ink); color:var(--milk-frost); }
 .go-btn:hover { background:var(--body-ink); }
 .trending-btn { background:var(--milk-frost); color:var(--body-ink); }
@@ -68,8 +69,8 @@ input:focus-visible,textarea:focus-visible { outline-offset:3px; }
 <div class="canvas" id="canvasEl">
 
   <div class="page-title">
-    Content Picks
-    <span class="release-pill">V6 | 5 September 2026</span>
+    CONTENT PICKS
+    <span class="release-pill">V9 | 5 September 2026</span>
   </div>
 
   <!-- TOPIC -->
@@ -98,7 +99,7 @@ input:focus-visible,textarea:focus-visible { outline-offset:3px; }
   <!-- PARAMETERS -->
   <div class="block">
     <div class="wf-label"><span class="wf-idx">03 | </span>PARAMETERS</div>
-    <div class="block-title">How many, and how recent?</div>
+    <div class="block-title">How much to search, and how far back?</div>
     <hr class="section-divider" style="margin-bottom:0;">
     <div class="param-row">
       <label class="param-label" for="articleCount">Total number to aim for <span style="font-weight:400;color:#888;">(articles for a pull, topics for trending)</span></label>
@@ -142,8 +143,8 @@ input:focus-visible,textarea:focus-visible { outline-offset:3px; }
   </div>
 
   <div class="action-row">
-    <button class="trending-btn" id="trendingBtn">See what's trending ›</button>
-    <button class="go-btn" id="searchBtn">Search articles to spec ›</button>
+    <button class="trending-btn" id="trendingBtn">See what's trending <span class="button-chevron" aria-hidden="true">›</span></button>
+    <button class="go-btn" id="searchBtn">Search articles to spec <span class="button-chevron" aria-hidden="true">›</span></button>
   </div>
   <div class="copy-box" id="copyBox" style="display:none;">
     <div class="copy-box-label" id="copyBoxLabel">Copied to clipboard — paste this into your Codex chat to run it:</div>
