@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Picks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Local copy · Style Guide V13, https://arlandex.github.io/design-system/ */
+:root {
+ --milk-frost:#F0EFEC; --soft-ivory:#EAE1D7; --pale-sand:#D8C9B6;
+ --fog-stone:#6C6D6C; --body-ink:#48494B; --ink:#0D1015;
+ color-scheme:light;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--milk-frost); color:var(--body-ink); font-family:"Source Sans 3",sans-serif; font-size:15.5px; line-height:1.4; }
+.canvas-outer { padding:32px; }
+.canvas { width:100%; max-width:760px; margin:0 auto; padding:24px 32px; background:var(--milk-frost); border:1px solid var(--pale-sand); border-radius:12px; transform:none !important; }
+.page-title { font-size:20px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--pale-sand); padding-bottom:16px; margin-bottom:24px; }
+.page-title .release-pill { display:table; margin-top:16px; padding:6px 10px; border-radius:6px; background:var(--soft-ivory); font:500 11px "IBM Plex Mono",monospace; letter-spacing:.08em; color:var(--fog-stone); }
+.block { background:var(--soft-ivory); border:1px solid var(--pale-sand); border-radius:10px; padding:16px; margin-bottom:16px; }
+.wf-label { font:700 16.5px/1.4 "Source Sans 3",sans-serif; color:var(--ink); text-transform:uppercase; }
+.wf-idx { font:inherit; color:inherit; }
+.block-title,.prompt-text { margin:8px 0; font:500 10.5px/1.4 "IBM Plex Mono",monospace; letter-spacing:.07em; text-transform:uppercase; color:var(--fog-stone); }
+.section-divider { border:0; border-top:1px solid var(--pale-sand); margin:0 0 8px; }
+input,select,textarea,button { font:inherit; }
+input,select,textarea { color:var(--body-ink); background:var(--milk-frost); border:1px solid var(--fog-stone); border-radius:8px; }
+.input-box { width:100%; padding:8px; }
+.block:has(#sourceRow) .section-divider { margin-bottom:16px; }
+.chip-row { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { display:flex; align-items:center; gap:8px; padding:8px; border:1px solid var(--fog-stone); border-radius:8px; background:var(--milk-frost); font-size:13.5px; cursor:pointer; user-select:none; }
+.chip:hover,.chip.checked { border-color:var(--body-ink); background:var(--pale-sand); color:var(--ink); }
+.checkbox { width:14px; height:14px; border:1.5px solid var(--fog-stone); border-radius:4px; flex-shrink:0; display:inline-block; }
+.checkbox.on { background:var(--body-ink); border-color:var(--body-ink); }
+.param-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:6.4px 0; height:43.8px; border-bottom:1px solid var(--pale-sand); }
+
+.param-label { font-size:13.5px; }
+.param-label span { color:var(--fog-stone) !important; }
+.param-number,.horizon-number,.length-input { width:48px; padding:4px; text-align:center; font-size:13.5px; flex-shrink:0; }
+.horizon-pair,.horizon-group,.horizon-set { display:flex; align-items:center; gap:8px; }
+.horizon-select { padding:4px 8px; font-size:13.5px; }
+.col-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,43.8px); grid-auto-flow:column; gap:0 16px; }
+.col-item { display:flex; align-items:center; gap:8px; min-width:0; padding:6.4px 0; height:43.8px; border-bottom:1px solid var(--pale-sand); font-size:13.5px; cursor:pointer; }
+.col-item.unticked { color:var(--fog-stone); }
+.extra-input { min-width:0; width:100%; padding:4px 8px; font-size:13.5px; }
+.length-input { width:40px; }
+.param-number,.horizon-number,.horizon-select,.length-input,.extra-input { height:30px; line-height:20px; padding-top:4px; padding-bottom:4px; }
+.filter-item { gap:8px; white-space:nowrap; }
+.action-row { display:flex; gap:16px; margin-top:24px; }
+.go-btn,.trending-btn { flex:1; padding:8px 16px; border:1px solid var(--body-ink); border-radius:8px; font-size:15.5px; font-weight:600; cursor:pointer; }
+.go-btn { background:var(--ink); color:var(--milk-frost); }
+.go-btn:hover { background:var(--body-ink); }
+.trending-btn { background:var(--milk-frost); color:var(--body-ink); }
+.trending-btn:hover { background:var(--soft-ivory); }
+:focus-visible { outline:2px solid var(--body-ink); outline-offset:2px; }
+input:focus-visible,textarea:focus-visible { outline-offset:3px; }
+.copy-box { margin-top:16px; padding:16px; border:1px solid var(--pale-sand); border-radius:10px; background:var(--soft-ivory); }
+.copy-box-label { margin-bottom:8px; font:500 10.5px/1.4 "IBM Plex Mono",monospace; color:var(--fog-stone); }
+.copy-box-text { display:block; width:100%; padding:8px; resize:vertical; font:500 11.5px/1.4 "IBM Plex Mono",monospace; }
+@media(max-width:600px) { .canvas-outer { padding:16px; } .canvas { padding:16px; } .col-grid { grid-template-columns:1fr; grid-template-rows:none; grid-auto-flow:row; } .action-row { flex-direction:column; gap:8px; } .param-label span { display:block; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; } }
+</style>
+</head>
+<body>
+<div class="canvas-outer">
+<div class="canvas" id="canvasEl">
+
+  <div class="page-title">
+    Content Picks
+    <span class="release-pill">V6 | 5 September 2026</span>
+  </div>
+
+  <!-- TOPIC -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">01 | </span>TOPIC</div>
+    <div class="prompt-text">What are we learning about today?</div>
+    <hr class="section-divider">
+    <input class="input-box" id="topicInput" placeholder="" />
+  </div>
+
+  <!-- SOURCES -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">02 | </span>SOURCES</div>
+    <div class="block-title">Where should we look?</div>
+    <hr class="section-divider">
+    <div class="chip-row" id="sourceRow">
+      <div class="chip" data-source="Economist"><span class="checkbox"></span>Economist</div>
+      <div class="chip" data-source="Fast Company"><span class="checkbox"></span>Fast Company</div>
+      <div class="chip" data-source="Inc."><span class="checkbox"></span>Inc.</div>
+      <div class="chip" data-source="Wired"><span class="checkbox"></span>Wired</div>
+      <div class="chip" data-source="Monocle"><span class="checkbox"></span>Monocle</div>
+      <div class="chip" data-source="Gartner"><span class="checkbox"></span>Gartner</div>
+    </div>
+  </div>
+
+  <!-- PARAMETERS -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">03 | </span>PARAMETERS</div>
+    <div class="block-title">How many, and how recent?</div>
+    <hr class="section-divider" style="margin-bottom:0;">
+    <div class="param-row">
+      <label class="param-label" for="articleCount">Total number to aim for <span style="font-weight:400;color:#888;">(articles for a pull, topics for trending)</span></label>
+      <input class="param-number" id="articleCount" type="number" min="1" max="50" value="5" />
+    </div>
+    <div class="param-row horizon-row">
+      <label class="param-label">Time horizon</label>
+      <div class="horizon-group">
+        <div class="horizon-set">
+          <div class="horizon-pair">
+            <input class="horizon-number" id="horizonValue" type="number" min="1" max="365" value="3" />
+            <select class="horizon-select" id="horizonUnit">
+              <option value="days">Days</option>
+              <option value="weeks">Weeks</option>
+              <option value="months" selected>Months</option>
+              <option value="quarters">Quarters</option>
+              <option value="years">Years</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMN PICKER -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">04 | </span>OUTPUT FORMAT</div>
+    <div class="block-title">Choose properties to show</div>
+    <hr class="section-divider" style="margin-bottom:0;">
+    <div class="col-grid" id="colGrid">
+      <div class="col-item" data-col="Article name"><span class="checkbox on"></span>Article name</div>
+      <div class="col-item" data-col="Publication"><span class="checkbox on"></span>Publication</div>
+      <div class="col-item" data-col="Tag or topic"><span class="checkbox on"></span>Tag or topic</div>
+      <div class="col-item" data-col="Date published"><span class="checkbox on"></span>Date published</div>
+      <div class="col-item" data-col="Audio length"><span class="checkbox on"></span>Audio length</div>
+      <div class="col-item" data-col="Brief article summary"><span class="checkbox on"></span>Brief article summary</div>
+      <div class="col-item unticked" data-col="Theme"><span class="checkbox"></span>Theme</div>
+      <div class="col-item filter-item unticked" id="lengthFilterItem"><span class="checkbox" id="lengthFilterCheckbox"></span><span>Audio &lt;</span><input class="length-input" id="lengthFilterValue" type="number" min="1" max="120" value="10" /><span>min</span></div>
+      <div class="col-item extra-slot unticked" id="extraSlot1"><span class="checkbox" id="extraSlot1Checkbox"></span>Add&nbsp;<input class="extra-input" id="extraSlot1Input" placeholder="" /></div>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button class="trending-btn" id="trendingBtn">See what's trending ›</button>
+    <button class="go-btn" id="searchBtn">Search articles to spec ›</button>
+  </div>
+  <div class="copy-box" id="copyBox" style="display:none;">
+    <div class="copy-box-label" id="copyBoxLabel">Copied to clipboard — paste this into your Codex chat to run it:</div>
+    <textarea class="copy-box-text" id="copyBoxText" readonly rows="4"></textarea>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function fitCanvas() {
+    const el = document.getElementById('canvasEl');
+    el.style.transform = 'scale(1)';
+    const rect = el.getBoundingClientRect();
+    const margin = 24;
+    const scaleW = (window.innerWidth - margin) / rect.width;
+    const scaleH = (window.innerHeight - margin) / rect.height;
+    const scale = Math.min(scaleW, scaleH, 1.6);
+    el.style.transform = `scale(${scale})`;
+  }
+  window.addEventListener('load', fitCanvas);
+  window.addEventListener('resize', fitCanvas);
+
+  const CORE_COLS = ["Article name","Audio (Y/N)","Audio length","Topic","Date published","Brief article summary","Link","Comments","Read status"];
+  const DEFAULT_ON = new Set(["Article name","Audio (Y/N)","Audio length","Topic","Date published","Brief article summary","Link","Comments"]);
+
+  // ----- Sources -----
+  document.querySelectorAll('#sourceRow .chip[data-source]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('checked');
+      chip.querySelector('.checkbox').classList.toggle('on');
+    });
+  });
+
+  // ----- Topic -----
+  const topicInput = document.getElementById('topicInput');
+
+  // ----- Column picker -----
+  document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+    item.addEventListener('click', () => {
+      const turningOn = item.classList.contains('unticked');
+      item.classList.toggle('unticked');
+      item.querySelector('.checkbox').classList.toggle('on');
+
+      // Manually ticking Theme is exclusive — it means "just show me themes",
+      // so untick every other property in this section when it's turned on.
+      if (item.dataset.col === 'Theme' && turningOn) {
+        document.querySelectorAll('#colGrid .col-item[data-col]').forEach(other => {
+          if (other === item) return;
+          other.classList.add('unticked');
+          other.querySelector('.checkbox').classList.remove('on');
+        });
+      }
+    });
+  });
+
+  function extraSlotLabel(id) {
+    const el = document.getElementById(id).querySelector('input');
+    return el.value.trim();
+  }
+
+  // ----- Extra columns (auto-tick to match the "Audio under" look) -----
+  ['extraSlot1'].forEach(id => {
+    const item = document.getElementById(id);
+    const input = document.getElementById(id + 'Input');
+    const checkbox = document.getElementById(id + 'Checkbox');
+    input.addEventListener('click', (e) => e.stopPropagation());
+    input.addEventListener('input', () => {
+      const active = input.value.trim().length > 0;
+      item.classList.toggle('unticked', !active);
+      checkbox.classList.toggle('on', active);
+    });
+  });
+
+  function activeColumns() {
+    const cols = [];
+    document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+      if (!item.classList.contains('unticked')) cols.push(item.dataset.col);
+    });
+    return cols;
+  }
+
+  // These aren't extra output columns — they're additional search criteria
+  // the articles themselves need to match (e.g. "founder-led", "under $10M raised").
+  function extraSearchCriteria() {
+    const criteria = [];
+    const e1 = extraSlotLabel('extraSlot1');
+    if (e1) criteria.push(e1);
+    return criteria;
+  }
+
+  // ----- Article length filter -----
+  const lengthFilterItem = document.getElementById('lengthFilterItem');
+  const lengthFilterValue = document.getElementById('lengthFilterValue');
+  lengthFilterValue.addEventListener('click', (e) => e.stopPropagation());
+  lengthFilterItem.addEventListener('click', () => {
+    lengthFilterItem.classList.toggle('unticked');
+    document.getElementById('lengthFilterCheckbox').classList.toggle('on');
+  });
+
+  function lengthFilterActive() {
+    if (lengthFilterItem.classList.contains('unticked')) return null;
+    const v = parseInt(lengthFilterValue.value, 10);
+    return (v && v > 0) ? v : null;
+  }
+
+  // ----- Unit pluralization ("1 week", but "3 weeks") -----
+  function unitLabel(value, unit) {
+    const n = parseFloat(value);
+    const singular = unit.replace(/s$/, '');
+    return (Math.abs(n) === 1) ? singular : unit;
+  }
+
+  // Keep the dropdown's own option text singular/plural too, live as the number changes
+  const UNIT_BASE = { days: 'Day', weeks: 'Week', months: 'Month', quarters: 'Quarter', years: 'Year' };
+  function syncUnitOptions(numberEl, selectEl) {
+    const isSingular = Math.abs(parseFloat(numberEl.value)) === 1;
+    [...selectEl.options].forEach(opt => {
+      const base = UNIT_BASE[opt.value];
+      if (base) opt.textContent = isSingular ? base : base + 's';
+    });
+  }
+  [['horizonValue', 'horizonUnit']].forEach(([numId, selId]) => {
+    const numberEl = document.getElementById(numId);
+    const selectEl = document.getElementById(selId);
+    const sync = () => syncUnitOptions(numberEl, selectEl);
+    numberEl.addEventListener('input', sync);
+    selectEl.addEventListener('change', sync);
+    sync();
+  });
+
+  // ----- Trending: per the IA map (§6), workflow A only ever shows the
+  // properties marked "Yes" for Trending — Theme and Publication. Set
+  // Section 04 to exactly that state whenever the Trending button is pressed.
+  function applyTrendingColumnDefaults() {
+    const onlyTicked = new Set(['Theme', 'Publication']);
+    document.querySelectorAll('#colGrid .col-item[data-col]').forEach(item => {
+      const shouldTick = onlyTicked.has(item.dataset.col);
+      item.classList.toggle('unticked', !shouldTick);
+      item.querySelector('.checkbox').classList.toggle('on', shouldTick);
+    });
+    // Audio filter and custom-property slots never apply to Trending — force off.
+    document.getElementById('lengthFilterItem').classList.add('unticked');
+    document.getElementById('lengthFilterCheckbox').classList.remove('on');
+    document.getElementById('extraSlot1').classList.add('unticked');
+    document.getElementById('extraSlot1Checkbox').classList.remove('on');
+  }
+
+  // ----- Trending -----
+  document.getElementById('trendingBtn').addEventListener('click', () => {
+    applyTrendingColumnDefaults();
+    const sources = Array.from(document.querySelectorAll('#sourceRow .chip.checked')).map(c => c.dataset.source);
+    const topicCount = document.getElementById('articleCount').value || '5';
+    const horizonValue = document.getElementById('horizonValue').value || '1';
+    const horizonUnit = document.getElementById('horizonUnit').value;
+    const cols = activeColumns();
+    const copyBox = document.getElementById('copyBox');
+    const copyBoxLabel = document.getElementById('copyBoxLabel');
+    const copyBoxText = document.getElementById('copyBoxText');
+
+    if (sources.length === 0) {
+      copyBoxLabel.textContent = "Pick at least one source above, then see what's trending.";
+      copyBoxText.value = '';
+      copyBox.style.display = 'block';
+      return;
+    }
+
+    const requestText =
+`Show me what's trending on: ${sources.join(', ')}
+Target number of trending topics: ${topicCount}
+Trending time horizon: last ${horizonValue} ${unitLabel(horizonValue, horizonUnit)} (approximate — based on homepage/section front pages, not individually verified per article; edit if you want a tighter or looser window)
+Columns: ${cols.join(', ')}
+Give me a distilled list of trending topics — concepts and themes I could research, not full article titles or headlines.`;
+
+    copyBoxText.value = requestText;
+    copyBox.style.display = 'block';
+
+    const showCopied = () => {
+      copyBoxLabel.textContent = `Copied — paste into your Codex chat to get a trending topics list (sources: ${sources.join(', ')}).`;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(requestText).then(showCopied).catch(() => {
+        copyBoxText.select();
+        copyBoxLabel.textContent = `Couldn't auto-copy — the request is selected below, copy it manually.`;
+      });
+    } else {
+      copyBoxText.select();
+      copyBoxLabel.textContent = `Auto-copy isn't available here — the request is selected below, copy it manually.`;
+    }
+  });
+
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const sources = Array.from(document.querySelectorAll('#sourceRow .chip.checked')).map(c => c.dataset.source);
+    const topic = topicInput.value.trim() || "(no topic set)";
+    const articleCount = document.getElementById('articleCount').value || '6';
+    const horizonValue = document.getElementById('horizonValue').value || '1';
+    const horizonUnit = document.getElementById('horizonUnit').value;
+    const copyBox = document.getElementById('copyBox');
+    const copyBoxLabel = document.getElementById('copyBoxLabel');
+    const copyBoxText = document.getElementById('copyBoxText');
+
+    if (sources.length === 0) {
+      copyBoxLabel.textContent = "Pick at least one source above, then search.";
+      copyBoxText.value = '';
+      copyBox.style.display = 'block';
+      return;
+    }
+
+    // ----- Build the real request text and copy it -----
+    const cols = activeColumns();
+    const maxLength = lengthFilterActive();
+    const criteria = extraSearchCriteria();
+    const notionTitle = `Listen: ${topic}*`;
+    const requestText =
+`Run the Content Picks workflow:
+Topic: ${topic}
+Sources: ${sources.join(', ')}
+Columns: ${cols.join(', ')}
+Target number of articles: ${articleCount}
+Article time horizon: last ${horizonValue} ${unitLabel(horizonValue, horizonUnit)}${maxLength ? `
+Only include articles with audio length under ${maxLength} minutes` : ''}${criteria.length ? `
+Additional search criteria: ${criteria.join(', ')}` : ''}
+Notion destination: new page in Actions db titled "${notionTitle}"`;
+
+    copyBoxText.value = requestText;
+    copyBox.style.display = 'block';
+
+    const showCopied = () => {
+      copyBoxLabel.textContent = `Copied — paste into your Codex chat to run this for real (sources: ${sources.join(', ')} · topic: ${topic}).`;
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(requestText).then(showCopied).catch(() => {
+        copyBoxText.select();
+        copyBoxLabel.textContent = `Couldn't auto-copy — the request is selected below, copy it manually.`;
+      });
+    } else {
+      copyBoxText.select();
+      copyBoxLabel.textContent = `Auto-copy isn't available here — the request is selected below, copy it manually.`;
+    }
+  });
+</script>
+</body>
