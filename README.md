@@ -10,3 +10,5 @@
 - [C2 — Bare Wireframe](https://arlandex.github.io/notion-embeds/c2-bare-wireframe.html)
 - [Content Picks — Last Claude Version](https://arlandex.github.io/notion-embeds/content-picks-last-claude-version.html)
 - [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
+
+- [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=6)
