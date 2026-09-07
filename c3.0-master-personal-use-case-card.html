@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C3.0 - Master: Personal Use Case Card</title>
 <style>
-*{box-sizing:border-box}body{margin:0;padding:24px;color:#464B50;background:#F4F5F6;font:80%/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1100px;margin:auto}header{margin-bottom:32px}h1{font-size:1.7em;margin:0 0 4px}header p{margin:0}.meta{font-size:.9em;margin:12px 0 0} .groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}fieldset{min-width:0;border:1px solid #CDD1D4;padding:14px;margin:0}legend{padding:0 5px;font-weight:700;font-size:1.15em}.section{margin-top:16px}.section:first-of-type{margin-top:4px}h2{font-size:1.05em;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #CDD1D4}.field{margin-top:12px}.field:first-of-type{margin-top:0}label{display:block;font-weight:650}.prompt{display:block;font-weight:400;margin:2px 0 6px}textarea{display:block;width:100%;min-height:70px;resize:vertical;border:1px solid #CDD1D4;border-radius:0;background:#F4F5F6;color:#464B50;padding:8px;font:inherit;line-height:1.45}textarea:focus-visible{outline:2px solid #686D72;outline-offset:2px}footer{margin-top:16px;font-size:.9em} @media(max-width:700px){body{padding:16px;font-size:90%}.groups{grid-template-columns:1fr;gap:16px}fieldset{padding:12px}textarea{font-size:16px}}@media print{body{padding:0}footer{display:none}}
+*{box-sizing:border-box}body{margin:0;padding:24px;color:#464B50;background:#F4F5F6;font:80%/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1100px;margin:auto}header{margin-bottom:32px}h1{font-size:1.7em;margin:0 0 4px}header p{margin:0}.meta{font-size:.9em;margin:12px 0 0} .groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}fieldset{min-width:0;border:1px solid #CDD1D4;padding:14px;margin:0}legend{padding:0 5px;font-weight:700;font-size:1.15em}.section{margin-top:16px}.section:first-of-type{margin-top:4px}h2{font-size:1.05em;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #CDD1D4}.field{margin-top:12px}.field:first-of-type{margin-top:0}label{display:block;font-weight:650}.prompt{display:block;font-weight:400;margin:2px 0 6px}textarea{display:block;width:100%;min-height:70px;resize:none;overflow:hidden;border:1px solid #CDD1D4;border-radius:0;background:#F4F5F6;color:#464B50;padding:8px;font:inherit;line-height:1.45}textarea:focus-visible{outline:2px solid #686D72;outline-offset:2px}footer{margin-top:16px;font-size:.9em} @media(max-width:700px){body{padding:16px;font-size:90%}.groups{grid-template-columns:1fr;gap:16px}fieldset{padding:12px}textarea{font-size:inherit}}@media print{body{padding:0}footer{display:none}}
 .prompt,.meta,footer{color:#686D72}textarea{background:#E6E8EA}
+button{border:1px solid #CDD1D4;background:#E6E8EA;color:#464B50;padding:8px 12px;font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #686D72;outline-offset:2px}.save-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px}@media print{.save-controls{display:none}}
+.field textarea{font-size:0.9em}
 </style>
 </head>
 <body><main>
-<header><h1>Personal use case card</h1><p class="meta">V8 | 7 September 2026</p></header>
+<header><h1>Personal use case card</h1><p class="meta">V9 | 7 September 2026</p></header>
 <div class="groups">
 <fieldset><legend>Value</legend>
 <section class="section" aria-labelledby="value-case"><h2 id="value-case">Value case</h2>
@@ -29,10 +31,23 @@
 </section>
 <section class="section" aria-labelledby="quality"><h2 id="quality">Quality &amp; governance</h2>
 <div class="field"><label for="actions">Authorised actions</label><span class="prompt" id="actions-help">What is allowed, and what needs approval?</span><textarea id="actions" aria-describedby="actions-help" rows="3"></textarea></div>
-<div class="field"><label for="checks">Checks &amp; exceptions</label><span class="prompt" id="checks-help">What is checked or flagged?</span><textarea id="checks" aria-describedby="checks-help" rows="3"></textarea></div>
+<div class="field"><label for="checks">Checks, rules &amp; exceptions</label><span class="prompt" id="checks-help">What is checked, which rules apply, and what exceptions are flagged?</span><textarea id="checks" aria-describedby="checks-help" rows="3"></textarea></div>
 </section>
 <section class="section" aria-labelledby="implementation"><h2 id="implementation">Implementation architecture</h2>
 <div class="field"><label for="solution">Solution details</label><span class="prompt" id="solution-help">Which tools and saved instructions make this work?</span><textarea id="solution" aria-describedby="solution-help" rows="3"></textarea></div>
 </section></fieldset>
-</div><footer>Layout preview · Entries are temporary and are not saved.</footer>
-</main><script>document.querySelectorAll('textarea').forEach(field=>field.addEventListener('input',()=>{field.style.height='auto';field.style.height=field.scrollHeight+2+'px'}));</script></body></html>
+</div><div class="save-controls"><button type="button" id="download">Download saved copy</button><span id="save-status" role="status">Edit any field, then download to keep your changes.</span></div><footer>Editable master · Download a copy to keep your entries.</footer>
+</main><script>
+const fields = [...document.querySelectorAll('textarea')];
+function fit(field){field.style.height='auto';field.style.height=field.scrollHeight+2+'px';}
+fields.forEach(field=>{fit(field);field.addEventListener('input',()=>{fit(field);document.getElementById('save-status').textContent='Unsaved changes · Download a copy to keep them.';});});
+window.addEventListener('resize',()=>fields.forEach(fit));
+document.getElementById('download').addEventListener('click',()=>{
+ const clone=document.documentElement.cloneNode(true);
+ clone.querySelectorAll('textarea').forEach((field,index)=>{field.textContent=fields[index].value;field.style.height='';});
+ clone.querySelector('#save-status').textContent='Edit any field, then download to keep your changes.';
+ const blob=new Blob(['<!doctype html>\n'+clone.outerHTML],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download=location.pathname.split('/').pop()||'personal-use-case-card.html';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ document.getElementById('save-status').textContent='Download requested · Check your Downloads folder for the saved copy.';
+});
+</script></body></html>
