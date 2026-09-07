@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C3.1 - Personal use case - Gym booking</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;color:#464B50;background:#F4F5F6;font:80%/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1100px;margin:auto}header{margin-bottom:32px}h1{font-size:1.7em;margin:0 0 4px}header p{margin:0}.meta{font-size:.9em;margin:12px 0 0} .groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}fieldset{min-width:0;border:1px solid #CDD1D4;padding:14px;margin:0}legend{padding:0 5px;font-weight:700;font-size:1.15em}.section{margin-top:16px}.section:first-of-type{margin-top:4px}h2{font-size:1.05em;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #CDD1D4}.field{margin-top:12px}.field:first-of-type{margin-top:0}label{display:block;font-weight:650}.prompt{display:block;font-weight:400;margin:2px 0 6px}textarea{display:block;width:100%;min-height:70px;resize:none;border:1px solid #CDD1D4;border-radius:0;background:#F4F5F6;color:#464B50;padding:8px;font:inherit;line-height:1.45}textarea:focus-visible{outline:2px solid #686D72;outline-offset:2px}footer{margin-top:16px;font-size:.9em} @media(max-width:700px){body{padding:16px;font-size:90%}.groups{grid-template-columns:1fr;gap:16px}fieldset{padding:12px}textarea{font-size:16px}}@media print{body{padding:0}footer{display:none}}
+.prompt,.meta,footer{color:#686D72}textarea{background:#E6E8EA}
+</style>
+</head>
+<body><main>
+<header><h1>Personal use case card: Gym booking agent</h1><p class="meta">V4 | 7 September 2026</p></header>
+<div class="groups">
+<fieldset><legend>Value</legend>
+<section class="section" aria-labelledby="value-case"><h2 id="value-case">Value case</h2>
+<div class="field"><label for="pain">Pain point</label><span class="prompt" id="pain-help">What recurring difficulty prompted this?</span><textarea readonly id="pain" aria-describedby="pain-help" rows="3">Repeatedly filtering gym schedules by trainer, format and location, then checking calendar availability—nearly every day despite settled preferences.</textarea></div>
+<div class="field"><label for="benefits">Benefits</label><span class="prompt" id="benefits-help">What becomes easier, faster or better?</span><textarea readonly id="benefits" aria-describedby="benefits-help" rows="3">Compare suitable classes in one view, pair workouts with Wellness and book standing classes ahead. Saved preferences remove the need to repeat the same criteria.</textarea></div>
+</section>
+<section class="section" aria-labelledby="use-case"><h2 id="use-case">Use case</h2>
+<div class="field"><label for="purpose">Purpose</label><span class="prompt" id="purpose-help">What should this use case accomplish?</span><textarea readonly id="purpose" aria-describedby="purpose-help" rows="3">Find and book Saints &amp; Stars classes that fit training preferences and calendar availability, reducing friction in daily workout planning.</textarea></div>
+<div class="field"><label for="target-user">Target user</label><span class="prompt" id="target-user-help">Who is this for?</span><textarea readonly id="target-user" aria-describedby="target-user-help" rows="3">A frequent Saints &amp; Stars member with specific trainer, class and location preferences, standing weekly classes and calendar constraints.</textarea></div>
+</section></fieldset>
+<fieldset><legend>Execution</legend>
+<section class="section" aria-labelledby="replication"><h2 id="replication">Replication guide</h2>
+<div class="field"><label for="workflow">Workflow</label><span class="prompt" id="workflow-help">What happens, from request to result?</span><textarea readonly id="workflow" aria-describedby="workflow-help" rows="3">Request suitable classes, check standing classes or make a custom query. Review the results, select a class and confirm booking in the same conversation—or use the booking link.</textarea></div>
+<div class="field"><label for="inputs">Inputs</label><span class="prompt" id="inputs-help">What information or context does it need?</span><textarea readonly id="inputs" aria-describedby="inputs-help" rows="3">A natural-language request in Codex for a day, date range or specific class combination, using saved preferences unless the request overrides them.</textarea></div>
+<div class="field"><label for="outputs">Outputs</label><span class="prompt" id="outputs-help">What comes back, and in what format?</span><textarea readonly id="outputs" aria-describedby="outputs-help" rows="3">One table grouped by class type and intensity: time, class, club, trainer, availability, booking link and Wellness options. Existing bookings remain visible.</textarea></div>
+</section>
+<section class="section" aria-labelledby="quality"><h2 id="quality">Quality &amp; governance</h2>
+<div class="field"><label for="actions">Authorised actions</label><span class="prompt" id="actions-help">What is allowed, and what needs approval?</span><textarea readonly id="actions" aria-describedby="actions-help" rows="3">Prepare class summaries and Wellness pairings; book selected classes after confirmation; apply a dedicated colour to confirmed studio bookings in the calendar.</textarea></div>
+<div class="field"><label for="checks">Checks &amp; exceptions</label><span class="prompt" id="checks-help">What is checked or flagged?</span><textarea readonly id="checks" aria-describedby="checks-help" rows="3">Flag calendar-based exclusions for review. Keep full and waitlisted classes visible with their status, and surface other exceptions.</textarea></div>
+</section>
+<section class="section" aria-labelledby="implementation"><h2 id="implementation">Implementation architecture</h2>
+<div class="field"><label for="solution">Solution details</label><span class="prompt" id="solution-help">Which tools and saved instructions make this work?</span><textarea readonly id="solution" aria-describedby="solution-help" rows="3">Codex uses the signed-in studio website and Google Calendar. One Skill stores preferences, standing classes, pairing rules and the output format, refined through roughly ten live iterations.</textarea></div>
+</section></fieldset>
+</div><footer>Read-only · Based on the gym booking post.</footer>
+</main><script>const fit=field=>{field.style.height='auto';field.style.height=field.scrollHeight+2+'px'}; const fields=[...document.querySelectorAll('textarea')]; fields.forEach(field=>{fit(field);field.addEventListener('input',()=>fit(field))}); window.addEventListener('resize',()=>fields.forEach(fit));</script></body></html>
