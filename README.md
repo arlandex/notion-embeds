@@ -3,7 +3,7 @@
 ## Live pages
 
 <p>
-<a href="https://arlandex.github.io/notion-embeds/c1.0-master-enterprise-use-case-card.html?v=5">C1.0 | Enterprise use case | MVP</a>
+<a href="https://arlandex.github.io/notion-embeds/c1.0-master-enterprise-use-case-card.html?v=5">C1.0 | Enterprise use case card | MVP</a>
 </p>
 
 <p>
@@ -15,9 +15,9 @@
 </p>
 
 <p>
-<a href="https://arlandex.github.io/notion-embeds/c3.0-master-personal-use-case-card.html?v=9">C3.0 | Personal use case | MVP</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.1-personal-use-case-gym-booking.html?v=4">C3.01 | Personal use case | Gym booking</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.2-personal-use-case-personal-learning-system-in-notion.html?v=2">C3.02 | Personal use case | Personal learning system in Notion</a>
+<a href="https://arlandex.github.io/notion-embeds/c3.0-master-personal-use-case-card.html?v=9">C3.0 | Personal use case card | MVP</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.1-personal-use-case-gym-booking.html?v=4">C3.01 | Personal use case card | Gym booking</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.2-personal-use-case-personal-learning-system-in-notion.html?v=2">C3.02 | Personal use case card | Personal learning system in Notion</a>
 </p>
 
 <p>
