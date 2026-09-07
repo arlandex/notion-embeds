@@ -13,3 +13,5 @@
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)
 
 [C3 — Personal Use Case Card (lightweight master)](https://arlandex.github.io/notion-embeds/c3-personal-use-case-card.html?v=7)
+
+[C3 — Personal Use Case Card (Gym booking example)](https://arlandex.github.io/notion-embeds/c3-personal-use-case-card-example-gym-booking.html?v=3)
