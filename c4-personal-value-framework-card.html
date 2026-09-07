@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Value framework: Use case (personal)</title><style>
+*{box-sizing:border-box}body{margin:0;padding:24px;color:#464B50;background:#F4F5F6;font:80%/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1100px;margin:auto}header{margin-bottom:32px}h1{font-size:1.7em;margin:0 0 4px}header p{margin:0}.meta{font-size:.9em;margin:12px 0 0} .groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}fieldset{min-width:0;border:1px solid #CDD1D4;padding:14px;margin:0}legend{padding:0 5px;font-weight:700;font-size:1.15em}.section{margin-top:16px}.section:first-of-type{margin-top:4px}h2{font-size:1.05em;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #CDD1D4}.field{margin-top:12px}.field:first-of-type{margin-top:0}label{display:block;font-weight:650}.prompt{display:block;font-weight:400;margin:2px 0 6px}textarea{display:block;width:100%;min-height:70px;resize:vertical;border:1px solid #CDD1D4;border-radius:0;background:#F4F5F6;color:#464B50;padding:8px;font:inherit;line-height:1.45}textarea:focus-visible{outline:2px solid #686D72;outline-offset:2px}footer{margin-top:16px;font-size:.9em} @media(max-width:700px){body{padding:16px;font-size:90%}.groups{grid-template-columns:1fr;gap:16px}fieldset{padding:12px}textarea{font-size:16px}}@media print{body{padding:0}footer{display:none}}
+.prompt,.meta,footer{color:#686D72}textarea{background:#E6E8EA}
+
+header{margin-bottom:24px}.intro{max-width:780px;margin-top:14px}.group-intro{margin:2px 0 20px;color:#686D72}.section{margin-top:26px}.check{display:flex;align-items:center;gap:8px}.check input{margin:0;width:16px;height:16px;accent-color:#464B50}.definition{margin:0 0 14px}.status{display:flex;align-items:center;gap:12px;margin-top:12px}select,input[type=text]{font:inherit;color:inherit;background:#E6E8EA;border:1px solid #CDD1D4;padding:7px}select:focus-visible,input:focus-visible{outline:2px solid #686D72;outline-offset:2px}.usecase{width:100%;margin-top:18px}.usecase>label{font-size:1.15em;font-weight:700}.usecase input{width:100%;margin-top:6px}.section h2{margin-bottom:8px}footer p{margin:6px 0}textarea{min-height:58px}
+.benefit-heading{display:flex;align-items:stretch;gap:22px;border-bottom:1px solid #CDD1D4;padding-bottom:8px;margin-bottom:12px}.benefit-heading>input{flex:none;align-self:flex-start;margin:0;accent-color:#464B50}.benefit-copy{flex:1;min-width:0}.section .benefit-copy h2{border:0;padding:0;margin:0 0 2px}.benefit-copy .definition{margin:0}
+.groups{align-items:stretch}.benefit-heading>input{appearance:none;width:23.8px;height:52px;margin-top:3px;margin-right:8px;order:2;border:1px solid #686D72;border-radius:2px;background:#F4F5F6;display:grid;place-content:center;cursor:pointer}.benefit-heading>input:checked{background:#464B50;border-color:#464B50}textarea{resize:none;overflow:hidden}
+</style></head><body><main><header><h1>Value framework: Use case (personal)</h1><p class="meta">Master · V12 | 7 September 2026</p><p class="intro">Tick all the benefits this use case delivers and add detail below each selected category.<br>Give each distinct benefit one primary home; select several categories when the gains are different.</p><div class="usecase"><label for="usecase">Use case</label><input id="usecase" type="text"></div></header><div class="groups"><fieldset><legend>Quantitative</legend><p class="group-intro">Resources and observable results</p><section class="section"><div class="benefit-heading"><input type="checkbox" id="time-tick" aria-describedby="time-tick-definition"><div class="benefit-copy"><h2><label for="time-tick">Time saved</label></h2><p class="definition" id="time-tick-definition">Less personal time spent completing the task</p></div></div>
+<div class="field"><textarea id="time-change" aria-label="time benefit details" rows="2"></textarea></div>
+
+</section><section class="section"><div class="benefit-heading"><input type="checkbox" id="money-tick" aria-describedby="money-tick-definition"><div class="benefit-copy"><h2><label for="money-tick">Financial benefit</label></h2><p class="definition" id="money-tick-definition">Lower spending or additional income</p></div></div>
+<div class="field"><textarea id="money-change" aria-label="money benefit details" rows="2"></textarea></div>
+
+</section><section class="section"><div class="benefit-heading"><input type="checkbox" id="results-tick" aria-describedby="results-tick-definition"><div class="benefit-copy"><h2><label for="results-tick">Better results</label></h2><p class="definition" id="results-tick-definition">More completed, fewer errors, or a higher success rate</p></div></div>
+<div class="field"><textarea id="results-change" aria-label="results benefit details" rows="2"></textarea></div>
+
+</section></fieldset><fieldset><legend>Qualitative</legend><p class="group-intro">Experience, learning and personal agency</p><section class="section"><div class="benefit-heading"><input type="checkbox" id="load-tick" aria-describedby="load-tick-definition"><div class="benefit-copy"><h2><label for="load-tick">Lower mental load</label></h2><p class="definition" id="load-tick-definition">Less remembering, coordinating, deciding or keeping track</p></div></div>
+<div class="field"><textarea id="load-change" aria-label="load benefit details" rows="2"></textarea></div>
+
+</section><section class="section"><div class="benefit-heading"><input type="checkbox" id="capability-tick" aria-describedby="capability-tick-definition"><div class="benefit-copy"><h2><label for="capability-tick">Learning, capability and control</label></h2><p class="definition" id="capability-tick-definition">New skills, understanding and ability to act, including learning new technology</p></div></div>
+<div class="field"><textarea id="capability-change" aria-label="capability benefit details" rows="2"></textarea></div>
+
+</section><section class="section"><div class="benefit-heading"><input type="checkbox" id="experience-tick" aria-describedby="experience-tick-definition"><div class="benefit-copy"><h2><label for="experience-tick">Better lived experience</label></h2><p class="definition" id="experience-tick-definition">More enjoyment, satisfaction, connection or personal fit</p></div></div>
+<div class="field"><textarea id="experience-change" aria-label="experience benefit details" rows="2"></textarea></div>
+
+</section></fieldset></div><footer><p>Interactive master · Entries are temporary and are not saved.</p></footer></main><script>
+const columns=[...document.querySelectorAll('.groups>fieldset')];
+const fields=[...document.querySelectorAll('textarea')];
+function layout(){
+ const wide=matchMedia('(min-width:701px)').matches;
+ document.querySelectorAll('.benefit-heading,.field>.prompt,.group-intro').forEach(e=>e.style.minHeight='');
+ fields.forEach(e=>{e.style.height='auto';e.style.height=Math.max(58,e.scrollHeight+2)+'px'});
+ if(wide){
+  const equalize=items=>{const height=Math.max(...items.map(e=>e.getBoundingClientRect().height));items.forEach(e=>e.style.minHeight=height+'px')};
+  equalize(columns.map(c=>c.querySelector('.group-intro')));
+  for(let i=0;i<3;i++){
+   const sections=columns.map(c=>c.querySelectorAll('.section')[i]);
+   equalize(sections.map(s=>s.querySelector('.benefit-heading')));
+   const inputs=sections.map(s=>s.querySelector('textarea'));
+   const height=Math.max(...inputs.map(e=>e.getBoundingClientRect().height));
+   inputs.forEach(e=>e.style.height=height+'px');
+  }
+ }
+}
+fields.forEach(e=>e.addEventListener('input',layout));
+window.addEventListener('resize',layout);layout();
+</script></body></html>
