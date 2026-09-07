@@ -25,6 +25,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c4.1-personal-value-framework-learning-map-for-ai-terminology.html?v=1">C4.01 | Personal value framework | Learning map for AI terminology</a>
 </p>
 
+<br>
+
 ### Other pages
 
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)  
