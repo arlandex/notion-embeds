@@ -20,7 +20,7 @@
 </p>
 
 <p>
-<a href="https://arlandex.github.io/notion-embeds/c4.0-master-personal-value-framework-card.html?v=13">C4.0 - Master: Personal Value Framework Card</a><br>
+<a href="https://arlandex.github.io/notion-embeds/c4.0-master-personal-value-framework-card.html?v=14">C4.0 - Master: Personal Value Framework Card</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c4.1-personal-value-framework-learning-map-for-ai-terminology.html?v=1">C4.1 - Personal value framework - Learning map for AI terminology</a>
 </p>
 
