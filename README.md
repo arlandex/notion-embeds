@@ -20,7 +20,8 @@
 </p>
 
 <p>
-<a href="https://arlandex.github.io/notion-embeds/c4.0-master-personal-value-framework-card.html?v=13">C4.0 - Master: Personal Value Framework Card</a>
+<a href="https://arlandex.github.io/notion-embeds/c4.0-master-personal-value-framework-card.html?v=13">C4.0 - Master: Personal Value Framework Card</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c4.1-personal-value-framework-learning-map-for-ai-terminology.html?v=1">C4.1 - Personal value framework - Learning map for AI terminology</a>
 </p>
 
 ### Other pages
@@ -33,6 +34,6 @@
 
 `C<n>.0 - Master: <Card name>` identifies each parent master. Child items use `C<n>.1`, `C<n>.2` and so on, followed by the framework name and use case or variant name. Filenames use the same code with lowercase, hyphen-separated words.
 
-C4.1 is reserved for the first personal value framework example: `C4.1 - Personal value framework - [Use case name]`. No example has been published yet.
+C4.1 is the first personal value framework example: `C4.1 - Personal value framework - Learning map for AI terminology`.
 
 Older filenames remain as redirects so existing links continue to work.
