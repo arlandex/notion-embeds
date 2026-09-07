@@ -15,3 +15,5 @@
 [C3 — Personal Use Case Card (lightweight master)](https://arlandex.github.io/notion-embeds/c3-personal-use-case-card.html?v=7)
 
 [C3 — Personal Use Case Card (Gym booking example)](https://arlandex.github.io/notion-embeds/c3-personal-use-case-card-example-gym-booking.html?v=3)
+
+[C4 Personal Value Framework Card (master)](https://arlandex.github.io/notion-embeds/c4-personal-value-framework-card.html?v=12)
