@@ -11,3 +11,5 @@
 [Content Picks — Last Claude Version](https://arlandex.github.io/notion-embeds/content-picks-last-claude-version.html)  
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)  
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)
+
+[C3 — Personal Use Case Card (lightweight master)](https://arlandex.github.io/notion-embeds/c3-personal-use-case-card.html?v=7)
