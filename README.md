@@ -46,3 +46,5 @@ These are display labels. Existing filenames, link destinations and Notion embed
 
 
 [C3.100 | Grapes | Private card](https://arlandex.github.io/notion-embeds/cards/grapes/?v=4)
+
+Card editor V5: remembered sign-in and coordinated session renewal (8 September 2026).

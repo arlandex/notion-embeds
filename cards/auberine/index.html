@@ -2,11 +2,11 @@
 <style>
 *{box-sizing:border-box}body{margin:0;background:#F4F5F6;color:#464B50;font:14px/1.45 system-ui,sans-serif}main{max-width:1150px;margin:auto;padding:20px}button,input,select{font:inherit;color:inherit;border:1px solid #CDD1D4;background:#E6E8EA;padding:8px 12px}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}label{display:block;margin:12px 0}label input{display:block;width:100%;max-width:400px}iframe{display:block;width:100%;border:0;min-height:400px}.controls{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin:16px 0}#status{min-height:2em}#login{max-width:450px}details{margin-top:20px}[hidden]{display:none!important}a{color:inherit}
 </style></head><body><main>
-<p>V4 | 8 September 2026</p><p id="status" role="status" aria-live="polite">Connecting…</p>
-<form id="login" hidden><h1>Your use case cards</h1><p>Sign in to open and save your private cards.</p><label>Email<input id="email" type="email" autocomplete="username" required></label><label>Password<input id="password" type="password" autocomplete="current-password" required></label><button>Sign in</button></form>
+<p>V5 | 8 September 2026</p><p id="status" role="status" aria-live="polite">Connecting…</p>
+<form id="login" hidden><h1>Your use case cards</h1><p>Sign in to open and save your private cards. This browser remembers your sign-in until you sign out or your session is revoked.</p><label>Email<input id="email" type="email" autocomplete="username" required></label><label>Password<input id="password" type="password" autocomplete="current-password" required></label><button>Sign in</button></form>
 <section id="workspace" hidden>
 <div class="controls"><button id="save">Save version</button><button id="new">New blank card</button><select id="versions" aria-label="Version history"><option value="">Version history</option></select><button id="signout">Sign out</button></div>
 <p>Edit your card, then press <strong>Save version</strong>. Wait for <strong>saved and verified</strong> before leaving. New blank card creates a separate card using this design.</p>
 <iframe id="artifact" title="Editable use case card"></iframe>
 <details><summary>Update this card’s design</summary><p>Choose a revised HTML file. Matching fields retain their contents. Save a version to keep the updated design.</p><input id="design" type="file" accept=".html,text/html" aria-label="Revised HTML design"></details>
-</section></main><script type="module" src="./app-v4.mjs"></script></body></html>
+</section></main><script type="module" src="./app-v5.mjs"></script></body></html>
