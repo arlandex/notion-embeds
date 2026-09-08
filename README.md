@@ -43,8 +43,6 @@ These are display labels. Existing filenames, link destinations and Notion embed
 
 [C3.100 | Auberine | Private card](https://arlandex.github.io/notion-embeds/cards/auberine/?v=4)
 
-[C3.100 | Cherry | Private card](https://arlandex.github.io/notion-embeds/cards/cherry/?v=4)
 
-[C3.100 | Banana | Private card](https://arlandex.github.io/notion-embeds/cards/banana/?v=4)
 
 [C3.100 | Grapes | Private card](https://arlandex.github.io/notion-embeds/cards/grapes/?v=4)
