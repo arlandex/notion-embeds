@@ -25,6 +25,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c4.1-personal-value-framework-learning-map-for-ai-terminology.html?v=1">C4.01 | Personal value framework | Learning map for AI terminology</a>
 </p>
 
+<p>
+<a href="https://arlandex.github.io/notion-embeds/c5.0-personal-finance.html">C5.0 | Personal finance | MVP</a>
+</p>
+
 <br>
 
 ### Other pages
