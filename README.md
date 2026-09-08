@@ -40,3 +40,5 @@ Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | 
 These are display labels. Existing filenames, link destinations and Notion embed URLs stay unchanged unless a URL migration is explicitly requested.
 
 [ C3.100 | Use case cards — private editor ](https://arlandex.github.io/notion-embeds/use-case-cards/?v=1)
+
+[C3.100 | Auberine | Private card](https://arlandex.github.io/notion-embeds/cards/auberine/?v=4)
