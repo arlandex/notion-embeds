@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C3.100 | Use case card</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:24px;color:#464B50;background:#F4F5F6;font:80%/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:1100px;margin:auto}header{margin-bottom:32px}h1{font-size:1.7em;margin:0 0 4px}header p{margin:0}.meta{font-size:.9em;margin:12px 0 0} .groups{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}fieldset{min-width:0;border:1px solid #CDD1D4;padding:14px;margin:0}legend{padding:0 5px;font-weight:700;font-size:1.15em}.section{margin-top:16px}.section:first-of-type{margin-top:4px}h2{font-size:1.05em;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #CDD1D4}.field{margin-top:12px}.field:first-of-type{margin-top:0}label{display:block;font-weight:650}.prompt{display:block;font-weight:400;margin:2px 0 6px}textarea{display:block;width:100%;min-height:70px;resize:none;overflow:hidden;border:1px solid #CDD1D4;border-radius:0;background:#F4F5F6;color:#464B50;padding:8px;font:inherit;line-height:1.45}textarea:focus-visible{outline:2px solid #686D72;outline-offset:2px}footer{margin-top:16px;font-size:.9em} @media(max-width:700px){body{padding:16px;font-size:90%}.groups{grid-template-columns:1fr;gap:16px}fieldset{padding:12px}textarea{font-size:inherit}}@media print{body{padding:0}footer{display:none}}
+.prompt,.meta,footer{color:#686D72}textarea{background:#E6E8EA}
+button{border:1px solid #CDD1D4;background:#E6E8EA;color:#464B50;padding:8px 12px;font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #686D72;outline-offset:2px}.save-controls{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-top:20px}@media print{.save-controls{display:none}}
+.field textarea{font-size:0.9em}
+footer a,footer a:visited{color:inherit;text-decoration:underline}
+h1{display:flex;align-items:center;gap:10px;flex-wrap:wrap}h1 input{font:inherit;line-height:1.45;color:inherit;background:#E6E8EA;border:1px solid #CDD1D4;border-radius:0;padding:8px;min-width:12ch;max-width:100%;flex:1}h1 input:focus-visible{outline:2px solid #686D72;outline-offset:2px}
+</style>
+</head>
+<body><main>
+<header><h1>Use case card: <input id="card-title" aria-label="Use case name" value="" size="1"></h1><p>C3.100</p><p class="meta">V4 | 8 September 2026</p></header>
+<div class="groups">
+<fieldset><legend>Value</legend>
+<section class="section" aria-labelledby="value-case"><h2 id="value-case">Value case</h2>
+<div class="field"><label for="pain">Pain point</label><span class="prompt" id="pain-help">What recurring difficulty prompted this?</span><textarea id="pain" aria-describedby="pain-help" rows="3"></textarea></div>
+<div class="field"><label for="benefits">Benefits</label><span class="prompt" id="benefits-help">What becomes easier, faster or better?</span><textarea id="benefits" aria-describedby="benefits-help" rows="3"></textarea></div>
+</section>
+<section class="section" aria-labelledby="use-case"><h2 id="use-case">Use case</h2>
+<div class="field"><label for="purpose">Purpose</label><span class="prompt" id="purpose-help">What should this use case accomplish?</span><textarea id="purpose" aria-describedby="purpose-help" rows="3"></textarea></div>
+<div class="field"><label for="target-user">Target user</label><span class="prompt" id="target-user-help">Who is this for?</span><textarea id="target-user" aria-describedby="target-user-help" rows="3"></textarea></div>
+</section></fieldset>
+<fieldset><legend>Execution</legend>
+<section class="section" aria-labelledby="replication"><h2 id="replication">Replication guide</h2>
+<div class="field"><label for="workflow">Workflow</label><span class="prompt" id="workflow-help">What happens, from request to result?</span><textarea id="workflow" aria-describedby="workflow-help" rows="3"></textarea></div>
+<div class="field"><label for="inputs">Inputs</label><span class="prompt" id="inputs-help">What information or context does it need?</span><textarea id="inputs" aria-describedby="inputs-help" rows="3"></textarea></div>
+<div class="field"><label for="outputs">Outputs</label><span class="prompt" id="outputs-help">What comes back, and in what format?</span><textarea id="outputs" aria-describedby="outputs-help" rows="3"></textarea></div>
+</section>
+<section class="section" aria-labelledby="quality"><h2 id="quality">Quality &amp; governance</h2>
+<div class="field"><label for="actions">Authorised actions</label><span class="prompt" id="actions-help">What is allowed, and what needs approval?</span><textarea id="actions" aria-describedby="actions-help" rows="3"></textarea></div>
+<div class="field"><label for="checks">Checks, rules &amp; exceptions</label><span class="prompt" id="checks-help">What is checked, which rules apply, and what exceptions are flagged?</span><textarea id="checks" aria-describedby="checks-help" rows="3"></textarea></div>
+</section>
+<section class="section" aria-labelledby="implementation"><h2 id="implementation">Implementation architecture</h2>
+<div class="field"><label for="solution">Solution details</label><span class="prompt" id="solution-help">Which tools and saved instructions make this work?</span><textarea id="solution" aria-describedby="solution-help" rows="3"></textarea></div>
+</section></fieldset>
+</div>
+</main></body></html>

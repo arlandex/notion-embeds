@@ -38,3 +38,5 @@
 Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | <Framework> | <Use case or variant>`, `C<n>.02`, and so on for children. Use sentence case and preserve the existing child indentation and ordering.
 
 These are display labels. Existing filenames, link destinations and Notion embed URLs stay unchanged unless a URL migration is explicitly requested.
+
+[ C3.100 | Use case cards — private editor ](https://arlandex.github.io/notion-embeds/use-case-cards/?v=1)
