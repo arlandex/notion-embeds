@@ -8,7 +8,7 @@ export class CardStorage {
  constructor({url,publishableKey,getAccessToken,fetchImpl=fetch}) {
   const origin=new URL(url);
   if(origin.protocol!=='https:') throw Error('HTTPS is required');
-  this.url=origin.origin;this.key=publishableKey;this.token=getAccessToken;this.fetch=fetchImpl;
+  this.url=origin.origin;this.key=publishableKey;this.token=getAccessToken;this.fetch=(...args)=>fetchImpl(...args);
  }
  async request(path,body) {
   const token=await this.token();
