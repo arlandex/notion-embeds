@@ -17,7 +17,9 @@
 <p>
 <a href="https://arlandex.github.io/notion-embeds/c3.0-master-personal-use-case-card.html?v=10">C3.0 | Personal use case card | MVP</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.1-personal-use-case-gym-booking.html?v=4">C3.01 | Personal use case card | Gym booking</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.2-personal-use-case-personal-learning-system-in-notion.html?v=3">C3.02 | Personal use case card | Personal learning system in Notion</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.2-personal-use-case-personal-learning-system-in-notion.html?v=3">C3.02 | Personal use case card | Personal learning system in Notion</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/use-case-cards/c3-template.html?v=5">C3.100 | Personal use case card | Master</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.100-transactions-overview.html?v=5">C3.101 | Personal use case card | Transactions overview</a>
 </p>
 
 <p>
@@ -36,8 +38,6 @@
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)  
 [Content Picks - Last Claude Version](https://arlandex.github.io/notion-embeds/content-picks-last-claude-version.html)  
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
-
-[C3.100 | Personal use case card | Transactions overview](https://arlandex.github.io/notion-embeds/c3.100-transactions-overview.html?v=5)
 
 ## Naming convention
 
