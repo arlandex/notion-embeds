@@ -37,6 +37,8 @@
 [Content Picks - Last Claude Version](https://arlandex.github.io/notion-embeds/content-picks-last-claude-version.html)  
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
 
+[C3.100 | Personal use case card | Transactions overview](https://arlandex.github.io/notion-embeds/c3.100-transactions-overview.html?v=5)
+
 ## Naming convention
 
 Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | <Framework> | <Use case or variant>`, `C<n>.02`, and so on for children. Use sentence case and preserve the existing child indentation and ordering.
