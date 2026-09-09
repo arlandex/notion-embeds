@@ -11,10 +11,14 @@ button{border:1px solid #CDD1D4;background:#E6E8EA;color:#464B50;padding:8px 12p
 .field textarea{font-size:0.9em}
 footer a,footer a:visited{color:inherit;text-decoration:underline}
 h1{display:flex;align-items:center;gap:10px;flex-wrap:wrap}h1 input{font:inherit;line-height:1.45;color:inherit;background:#E6E8EA;border:1px solid #CDD1D4;border-radius:0;padding:8px;min-width:12ch;max-width:100%;flex:1}h1 input:focus-visible{outline:2px solid #686D72;outline-offset:2px}
+
+/* Grow with content; retain access in browsers without field-sizing. */
+textarea{height:auto;max-height:none;overflow:auto;resize:vertical;overflow-wrap:anywhere;}
+@supports(field-sizing:content){textarea{field-sizing:content;resize:none;overflow:hidden;}}
 </style>
 </head>
 <body><main>
-<header><h1>Use case card: <input id="card-title" aria-label="Use case name" value="" size="1"></h1><p>C3.100</p><p class="meta">V4 | 8 September 2026</p></header>
+<header><h1>Use case card: <input id="card-title" aria-label="Use case name" value="" size="1"></h1><p>C3.100</p><p class="meta">V5 | 9 September 2026</p></header>
 <div class="groups">
 <fieldset><legend>Value</legend>
 <section class="section" aria-labelledby="value-case"><h2 id="value-case">Value case</h2>
