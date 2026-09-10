@@ -36,7 +36,7 @@
 ### Other pages
 
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)  
-[Content Picks mobile](https://arlandex.github.io/notion-embeds/content-picks-articles-mobile.html?v=2)  
+[Content Picks mobile](https://arlandex.github.io/notion-embeds/content-picks-articles-mobile.html?v=3)  
 [Content Picks - Last Claude Version](https://arlandex.github.io/notion-embeds/content-picks-last-claude-version.html)  
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
 
