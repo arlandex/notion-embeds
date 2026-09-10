@@ -93,6 +93,26 @@ input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-
 #extraSlot1Input{display:block;height:35px;min-height:35px;padding:5px 10px;font-size:16px;line-height:23px;resize:none;overflow:hidden;overflow-wrap:anywhere}
 #copyBoxText{color:var(--fog-stone);resize:none;overflow:hidden;overflow-wrap:anywhere}
 #audioUnit{text-align:left;text-align-last:left;flex:1;width:auto;min-width:0;padding-left:4px;padding-right:4px;font-size:16px}
+/* Compact vertical rhythm, preserving readable text and field sizes. */
+.canvas-outer{padding-top:max(8px,env(safe-area-inset-top));padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.page-title{padding-bottom:4px;margin-bottom:6px}
+.block{padding-top:6px;padding-bottom:6px;margin-bottom:6px}
+.block-title,.prompt-text{margin:4px 0}
+.section-divider{margin-bottom:6px}
+.block:has(#sourceRow) .section-divider{margin-bottom:8px}
+.chip-row{row-gap:6px}.chip{min-height:37px;padding-top:4.5px;padding-bottom:4.5px}
+.parameter-grid{margin-top:4px}.parameter-grid .param-row{height:43px;min-height:43px}
+.block:has(.parameter-grid){padding-bottom:4px}
+.col-item{min-height:38px;padding-top:7px;padding-bottom:7px}
+.col-grid>.filter-item,.col-grid>.extra-slot{grid-template-rows:44px auto}
+.filter-item label,.extra-slot>label{min-height:44px}
+.action-row{margin-top:6px}.go-btn{min-height:44px}.hint{margin:4px 0}
+@media(max-width:410px){
+.parameter-grid .param-row{display:grid;grid-template-columns:1fr;gap:3px;height:auto;min-height:0;justify-items:start}
+.parameter-grid .param-label{line-height:20px;white-space:nowrap}
+.parameter-grid .horizon-pair{gap:8px}
+.parameter-grid{margin-top:6px}.block:has(.parameter-grid){padding-bottom:6px}
+}
 </style>
 </head>
 <body>
@@ -101,7 +121,7 @@ input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-
 
   <div class="page-title">
     CONTENT PICKS
-    <span class="release-pill">V1 | 10 September 2026</span>
+    <span class="release-pill">V2 | 11 September 2026</span>
   </div>
 
   <!-- TOPIC -->
