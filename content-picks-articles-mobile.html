@@ -113,6 +113,33 @@ input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-
 .parameter-grid .horizon-pair{gap:8px}
 .parameter-grid{margin-top:6px}.block:has(.parameter-grid){padding-bottom:6px}
 }
+/* Framed mobile spacing revision. */
+.canvas-outer{min-height:100svh;display:flex;flex-direction:column}
+.canvas{flex:1;display:flex;flex-direction:column}
+#picker{flex:1;display:flex;flex-direction:column}
+.block{padding-top:12px}
+#picker input:not([type="checkbox"]),#picker select{height:29.75px;min-height:29.75px}
+#topicInput{height:36.55px;min-height:36.55px;padding-top:5.775px;padding-bottom:5.775px}
+#extraSlot1Input{height:29.75px;min-height:29.75px;padding-top:2.375px;padding-bottom:2.375px}
+.action-row{margin-top:auto;padding-top:6px}
+#storageStatus[hidden]{display:none}
+/* Header spacing and stacked version. */
+.page-title{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;padding-top:12px;padding-bottom:14px;margin-bottom:12px}
+/* Smaller choice text in sections 2–4. */
+#sourceRow .chip,
+.parameter-grid .param-label,
+.parameter-grid input,
+.parameter-grid select,
+#colGrid .col-item,
+#colGrid .filter-item label,
+#colGrid .extra-slot>label,
+#colGrid input[type="number"],
+#colGrid #audioUnit,
+#colGrid #extraSlot1Input{font-size:12.8px}
+/* Equal, tighter spacing around the header divider. */
+.page-title{padding-bottom:10.4px;margin-bottom:10.4px}
+.action-row{flex-shrink:0;padding-bottom:0}
+.go-btn{flex-shrink:0}
 </style>
 </head>
 <body>
@@ -121,7 +148,7 @@ input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-
 
   <div class="page-title">
     CONTENT PICKS
-    <span class="release-pill">V2 | 11 September 2026</span>
+    <span class="release-pill">V3 | 11 September 2026</span>
   </div>
 
   <!-- TOPIC -->
@@ -197,7 +224,7 @@ input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-
   <div class="action-row">
     <button type="submit" class="go-btn" id="searchBtn">Prepare article request <span class="button-chevron" aria-hidden="true">›</span></button>
   </div>
-  <p id="storageStatus" class="hint">Choices are remembered in this browser.</p><p id="error" role="alert"></p><div class="copy-box" id="copyBox" hidden>
+  <p id="storageStatus" class="hint" hidden></p><p id="error" role="alert"></p><div class="copy-box" id="copyBox" hidden>
     <div class="copy-box-label" id="copyBoxLabel" role="status">Paste the below text back into Codex to generate result in Notion</div>
     <textarea class="copy-box-text" id="copyBoxText" aria-label="Article request" readonly rows="10"></textarea>
   </div>
@@ -213,7 +240,7 @@ const key='content-picks-articles-mobile-v1';
 function selected(name){return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(e=>e.value==='Economist'?'The Economist':e.value==='Brief article summary'?'Article digest':e.value)}
 function remember(){try{localStorage.setItem(key,JSON.stringify({values:Object.fromEntries(fields.map(id=>[id,$(id).value])),sources:selected('source'),columns:selected('column'),audio:$('audioOn').checked,criteria:$('criteriaOn').checked}));}catch{$('storageStatus').textContent='Choices cannot be remembered in this browser.'}}
 try{const saved=JSON.parse(localStorage.getItem(key));if(saved){for(const id of fields){if(typeof saved.values?.[id]==='string')$(id).value=saved.values[id]}for(const [name,list] of [['source',saved.sources],['column',saved.columns]]){if(Array.isArray(list))form.querySelectorAll(`input[name="${name}"]`).forEach(e=>e.checked=list.includes(e.value)||list.includes(e.value==='Economist'?'The Economist':e.value==='Brief article summary'?'Article digest':e.value))}$('audioOn').checked=saved.audio===true;$('criteriaOn').checked=typeof saved.criteria==='boolean'?saved.criteria:!!$('extraSlot1Input').value.trim()}}catch{$('storageStatus').textContent='Your previous choices could not be restored.'}
-function resizeTopic(){for(const [id,minimum] of [['topicInput',43],['extraSlot1Input',35],['copyBoxText',35]]){const el=$(id);el.style.height=minimum+'px';el.style.height=Math.max(minimum,el.scrollHeight+2)+'px'}}
+function resizeTopic(){for(const [id,minimum] of [['topicInput',36.55],['extraSlot1Input',29.75],['copyBoxText',35]]){const el=$(id);el.style.height=minimum+'px';el.style.height=Math.max(minimum,el.scrollHeight+2)+'px'}}
 window.addEventListener('resize',resizeTopic);
 document.fonts.ready.then(resizeTopic);
 function sync(){ resizeTopic(); $('lengthFilterValue').disabled=!$('audioOn').checked;$('audioUnit').disabled=false;$('extraSlot1Input').disabled=false;for(const [unit,number] of [['horizonUnit','horizonValue'],['audioUnit','lengthFilterValue']])for(const o of $(unit).options)o.textContent=o.value.replace(/s$/,Number($(number).value)===1?'':'s'); }
