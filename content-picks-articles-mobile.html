@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Content Picks</title>
+<meta name="theme-color" content="#F0EFEC">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Content Picks">
+<link rel="manifest" href="content-picks-mobile.webmanifest">
+<link rel="icon" href="content-picks-mobile-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Local copy · Style Guide V13, https://arlandex.github.io/design-system/ */
+:root {
+ --milk-frost:#F0EFEC; --soft-ivory:#EAE1D7; --pale-sand:#D8C9B6;
+ --fog-stone:#6C6D6C; --body-ink:#48494B; --ink:#0D1015;
+ color-scheme:light;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--milk-frost); color:var(--body-ink); font-family:"Source Sans 3",sans-serif; font-size:15.5px; line-height:1.4; }
+.canvas-outer { padding:32px; }
+.canvas { width:100%; max-width:760px; margin:0 auto; padding:24px 32px; background:var(--milk-frost); border:1px solid var(--pale-sand); border-radius:12px; transform:none !important; }
+.page-title { display:flex; align-items:center; flex-wrap:wrap; gap:16px; font-size:20px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--pale-sand); padding-bottom:16px; margin-bottom:24px; }
+.page-title .release-pill { display:inline-block; margin-top:0; padding:6px 10px; border-radius:6px; background:var(--soft-ivory); font:500 11px "IBM Plex Mono",monospace; letter-spacing:.08em; color:var(--fog-stone); }
+.block { background:var(--soft-ivory); border:1px solid var(--pale-sand); border-radius:10px; padding:16px; margin-bottom:16px; }
+.wf-label { font:700 16.5px/1.4 "Source Sans 3",sans-serif; color:var(--ink); text-transform:uppercase; }
+.wf-idx { font:inherit; color:inherit; }
+.block-title,.prompt-text { margin:8px 0; font:500 10.5px/1.4 "IBM Plex Mono",monospace; letter-spacing:.07em; text-transform:uppercase; color:var(--fog-stone); }
+.section-divider { border:0; border-top:1px solid var(--pale-sand); margin:0 0 8px; }
+input,select,textarea,button { font:inherit; }
+input,select,textarea { color:var(--body-ink); background:var(--milk-frost); border:1px solid var(--fog-stone); border-radius:8px; }
+.input-box { width:100%; padding:8px; }
+.block:has(#sourceRow) .section-divider { margin-bottom:16px; }
+.chip-row { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { display:flex; align-items:center; gap:8px; padding:8px; border:1px solid var(--fog-stone); border-radius:8px; background:var(--milk-frost); font-size:13.5px; cursor:pointer; user-select:none; }
+.chip:hover,.chip.checked { border-color:var(--body-ink); background:var(--pale-sand); color:var(--ink); }
+.checkbox { width:14px; height:14px; border:1.5px solid var(--fog-stone); border-radius:4px; flex-shrink:0; display:inline-block; }
+.checkbox.on { background:var(--body-ink); border-color:var(--body-ink); }
+.param-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:6.4px 0; height:43.8px; border-bottom:1px solid var(--pale-sand); }
+
+.param-label { font-size:13.5px; }
+.param-label span { color:var(--fog-stone) !important; }
+.param-number,.horizon-number,.length-input { width:48px; padding:4px; text-align:center; font-size:13.5px; flex-shrink:0; }
+.horizon-pair,.horizon-group,.horizon-set { display:flex; align-items:center; gap:8px; }
+.horizon-select { padding:4px 8px; font-size:13.5px; }
+.col-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,43.8px); grid-auto-flow:column; gap:0 16px; }
+.col-item { display:flex; align-items:center; gap:8px; min-width:0; padding:6.4px 0; height:43.8px; border-bottom:1px solid var(--pale-sand); font-size:13.5px; cursor:pointer; }
+.col-item.unticked { color:var(--fog-stone); }
+.extra-input { min-width:0; width:100%; padding:4px 8px; font-size:13.5px; }
+.length-input { width:40px; }
+.param-number,.horizon-number,.horizon-select,.length-input,.extra-input { height:30px; line-height:20px; padding-top:4px; padding-bottom:4px; }
+.filter-item { gap:8px; white-space:nowrap; }
+.action-row { display:flex; gap:16px; margin-top:24px; }
+.go-btn,.trending-btn { flex:1; padding:8px 16px; border:1px solid var(--body-ink); border-radius:8px; font-size:15.5px; font-weight:600; cursor:pointer; }
+.button-chevron { display:inline-block; font-size:150%; line-height:1; margin-left:4px; vertical-align:-.06em; }
+.go-btn { background:var(--ink); color:var(--milk-frost); }
+.go-btn:hover { background:var(--body-ink); }
+.trending-btn { background:var(--milk-frost); color:var(--body-ink); }
+.trending-btn:hover { background:var(--soft-ivory); }
+:focus-visible { outline:2px solid var(--body-ink); outline-offset:2px; }
+input:focus-visible,textarea:focus-visible { outline-offset:3px; }
+.copy-box { margin-top:16px; padding:16px; border:1px solid var(--pale-sand); border-radius:10px; background:var(--soft-ivory); }
+.copy-box-label { margin-bottom:8px; font:500 10.5px/1.4 "IBM Plex Mono",monospace; color:var(--fog-stone); }
+.copy-box-text { display:block; width:100%; padding:8px; resize:vertical; font:500 11.5px/1.4 "IBM Plex Mono",monospace; }
+@media(max-width:600px) { .canvas-outer { padding:16px; } .canvas { padding:16px; } .col-grid { grid-template-columns:1fr; grid-template-rows:none; grid-auto-flow:row; } .action-row { flex-direction:column; gap:8px; } .param-label span { display:block; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; } }
+
+/* Mobile layout: natural document flow, with no canvas scaling. */
+body{font-size:16px}.canvas-outer{padding: max(16px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+.canvas{max-width:480px;padding:0;border:0;border-radius:0}.page-title{gap:8px;justify-content:space-between;margin-bottom:20px}.page-title .release-pill{letter-spacing:0}
+.block{padding:16px;margin-bottom:12px}.block-title,.prompt-text{font-size:11px;line-height:1.6;letter-spacing:.035em}.input-box{min-height:48px;font-size:16px;padding:12px}
+.chip-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chip{min-height:43px;font-size:16px;padding:7.5px 8px}.chip:has(:checked){background:var(--pale-sand);border-color:var(--body-ink)}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;width:20px;height:20px;margin:0;padding:0;flex-shrink:0;border:1.5px solid var(--fog-stone);border-radius:4px;background:transparent;cursor:pointer}
+input[type=checkbox]:checked{background:var(--body-ink);border-color:var(--body-ink)}
+.param-row{height:auto;min-height:64px;gap:8px}.param-label{font-size:16px}.param-number,.horizon-number{width:56px;height:48px;font-size:16px}.horizon-select{height:48px;font-size:16px;max-width:115px}.horizon-pair{gap:6px}
+.col-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-flow:row;gap:0 16px}.col-grid>.filter-item,.col-grid>.extra-slot{grid-column:auto;grid-template-rows:48px auto;align-content:start;align-items:start;min-width:0}.col-item{min-height:48px;height:auto;font-size:16px;padding:12px 0;gap:12px}
+.filter-item{display:grid;grid-template-columns:1fr;align-items:center;gap:0;padding-bottom:0;height:auto;min-height:48px;border-bottom:0}.filter-item label{white-space:normal;line-height:20px;display:flex;align-items:center;gap:12px;min-height:48px}.filter-item input[type=number]{width:45px;min-height:48px;text-align:center;font-size:16px}
+.extra-slot{display:grid;grid-template-columns:1fr;align-items:center;gap:0;padding:0;height:auto;min-height:48px}.extra-slot>label{display:flex;align-items:center;gap:12px;min-height:48px;line-height:20px;cursor:pointer}.extra-slot textarea{width:100%;min-width:0;min-height:48px;padding:10px;font-size:16px}.action-row{margin-top:20px}.go-btn{min-height:52px;font-size:17px;width:100%}.hint{color:var(--fog-stone);font-size:13px;margin:12px 0}.copy-box-text{font:400 16px/1.5 "Source Sans 3",sans-serif;padding:12px}.copy-box-label{font-size:12px;line-height:1.5}.copy-box{scroll-margin-top:16px}#error:empty{display:none}
+/* Shared single-line field geometry; numeric entry has no spinner controls. */
+#picker input:not([type="checkbox"]),#picker select{height:35px;min-height:35px;padding-top:0;padding-bottom:0;line-height:normal}
+#picker input[type="number"]{appearance:textfield;-moz-appearance:textfield;text-align:center;padding-left:4px;padding-right:4px}
+#picker input[type="number"]::-webkit-inner-spin-button,#picker input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.parameter-grid{margin-top:7px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.parameter-grid .param-row{border-bottom:0;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:6px;padding:0;min-width:0;height:48px;min-height:48px}
+.parameter-grid .param-label{min-height:0;line-height:20px;flex:1;min-width:0}.parameter-grid .horizon-group,.parameter-grid .horizon-set,.parameter-grid .horizon-pair{width:auto;min-width:0}.parameter-grid .horizon-pair{gap:8px}
+.parameter-grid .horizon-select{width:88px;min-width:0;padding-left:4px;padding-right:4px}.parameter-grid .param-number,.parameter-grid .horizon-number{width:45px}
+#topicInput{display:block;height:43px;min-height:43px;padding:9px 12px;line-height:23px;resize:none;overflow:hidden;overflow-wrap:anywhere}
+.audio-value{display:flex;align-items:center;gap:8px;margin-left:32px}.extra-slot textarea{margin-left:32px;width:calc(100% - 32px)}
+.block:has(.parameter-grid){padding-bottom:7px}
+#extraSlot1Input{display:block;height:35px;min-height:35px;padding:5px 10px;font-size:16px;line-height:23px;resize:none;overflow:hidden;overflow-wrap:anywhere}
+#copyBoxText{color:var(--fog-stone);resize:none;overflow:hidden;overflow-wrap:anywhere}
+#audioUnit{text-align:left;text-align-last:left;flex:1;width:auto;min-width:0;padding-left:4px;padding-right:4px;font-size:16px}
+</style>
+</head>
+<body>
+<div class="canvas-outer">
+<main class="canvas" id="canvasEl"><form id="picker">
+
+  <div class="page-title">
+    CONTENT PICKS
+    <span class="release-pill">V1 | 10 September 2026</span>
+  </div>
+
+  <!-- TOPIC -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">01 | </span>TOPIC</div>
+    <div class="prompt-text">What are we learning about today?</div>
+    <hr class="section-divider">
+    <textarea class="input-box" id="topicInput" aria-label="Topic" rows="1" required></textarea>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">02 | </span>SOURCES</div>
+    <div class="block-title">Where should we look?</div>
+    <hr class="section-divider">
+    <div class="chip-row" id="sourceRow">
+      <label class="chip"><input type="checkbox" name="source" value="Economist" checked>The Economist</label>
+      <label class="chip"><input type="checkbox" name="source" value="Wired" checked>Wired</label>
+      <label class="chip"><input type="checkbox" name="source" value="Fast Company">Fast Company</label>
+      <label class="chip"><input type="checkbox" name="source" value="Inc.">Inc.</label>
+      <label class="chip"><input type="checkbox" name="source" value="Gartner">Gartner</label>
+      <label class="chip"><input type="checkbox" name="source" value="Monocle">Monocle</label>
+    </div>
+  </div>
+
+  <!-- PARAMETERS -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">03 | </span>PARAMETERS</div>
+    <div class="block-title">How much to search, and how far back?</div>
+    <hr class="section-divider" style="margin-bottom:0;">
+    <div class="parameter-grid">
+    <div class="param-row">
+      <label class="param-label" for="articleCount">Number of articles</label>
+      <input class="param-number" id="articleCount" type="number" min="1" max="50" value="5" />
+    </div>
+    <div class="param-row horizon-row">
+      <label class="param-label" for="horizonValue">Period</label>
+      <div class="horizon-group">
+        <div class="horizon-set">
+          <div class="horizon-pair">
+            <input class="horizon-number" id="horizonValue" type="number" min="1" max="365" value="3" />
+            <select class="horizon-select" id="horizonUnit" aria-label="Time unit">
+              <option value="days">days</option>
+              <option value="weeks">weeks</option>
+              <option value="months" selected>months</option>
+              <option value="quarters">quarters</option>
+              <option value="years">years</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- COLUMN PICKER -->
+  <div class="block">
+    <div class="wf-label"><span class="wf-idx">04 | </span>OUTPUT FORMAT</div>
+    <div class="block-title">Choose properties to show</div>
+    <hr class="section-divider" style="margin-bottom:0;">
+    <div class="col-grid" id="colGrid">
+      <label class="col-item"><input type="checkbox" name="column" value="Article name" checked>Article name</label>
+      <label class="col-item"><input type="checkbox" name="column" value="Publication" checked>Publication</label>
+      <label class="col-item"><input type="checkbox" name="column" value="Tag or topic" checked>Tag or topic</label>
+      <label class="col-item"><input type="checkbox" name="column" value="Date published" checked>Date published</label>
+      <label class="col-item"><input type="checkbox" name="column" value="Audio length" checked>Audio length</label>
+      <label class="col-item"><input type="checkbox" name="column" value="Brief article summary" checked>Article digest</label>
+      <div class="filter-item"><label><input type="checkbox" id="audioOn"> Audio below</label><div class="audio-value"><input id="lengthFilterValue" aria-label="Maximum audio length" type="number" min="1" max="120" value="10"><select id="audioUnit" aria-label="Audio time unit"><option value="minutes">minutes</option><option value="hours">hours</option></select></div></div>
+      <div class="extra-slot"><label><input type="checkbox" id="criteriaOn"><span>Additional search criteria</span></label><textarea id="extraSlot1Input" aria-label="Additional search criteria" rows="1"></textarea></div>
+    </div>
+  </div>
+
+  <div class="action-row">
+    <button type="submit" class="go-btn" id="searchBtn">Prepare article request <span class="button-chevron" aria-hidden="true">›</span></button>
+  </div>
+  <p id="storageStatus" class="hint">Choices are remembered in this browser.</p><p id="error" role="alert"></p><div class="copy-box" id="copyBox" hidden>
+    <div class="copy-box-label" id="copyBoxLabel" role="status">Paste the below text back into Codex to generate result in Notion</div>
+    <textarea class="copy-box-text" id="copyBoxText" aria-label="Article request" readonly rows="10"></textarea>
+  </div>
+
+</form></main>
+</div>
+
+<script>
+const form=document.getElementById('picker');
+const $=id=>document.getElementById(id);
+const fields=['topicInput','articleCount','horizonValue','horizonUnit','lengthFilterValue','audioUnit','extraSlot1Input'];
+const key='content-picks-articles-mobile-v1';
+function selected(name){return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(e=>e.value==='Economist'?'The Economist':e.value==='Brief article summary'?'Article digest':e.value)}
+function remember(){try{localStorage.setItem(key,JSON.stringify({values:Object.fromEntries(fields.map(id=>[id,$(id).value])),sources:selected('source'),columns:selected('column'),audio:$('audioOn').checked,criteria:$('criteriaOn').checked}));}catch{$('storageStatus').textContent='Choices cannot be remembered in this browser.'}}
+try{const saved=JSON.parse(localStorage.getItem(key));if(saved){for(const id of fields){if(typeof saved.values?.[id]==='string')$(id).value=saved.values[id]}for(const [name,list] of [['source',saved.sources],['column',saved.columns]]){if(Array.isArray(list))form.querySelectorAll(`input[name="${name}"]`).forEach(e=>e.checked=list.includes(e.value)||list.includes(e.value==='Economist'?'The Economist':e.value==='Brief article summary'?'Article digest':e.value))}$('audioOn').checked=saved.audio===true;$('criteriaOn').checked=typeof saved.criteria==='boolean'?saved.criteria:!!$('extraSlot1Input').value.trim()}}catch{$('storageStatus').textContent='Your previous choices could not be restored.'}
+function resizeTopic(){for(const [id,minimum] of [['topicInput',43],['extraSlot1Input',35],['copyBoxText',35]]){const el=$(id);el.style.height=minimum+'px';el.style.height=Math.max(minimum,el.scrollHeight+2)+'px'}}
+window.addEventListener('resize',resizeTopic);
+document.fonts.ready.then(resizeTopic);
+function sync(){ resizeTopic(); $('lengthFilterValue').disabled=!$('audioOn').checked;$('audioUnit').disabled=false;$('extraSlot1Input').disabled=false;for(const [unit,number] of [['horizonUnit','horizonValue'],['audioUnit','lengthFilterValue']])for(const o of $(unit).options)o.textContent=o.value.replace(/s$/,Number($(number).value)===1?'':'s'); }
+sync();
+form.addEventListener('input',event=>{if(event.target.id==='extraSlot1Input')$('criteriaOn').checked=!!event.target.value.trim();sync();remember();$('copyBox').hidden=true;$('error').textContent=''});
+form.addEventListener('change',()=>{sync();remember()});
+for(const id of ['articleCount','horizonValue','lengthFilterValue']){$(id).required=true;$(id).inputMode='numeric'}
+form.addEventListener('submit',async event=>{
+ event.preventDefault();const topic=$('topicInput').value.trim();const sources=selected('source');const columns=selected('column');
+ if(!topic||!sources.length||!columns.length){$('error').textContent=!topic?'Enter a topic.':!sources.length?'Choose at least one publication.':'Choose at least one output property.';return}
+ remember();const n=$('horizonValue').value;const unit=$('horizonUnit').value.replace(/s$/,Number(n)===1?'':'s');
+ const request=`Run the Content Picks article-pull workflow:
+Topic: ${topic}
+Sources: ${sources.join(', ')}
+Columns: ${columns.join(', ')}
+Target number of articles: ${$('articleCount').value}
+Article time horizon: last ${n} ${unit}${$('audioOn').checked?`
+Only include articles with audio length under ${$('lengthFilterValue').value} ${$('audioUnit').value.replace(/s$/,Number($('lengthFilterValue').value)===1?'':'s')}`:''}${$('criteriaOn').checked&&$('extraSlot1Input').value.trim()?`
+Additional search criteria: ${$('extraSlot1Input').value.trim()}`:''}
+Notion destination: new page in Actions db titled "Listen: ${topic}*"`;
+ $('copyBoxText').value=request;$('copyBox').hidden=false;resizeTopic();$('copyBoxLabel').textContent='Paste the below text back into Codex to generate result in Notion';
+ try{await navigator.clipboard.writeText(request);$('copyBoxLabel').textContent='Paste the below text back into Codex to generate result in Notion'}catch{$('copyBoxLabel').textContent='Automatic copying is unavailable. Select and copy the request below, then paste it into Codex.'}
+ $('copyBox').scrollIntoView({block:'start',behavior:'auto'});
+});
+</script></body></html>
