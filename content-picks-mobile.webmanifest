@@ -1,0 +1,16 @@
+{
+  "name": "Content Picks",
+  "short_name": "Content Picks",
+  "start_url": "./content-picks-articles-mobile.html",
+  "display": "standalone",
+  "background_color": "#F0EFEC",
+  "theme_color": "#F0EFEC",
+  "icons": [
+    {
+      "src": "content-picks-mobile-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
