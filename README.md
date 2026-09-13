@@ -34,7 +34,8 @@
 <p>
 <a href="https://arlandex.github.io/notion-embeds/c6-kpi-card.html?v=1">C6.0 | KPI card | MVP</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c6-kpi-card-explainer.html?v=2">C6.01 | KPI card | Explainer</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c6-kpi-card-103-merchant.html?v=2">C6.02 | Dashboard field card | 103 · Merchant</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c6-kpi-card-103-merchant.html?v=2">C6.02 | Dashboard field card | 103 · Merchant</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c6-kpi-card-402-gross-expenses.html?v=3">C6.03 | Dashboard field card | 402 · Gross expenses</a>
 </p>
 
 <br>
