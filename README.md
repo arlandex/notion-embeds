@@ -31,6 +31,10 @@
 <a href="https://arlandex.github.io/notion-embeds/c5.0-personal-finance.html">C5.0 | Personal finance | MVP</a>
 </p>
 
+<p>
+<a href="https://arlandex.github.io/notion-embeds/c6-kpi-card.html?v=1">C6.0 | KPI card | MVP</a>
+</p>
+
 <br>
 
 ### Other pages
