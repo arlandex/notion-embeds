@@ -42,7 +42,7 @@
 
 ### Other pages
 
-[Definition flow](https://arlandex.github.io/notion-embeds/definitions-flow.html?v=1)  
+[Definition flow](https://arlandex.github.io/notion-embeds/definitions-flow.html?v=2)
 
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)  
 [Content Picks mobile](https://arlandex.github.io/notion-embeds/content-picks-articles-mobile.html?v=3)  
