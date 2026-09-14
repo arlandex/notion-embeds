@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diagramatic decision &amp; action flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&amp;family=Source+Sans+3:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { --blue:#0878c9; --ink:#111318; --node-ink:#455874; --lane:#d2d4d6; --line:#6c6d6c; --border:#8f9499; --annotation:#6c6d6c; --brown:#d8c9b6; --brown-ink:#0d1015; --node-width:clamp(70px,10.5vw,104px); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:320px; background:#fff; color:var(--ink); font-family:"Source Sans 3",ui-sans-serif,system-ui,sans-serif; }
+    main { width:100%; padding:clamp(14px,2vw,22px) 0 16px; }
+    h1 { width:min(calc(100% - 64px),1200px); margin:0 auto clamp(26px,3vw,38px); color:var(--blue); font-size:clamp(24px,2vw,31px); line-height:1.1; font-weight:750; }
+    .release { width:min(calc(100% - 64px),1200px); margin:-20px auto 20px; color:#6c6d6c; font:500 10.5px/1.4 "IBM Plex Mono",ui-monospace,"SF Mono",monospace; letter-spacing:.07em; text-transform:uppercase; }
+    .flow-scroll { width:100%; overflow-x:auto; overflow-y:hidden; padding:0 32px 8px; overscroll-behavior-inline:contain; scrollbar-gutter:stable; }
+    .flow { position:relative; width:min(840px,calc(100vw - 64px)); min-width:560px; margin:0 auto; display:grid; grid-template-columns:clamp(80px,15vw,130px) repeat(4,minmax(0,1fr)) clamp(18px,3vw,30px); grid-template-rows:repeat(6,82px) 216px; column-gap:clamp(4px,1vw,10px); row-gap:12px; isolation:isolate; }
+    .lane { position:relative; z-index:0; grid-column:1/-1; border-radius:11px; background:var(--lane); }
+    .lane h2 { position:absolute; left:clamp(7px,1.2vw,13px); top:50%; margin:0; transform:translateY(-50%); font-size:clamp(12px,1.45vw,20px); line-height:1.15; font-weight:500; }
+    .lane h2 strong { font-family:"IBM Plex Mono",ui-monospace,"SF Mono",monospace; font-weight:500; }
+    .r1,.r2,.r6,.r7 { background:var(--brown); color:var(--brown-ink); }
+    .r1{grid-row:1}.r2{grid-row:2}.r3{grid-row:3}.r4{grid-row:4}.r5{grid-row:5}.r6{grid-row:6}.r7{grid-row:7}
+    .node { z-index:2; align-self:center; justify-self:center; width:var(--node-width); min-width:0; height:64px; min-height:0; display:grid; place-items:center; padding:2px 3px; border:1px solid var(--border); border-radius:9px; background:#fff; color:var(--node-ink); text-align:center; font-size:clamp(9px,1.2vw,12px); line-height:1.02; font-weight:500; }
+    .node strong{font-weight:750}.detail-node{display:flex;flex-direction:column;justify-content:center;gap:0}.detail-node strong,.detail-node span{display:block}.question{color:#858585;font-weight:750}.action{color:#243041}
+    #activity{grid-column:3;grid-row:1}#q1{grid-column:2;grid-row:2}#q2{grid-column:3;grid-row:2}#q3{grid-column:4;grid-row:2}#q1,#q2{background:#e7e8e9;color:#9a9a9a}
+    #a1,#d1,#i1{grid-column:2}#a2,#d2,#i2{grid-column:3}#a3,#d3,#i3{grid-column:4}#a4,#d4,#i4{grid-column:5}#a1,#a2,#a3,#a4{grid-row:3}#d1,#d2,#d3,#d4{grid-row:4}#i1,#i2,#i3,#i4{grid-row:5}
+    .action-track,.insight-track{grid-column:2/6;z-index:2;display:grid;grid-template-columns:subgrid;align-items:center}.action-track{grid-row:6}.insight-track{grid-row:7;grid-column:2;display:flex;flex-direction:column;justify-content:center;gap:8px}.action-track .node,.insight-track .node{width:var(--node-width);justify-self:center}.action-pair{grid-column:3;justify-self:center;width:calc((2 * var(--node-width)) + 8px);display:grid;grid-template-columns:repeat(2,var(--node-width));gap:8px}
+    .connectors{position:absolute;z-index:1;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.connector{fill:none;stroke:var(--line);stroke-width:1.6;vector-effect:non-scaling-stroke}.annotation{fill:none;stroke:var(--annotation);stroke-width:1.6;stroke-dasharray:3 3;vector-effect:non-scaling-stroke;marker-end:url(#arrowhead)}
+    @media(max-width:620px){h1{width:calc(100% - 32px);font-size:24px}.release{width:calc(100% - 32px)}.flow-scroll{padding-inline:16px}}
+  </style>
+</head>
+<body><main>
+  <h1>Diagramatic decision &amp; action flow</h1><p class="release">V1 | 14 September 2026</p>
+  <div class="flow-scroll"><section class="flow" aria-label="Decision and action flow">
+    <section class="lane r1"><h2><strong>121</strong> Activity</h2></section><section class="lane r2"><h2><strong>122</strong> Question</h2></section><section class="lane r3"><h2><strong>123</strong> Answer</h2></section><section class="lane r4"><h2><strong>124</strong> Decision</h2></section><section class="lane r5"><h2><strong>125</strong> Implication</h2></section><section class="lane r6"><h2><strong>126</strong> Action</h2></section><section class="lane r7"><h2><strong>127</strong> Insight</h2></section>
+    <article class="node" id="activity"><strong>Maintain<br>transaction<br>records</strong></article>
+    <article class="node question" id="q1">Are<br>transactions<br>complete?</article><article class="node question" id="q2">Do transactions<br>match events?</article><article class="node question" id="q3">Are<br>transactions<br>accurately<br>categorised?</article>
+    <article class="node" id="a1">Not sure</article><article class="node" id="a2">Yes</article><article class="node" id="a3"><strong>No</strong></article><article class="node" id="a4">Do later</article>
+    <article class="node" id="d1">Clarify</article><article class="node" id="d2">Keep</article><article class="node" id="d3">Intervene</article><article class="node" id="d4">Defer</article>
+    <article class="node" id="i1">Analyse</article><article class="node" id="i2">Do nothing</article><article class="node" id="i3">Act</article><article class="node" id="i4">Remind</article>
+    <div class="action-track"><article class="node action detail-node" id="review"><strong>Review</strong><span>(transactions<br>against source)</span></article><article class="node action" id="none"><strong>None</strong></article><div class="action-pair"><article class="node detail-node" id="edit"><strong>Edit</strong><span>(transactions)</span></article><article class="node detail-node" id="update"><strong>Update</strong><span>(rules or<br>instructions)</span></article></div><article class="node detail-node" id="create"><strong>Create</strong><span>(reminder<br>to do later)</span></article></div>
+    <div class="insight-track"><article class="node detail-node" id="insight-yes"><strong>Yes</strong><span>(transaction<br>accurate)</span></article><article class="node detail-node" id="insight-no"><strong>No</strong><span>(transaction not<br>accurate)</span></article><article class="node detail-node" id="system-update"><strong>Update system</strong><span>(example:<br>categorisation<br>rules)</span></article></div>
+    <svg class="connectors" aria-hidden="true"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6.2" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L7,3 z" fill="#6c6d6c"></path></marker></defs><g id="connector-lines"></g><g id="annotation-lines"></g></svg>
+  </section></div>
+</main>
+<script>
+const $=id=>document.getElementById(id),flow=document.querySelector('.flow'),lines=$('connector-lines'),notes=$('annotation-lines'),svgNS='http://www.w3.org/2000/svg';
+function point(id,edge){const r=$(id).getBoundingClientRect(),f=flow.getBoundingClientRect();return{x:r.left-f.left+r.width/2,y:(edge==='top'?r.top:r.bottom)-f.top}}
+function sidePoint(id,side){const r=$(id).getBoundingClientRect(),f=flow.getBoundingClientRect();return{x:(side==='right'?r.right:side==='left'?r.left:r.left+r.width/2)-f.left,y:r.top-f.top+r.height/2}}
+function path(d,className='connector'){const p=document.createElementNS(svgNS,'path');p.setAttribute('d',d);p.setAttribute('class',className);return p}
+function vertical(from,to){const a=point(from,'bottom'),b=point(to,'top');lines.append(path(`M ${a.x} ${a.y} V ${b.y}`))}
+function branch(from,targets){const a=point(from,'bottom'),ends=targets.map(id=>point(id,'top')),y=a.y+(Math.min(...ends.map(p=>p.y))-a.y)/2;lines.append(path(`M ${a.x} ${a.y} V ${y} H ${ends[0].x} M ${a.x} ${y} H ${ends.at(-1).x}`));ends.forEach(p=>lines.append(path(`M ${p.x} ${y} V ${p.y}`)))}
+function sideAnnotation(from,to){const a=sidePoint(from,'right'),b=point(to,'bottom'),radius=Math.min(10,Math.max(4,(b.x-a.x)/3));notes.append(path(`M ${a.x} ${a.y} H ${b.x-radius} Q ${b.x} ${a.y} ${b.x} ${a.y-radius} V ${b.y}`,'annotation'))}
+function returnAnnotation(from,to){const a=sidePoint(from,'right'),b=sidePoint(to,'right'),routeX=flow.clientWidth-18,radius=Math.min(12,Math.max(4,(routeX-a.x)/2));notes.append(path(`M ${a.x} ${a.y} H ${routeX-radius} Q ${routeX} ${a.y} ${routeX} ${a.y-radius} V ${b.y+radius} Q ${routeX} ${b.y} ${routeX-radius} ${b.y} H ${b.x}`,'annotation'))}
+function draw(){lines.replaceChildren();notes.replaceChildren();branch('activity',['q1','q2','q3']);branch('q3',['a1','a2','a3','a4']);['1','2','3','4'].forEach(n=>{vertical(`a${n}`,`d${n}`);vertical(`d${n}`,`i${n}`)});vertical('i1','review');vertical('review','insight-yes');vertical('i2','none');branch('i3',['edit','update']);vertical('i4','create');sideAnnotation('insight-yes','none');sideAnnotation('insight-no','edit');sideAnnotation('system-update','update');returnAnnotation('create','q3')}
+addEventListener('load',draw);addEventListener('resize',draw);
+</script></body></html>
