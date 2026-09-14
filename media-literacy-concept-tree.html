@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Media literacy · Concept tree</title>
+  <meta name="description" content="An interactive concept tree for media literacy: eight branches and fifty-four concepts.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+    :root {
+      --milk-frost: #f0efec;
+      --soft-ivory: #eae1d7;
+      --pale-sand: #d8c9b6;
+      --fog-stone: #6c6d6c;
+      --body-ink: #48494b;
+      --ink: #0d1015;
+      --paper: #f0efec;
+      --surface: #eae1d7;
+      --line: #d8c9b6;
+      --deep-warm: #48494b;
+      --mid-warm: #6c6d6c;
+      --mastery-tag: #414c48;
+      --mastery-border: #63716d;
+      --mastery-text: #f2f5f4;
+      --mastery-surface: #e3e9e7;
+      --mastery-line: #c6d1ce;
+      --focus: #0d1015;
+    }
+
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Source Sans 3", system-ui, sans-serif;
+    }
+    button { font: inherit; }
+    .page {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      padding: 48px 32px 96px;
+    }
+    .masthead { margin-bottom: 32px; }
+    .kicker,
+    .meta,
+    .branch-code,
+    .concept-code {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 500;
+    }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--fog-stone);
+      font-size: 11.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: .96;
+      letter-spacing: -.035em;
+      font-weight: 700;
+    }
+    .definition {
+      max-width: 900px;
+      margin: 24px 0 0;
+      color: var(--body-ink);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+    .meta {
+      margin: 18px 0 0;
+      color: var(--fog-stone);
+      font-size: 10.5px;
+    }
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin: 0 -8px 24px;
+      padding: 12px 8px;
+      background: color-mix(in srgb, var(--paper) 93%, transparent);
+      backdrop-filter: blur(8px);
+    }
+    .toolbar p {
+      margin: 0;
+      color: var(--fog-stone);
+      font-size: 14px;
+    }
+    .toolbar-actions { display: flex; gap: 8px; }
+    .control {
+      min-height: 40px;
+      border: 1px solid var(--pale-sand);
+      border-radius: 8px;
+      padding: 8px 14px;
+      background: var(--milk-frost);
+      color: var(--body-ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .control:hover { background: var(--soft-ivory); }
+    .control:focus-visible,
+    .branch-toggle:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .board {
+      display: grid;
+      gap: 22px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface);
+    }
+    .branch {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--milk-frost);
+      box-shadow: 0 14px 30px rgba(71, 59, 44, .04);
+    }
+    .branch-toggle {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 130px minmax(240px, 1fr) minmax(280px, 1.25fr) auto;
+      align-items: center;
+      gap: 24px;
+      border: 0;
+      padding: 0;
+      text-align: left;
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+    }
+    .branch-code {
+      align-self: stretch;
+      display: grid;
+      place-items: center;
+      min-height: 104px;
+      padding: 18px;
+      color: var(--ink);
+      background: var(--soft-ivory);
+      font-size: 11px;
+      text-align: center;
+    }
+    .branch:nth-child(2n) .branch-code { background: var(--pale-sand); }
+    .branch-title {
+      margin: 0;
+      padding: 22px 0;
+      font-size: clamp(22px, 2.2vw, 31px);
+      line-height: 1.08;
+      font-weight: 700;
+    }
+    .branch-question {
+      margin: 0;
+      padding: 22px 0;
+      color: var(--body-ink);
+      font-size: 15.5px;
+      line-height: 1.4;
+    }
+    .state {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 118px;
+      margin-right: 24px;
+      border-radius: 8px;
+      padding: 10px 14px;
+      background: var(--body-ink);
+      color: var(--milk-frost);
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+    .state::before {
+      content: "›";
+      margin-right: 9px;
+      font-size: 21px;
+      line-height: .6;
+      transition: transform .18s ease;
+    }
+    .branch.open .state::before { transform: rotate(90deg); }
+    .concept-panel {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 24px;
+      opacity: 0;
+      transition: max-height .35s ease, opacity .25s ease, padding .35s ease;
+    }
+    .branch.open .concept-panel {
+      max-height: 2200px;
+      padding: 8px 24px 24px;
+      opacity: 1;
+    }
+    .concept {
+      min-height: 180px;
+      overflow: hidden;
+      border: 1px solid var(--fog-stone);
+      border-radius: 14px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: background .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+    .concept:hover { border-color: var(--fog-stone); }
+    .concept:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+    .concept.mastered { border-color: var(--mastery-border); background: var(--mastery-surface); }
+    .concept.mastered p { color: var(--mastery-tag); }
+    .concept.mastered .concept-divider { background: var(--mastery-line); }
+    .concept.mastered .concept-code { background: var(--mastery-line); color: var(--mastery-tag); }
+    .concept-code {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--pale-sand);
+      color: var(--body-ink);
+      text-transform: none;
+    }
+    .concept-index { flex: 0 0 auto; font-size: 13px; line-height: 1.1; letter-spacing: 0; }
+    .concept-name {
+      display: block;
+      min-width: 0;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.1;
+      font-weight: 700;
+      text-align: left;
+    }
+    .concept h3 {
+      margin: 0;
+      padding: 20px 20px 10px;
+      font-size: 20px;
+      line-height: 1.12;
+      font-weight: 700;
+    }
+    .concept p {
+      margin: 0;
+      padding: 14px 20px 18px;
+      color: var(--body-ink);
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+    .concept-divider { height: 1px; margin: 0 13px; background: var(--line); }
+    .concept .concept-example { padding-top: 8px; color: var(--fog-stone); font-style: italic; }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 24px;
+      color: var(--fog-stone);
+      font-size: 13.5px;
+    }
+    .footer p { margin: 0; }
+
+    @media (max-width: 980px) {
+      .branch-toggle { grid-template-columns: 100px 1fr auto; gap: 18px; }
+      .branch-question { grid-column: 2 / -1; padding: 0 24px 20px 0; }
+      .branch-code { grid-row: 1 / span 2; }
+      .concept-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 660px) {
+      .page { padding: 32px 16px 64px; }
+      .toolbar { position: static; align-items: flex-start; flex-direction: column; }
+      .board { padding: 12px; border-radius: 20px; }
+      .branch-toggle { grid-template-columns: 78px 1fr; gap: 14px; }
+      .branch-code { min-height: 118px; }
+      .branch-title { padding: 18px 16px 8px 0; }
+      .branch-question { grid-column: 2; padding: 0 16px 16px 0; }
+      .state { grid-column: 1 / -1; width: calc(100% - 24px); margin: 0 12px 12px; }
+      .concept-panel { grid-template-columns: 1fr; padding-inline: 12px; }
+      .branch.open .concept-panel { padding: 4px 12px 12px; }
+      .footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .concept-panel, .state::before { transition: none; }
+    }
+
+    /* Spatial map: the approved WiseMapping topology is the closed state. */
+    .toolbar { position: static; }
+    .map-shell {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: 0 14px 30px rgba(71, 59, 44, .04);
+    }
+    .map-scroll {
+      overflow-x: auto;
+      padding: 28px 24px 20px;
+      scrollbar-color: var(--pale-sand) transparent;
+    }
+    .map-stage {
+      position: relative;
+      min-width: 1280px;
+      height: 430px;
+    }
+    .map-connectors {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .map-connectors path {
+      fill: none;
+      stroke: var(--body-ink);
+      stroke-width: 3;
+      vector-effect: non-scaling-stroke;
+    }
+    .root-node {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: 236px;
+      min-height: 86px;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      border: 4px solid var(--body-ink);
+      border-radius: 18px;
+      padding: 18px;
+      background: var(--pale-sand);
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 0 0 7px var(--milk-frost), 0 0 0 10px var(--body-ink);
+    }
+    .map-branch {
+      position: absolute;
+      z-index: 3;
+      top: var(--top);
+      width: 500px;
+      height: 64px;
+      border: 0;
+      border-bottom: 3px solid var(--body-ink);
+      padding: 0 8px 13px;
+      background: transparent;
+      color: var(--body-ink);
+      font-size: 18px;
+      line-height: 1.15;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .map-branch.left {
+      right: calc(50% + 148px);
+      text-align: right;
+    }
+    .map-branch.right {
+      left: calc(50% + 148px);
+      text-align: left;
+    }
+    .map-branch::after {
+      content: "+";
+      position: absolute;
+      bottom: -11px;
+      width: 19px;
+      height: 19px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--body-ink);
+      color: var(--milk-frost);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .map-branch.left::after { left: -1px; }
+    .map-branch.right::after { right: -1px; }
+    .map-branch[aria-expanded="true"] { color: var(--ink); }
+    .map-branch[aria-expanded="true"]::after { content: "−"; background: var(--ink); }
+    .map-branch:hover { color: var(--ink); border-color: var(--ink); }
+    .map-branch:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 6px;
+      border-radius: 8px 8px 0 0;
+    }
+    .detail {
+      margin: 0 24px 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--milk-frost);
+    }
+    .detail-head {
+      display: grid;
+      grid-template-columns: 145px minmax(240px, .9fr) minmax(300px, 1.2fr);
+      align-items: stretch;
+      background: var(--milk-frost);
+    }
+    .detail-code {
+      display: grid;
+      place-items: center;
+      min-height: 112px;
+      padding: 18px;
+      background: var(--deep-warm);
+      color: var(--milk-frost);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 10.5px;
+      text-align: center;
+    }
+    .detail-title {
+      margin: 0;
+      padding: 24px;
+      font-size: 28px;
+      line-height: 1.08;
+      font-weight: 700;
+    }
+    .detail-question {
+      margin: 0;
+      padding: 26px 24px;
+      color: var(--body-ink);
+      font-size: 15.5px;
+      line-height: 1.4;
+    }
+    .detail .concept-panel {
+      max-height: none;
+      overflow: visible;
+      padding: 8px 24px 24px;
+      opacity: 1;
+    }
+    .map-hint {
+      display: none;
+      margin: 0;
+      padding: 0 24px 16px;
+      color: var(--fog-stone);
+      font-size: 12px;
+    }
+    @media (max-width: 1280px) {
+      .map-hint { display: block; }
+    }
+    @media (max-width: 720px) {
+      .page { padding: 32px 16px 64px; }
+      .map-shell { border-radius: 20px; }
+      .map-scroll { padding: 22px 16px 18px; }
+      .detail { margin: 0 12px 12px; }
+      .detail-head { grid-template-columns: 86px 1fr; }
+      .detail-code { grid-row: 1 / span 2; }
+      .detail-title { padding: 18px 16px 8px; font-size: 23px; }
+      .detail-question { grid-column: 2; padding: 0 16px 18px; }
+      .detail .concept-panel { grid-template-columns: 1fr; padding: 4px 12px 12px; }
+    }
+
+    /* Vertical parent-to-child tree */
+    .toolbar { margin-bottom: 16px; }
+    .toolbar-actions { gap: 6px; }
+    .control {
+      min-height: 32px;
+      padding: 5px 10px;
+      border-color: var(--line);
+      background: transparent;
+      color: var(--fog-stone);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .vertical-tree {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface);
+    }
+    .vertical-root {
+      position: relative;
+      z-index: 2;
+      width: min(360px, calc(100% - 32px));
+      margin: 0 auto 32px;
+      overflow: hidden;
+      border: 1px solid var(--body-ink);
+      border-radius: 12px;
+      background: var(--milk-frost);
+      text-align: center;
+    }
+    .vertical-root .root-code {
+      padding: 7px 12px;
+      background: var(--ink);
+      color: var(--milk-frost);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 9.5px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .vertical-root h2 {
+      margin: 0;
+      padding: 14px 16px 15px;
+      font-size: 26px;
+      line-height: 1;
+    }
+    .tree-list {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: 54px;
+    }
+    .tree-list::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: -33px;
+      bottom: 34px;
+      width: 2px;
+      background: var(--fog-stone);
+    }
+    .tree-branch {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--milk-frost);
+      transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+    .tree-branch.open {
+      border-color: var(--body-ink);
+      background: var(--soft-ivory);
+      box-shadow: 0 0 0 2px var(--body-ink), 0 10px 24px rgba(71, 59, 44, .10);
+    }
+    .tree-branch::before {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      left: -35px;
+      top: 39px;
+      width: 35px;
+      height: 2px;
+      background: var(--fog-stone);
+    }
+    .tree-branch::after {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      left: -39px;
+      top: 35px;
+      width: 8px;
+      height: 8px;
+      border: 2px solid var(--fog-stone);
+      border-radius: 50%;
+      background: var(--surface);
+    }
+    .parent-toggle {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 138px minmax(220px, .9fr) minmax(280px, 1.15fr) 34px;
+      align-items: stretch;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+    .parent-header {
+      display: grid;
+      place-items: center;
+      min-height: 76px;
+      padding: 10px 12px;
+      background: var(--deep-warm);
+      color: var(--milk-frost);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 9.5px;
+      line-height: 1.35;
+      text-align: center;
+    }
+    .tree-branch.open .parent-header { background: var(--ink); }
+    .parent-title {
+      margin: 0;
+      padding: 13px 16px;
+      align-self: center;
+      font-size: 20px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    .tree-branch.open .parent-title::after {
+      content: "Open";
+      display: inline-block;
+      margin-left: 10px;
+      border: 1px solid var(--fog-stone);
+      border-radius: 4px;
+      padding: 2px 5px;
+      color: var(--body-ink);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 8.5px;
+      line-height: 1;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      vertical-align: .2em;
+    }
+    .parent-question {
+      margin: 0;
+      padding: 13px 16px;
+      align-self: center;
+      color: var(--body-ink);
+      font-size: 13.5px;
+      line-height: 1.35;
+    }
+    .disclosure {
+      align-self: center;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--pale-sand);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--fog-stone);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 15px;
+      line-height: 1;
+    }
+    .parent-toggle:hover .disclosure { border-color: var(--fog-stone); color: var(--ink); }
+    .parent-toggle:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: -3px;
+      border-radius: 10px;
+    }
+    .tree-branch.open .disclosure { transform: rotate(45deg); }
+    .tree-branch .concept-panel {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-height: none;
+      overflow: visible;
+      padding: 10px;
+      border-top: 1px solid var(--line);
+      opacity: 1;
+    }
+    .concept {
+      min-height: 0;
+      border-radius: 10px;
+      display: grid;
+      grid-template-rows: auto auto 1px 1fr;
+    }
+    .concept-code { padding: 8px 12px; }
+    .concept h3 {
+      padding: 11px 13px 5px;
+      font-size: 17px;
+    }
+    .concept p {
+      padding: 8px 13px;
+      font-size: 13px;
+      line-height: 1.32;
+    }
+    @media (max-width: 880px) {
+      .parent-toggle { grid-template-columns: 92px 1fr 32px; }
+      .parent-header { grid-row: 1 / span 2; }
+      .parent-title { padding-bottom: 4px; }
+      .parent-question { grid-column: 2; padding-top: 0; }
+      .disclosure { grid-column: 3; grid-row: 1 / span 2; }
+      .tree-branch .concept-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 580px) {
+      .vertical-tree { padding: 12px; border-radius: 20px; }
+      .tree-list { padding-left: 26px; gap: 10px; }
+      .tree-list::before { left: 8px; }
+      .tree-branch::before { left: -19px; width: 19px; }
+      .tree-branch::after { left: -23px; }
+      .parent-toggle { grid-template-columns: 72px 1fr 30px; }
+      .parent-header { font-size: 8.5px; padding: 8px; }
+      .parent-title { font-size: 17px; padding: 10px 10px 3px; }
+      .parent-question { font-size: 12.5px; padding: 0 10px 10px; }
+      .tree-branch .concept-panel { grid-template-columns: 1fr; padding: 8px; gap: 8px; }
+    }
+
+    /* Spider-web map retained inside a vertically scrolling page. */
+    .map-shell {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: 0 14px 30px rgba(71, 59, 44, .04);
+    }
+    .map-scroll { overflow: hidden; padding: 28px 8px 20px; }
+    .map-stage { position: relative; width: min(720px, 100%); height: 620px; margin: 0 auto; }
+    .map-connectors { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .map-connectors path { fill: none; stroke: var(--body-ink); stroke-width: 3; vector-effect: non-scaling-stroke; }
+    .root-node {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: min(200px, 28%);
+      min-height: 86px;
+      transform: translate(-50%, -50%);
+      display: grid;
+      place-items: center;
+      border: 4px solid var(--body-ink);
+      border-radius: 18px;
+      padding: 18px;
+      background: var(--pale-sand);
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 0 0 7px var(--milk-frost), 0 0 0 10px var(--body-ink);
+    }
+    .map-branch {
+      position: absolute;
+      z-index: 3;
+      top: var(--top);
+      width: 30%;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--body-ink);
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: var(--soft-ivory);
+      color: var(--body-ink);
+      font-size: 18px;
+      line-height: 1.15;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+    }
+    .map-branch.left { right: 67.36%; text-align: center; }
+    .map-branch.right { left: 67.36%; text-align: center; }
+    .map-branch::after,
+    .map-branch[aria-expanded="true"]::after { content: none; display: none; }
+    .map-branch[aria-expanded="true"] {
+      border-color: var(--body-ink);
+      background: var(--body-ink);
+      color: var(--milk-frost);
+      box-shadow: none;
+    }
+    .map-branch:focus-visible { outline: 2px solid var(--focus); outline-offset: 6px; }
+    .map-hint { display: none; }
+    .detail {
+      margin: 0 24px 24px;
+      overflow: hidden;
+      border: 1px solid var(--body-ink);
+      border-radius: 12px;
+      background: var(--milk-frost);
+      box-shadow: 0 0 0 2px var(--body-ink), 0 10px 24px rgba(71, 59, 44, .08);
+    }
+    .detail-head { display: grid; grid-template-columns: 120px minmax(0, 1fr); grid-template-rows: auto auto; align-items: stretch; }
+    .detail-head .detail-code { grid-row: 1 / span 2; }
+    .detail-code {
+      display: grid;
+      place-items: center;
+      min-height: 80px;
+      padding: 10px 12px;
+      background: var(--body-ink);
+      color: var(--milk-frost);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 9.5px;
+      text-align: center;
+    }
+    .detail-title { grid-column: 2; margin: 0; padding: 13px 16px 5px; align-self: stretch; font-size: 23px; line-height: 1.08; }
+    .detail-question { grid-column: 2; margin: 0; padding: 0 16px 13px; align-self: stretch; color: var(--body-ink); font-size: 13.5px; line-height: 1.35; }
+    .detail .concept-panel {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: auto;
+      max-height: none;
+      overflow: visible;
+      padding: 10px;
+      border-top: 1px solid var(--line);
+      opacity: 1;
+    }
+    @media (max-width: 720px) {
+      .map-shell { border-radius: 20px; }
+      .map-scroll { padding: 22px 16px 18px; }
+      .detail { margin: 0 12px 12px; }
+      .detail-head { grid-template-columns: 86px minmax(0, 1fr); }
+      .detail-code { grid-row: 1 / span 2; }
+      .detail-title { padding: 12px 12px 4px; font-size: 20px; }
+      .detail-question { grid-column: 2; padding: 0 12px 12px; }
+      .detail .concept-panel { grid-template-columns: 1fr; padding: 8px; gap: 8px; }
+    }
+    /* Shared tracks align headers and dividers across each row of cards. */
+    .detail .concept-panel { row-gap: 0; column-gap: 13.6px; padding: 13.6px 13.6px 0; }
+    .detail .concept {
+      display: grid;
+      margin-bottom: 13.6px;
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+      border-color: var(--fog-stone);
+    }
+    .detail .concept.mastered { border-color: var(--mastery-border); }
+    .detail-head { background: var(--body-ink); color: var(--milk-frost); }
+    .detail-head .detail-title { color: var(--milk-frost); }
+    .detail-head .detail-question { display: flex; align-items: center; padding-block: 6px; color: var(--milk-frost); font-size: 16px; }
+    .map-branch { grid-template-columns: 52px minmax(0, 1fr) 52px; padding: 0; place-items: stretch; }
+    .map-branch > span { display: flex; align-items: center; justify-content: center; align-self: stretch; justify-self: stretch; width: 100%; padding: 6px; }
+    .map-number { border-right: 1px solid currentColor; }
+    .map-progress { border-left: 1px solid currentColor; }
+    .map-number, .map-progress { font-size: 14px; font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    .concept p { display: flex; align-items: flex-start; }
+    .detail-title { display: flex; align-items: center; }
+    .concept-name { flex: 1; }
+    .mastery-check {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--mastery-border);
+      border-radius: 4px;
+      background: var(--mastery-text);
+      color: var(--mastery-text);
+      font: 700 15px/1 "Source Sans 3", sans-serif;
+    }
+    .concept.mastered .mastery-check { background: var(--mastery-tag); }
+    .mastery-check svg { width: 100%; height: 100%; visibility: hidden; }
+    .mastery-check path { fill: none; stroke: var(--mastery-text); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .concept.mastered .mastery-check svg { visibility: visible; }
+    .detail-head { grid-template-columns: 52px minmax(0, 1fr) 52px; }
+    .detail-head .detail-code, .detail-progress {
+      grid-row: 1 / span 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      font: 500 14px/1.2 "IBM Plex Mono", ui-monospace, monospace;
+    }
+    .detail-head .detail-code { grid-column: 1; border-right: 1px solid var(--milk-frost); }
+    .detail-progress { grid-column: 3; border-left: 1px solid var(--milk-frost); }
+    .detail-head .detail-title, .detail-head .detail-question { justify-content: center; text-align: center; }
+    .detail-head .detail-title { grid-row: 1; }
+    .detail-head .detail-question { grid-row: 2; }
+    .map-branch { overflow: hidden; background: var(--pale-sand); }
+    .map-number, .map-progress { background: var(--body-ink); color: var(--milk-frost); border-color: var(--body-ink); }
+    /* Reflow the map rather than cropping a fixed-width canvas. */
+    .map-stage { min-width: 0; width: 100%; }
+    .map-scroll { padding: 24px 16px; }
+    @media (max-width: 1100px) {
+      .map-stage { height: auto; display: flex; flex-direction: column; gap: 28px; }
+      .map-connectors { display: none; }
+      .root-node { position: static; transform: none; width: auto; max-width: 100%; align-self: center; min-height: 64px; padding: 16px; font-size: 22px; }
+      #board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; width: 100%; }
+      .map-branch { position: static; width: 100%; height: auto; min-height: 84px; grid-template-columns: 32px minmax(0, 1fr) 40px; font-size: 15px; }
+      .map-branch.left { grid-column: 1; }
+      .map-branch.right { grid-column: 2; }
+      .map-branch:nth-child(1), .map-branch:nth-child(5) { grid-row: 1; }
+      .map-branch:nth-child(2), .map-branch:nth-child(6) { grid-row: 2; }
+      .map-branch:nth-child(3), .map-branch:nth-child(7) { grid-row: 3; }
+      .map-branch:nth-child(4), .map-branch:nth-child(8) { grid-row: 4; }
+      .map-number, .map-progress { font-size: 12px; }
+    }
+    @media (max-width: 540px) {
+      .page { padding-inline: 12px; }
+      .map-scroll { padding: 20px 8px; }
+      #board { gap: 8px; }
+      .map-branch { grid-template-columns: 22px minmax(0, 1fr) 30px; font-size: 13px; min-height: 104px; }
+      .map-branch > span { padding: 6px 3px; overflow-wrap: anywhere; }
+      .map-number, .map-progress { font-size: 10px; white-space: nowrap; }
+      .detail { margin-inline: 8px; }
+      .detail-head { grid-template-columns: 32px minmax(0, 1fr) 38px; }
+      .detail-head .detail-title { font-size: 19px; padding-inline: 8px; }
+      .detail-head .detail-question { font-size: 15px; padding-inline: 8px; }
+    }
+    .map-connectors path { stroke-width: inherit; stroke-linecap: round; }
+    .concept-code { align-items: flex-start; }
+    .concept-index { align-self: flex-start; }
+    .mastery-check { align-self: flex-start; }
+    .concept-index, .mastery-check { margin-top: 2px; }
+    .map-branch[aria-expanded="true"] .map-number,
+    .map-branch[aria-expanded="true"] .map-progress { border-color: var(--milk-frost); }
+    .concept-code { gap: 4px; }
+    .map-progress.complete { background: var(--mastery-border); color: var(--mastery-text); }
+    @media (min-width: 541px) and (max-width: 900px) {
+      .detail .concept-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 540px) {
+      .detail .concept-panel { grid-template-columns: minmax(0, 1fr); }
+    }
+    .concept-code { column-gap: 6px; }
+    .concept-index { font-size: 12px; line-height: 17.6px; margin-top: 0; }
+    .concept-dot { flex: 0 0 auto; font-family: "Source Sans 3", sans-serif; font-size: 16px; line-height: 17.6px; }
+    .mastery-check { margin-top: 0; margin-left: 4px; }
+    .detail-head .detail-question { transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <p class="kicker">Concept tree · Review and learning interface</p>
+      <h1>Media literacy</h1>
+      <p class="definition">The ability to access, analyse, evaluate, create and act with media while understanding how messages, technologies and institutions shape meaning and influence.</p>
+      <p class="meta">V2 | 14 September 2026 · 8 branches · 54 concepts</p>
+    </header>
+
+    <div class="toolbar" aria-label="Concept-tree controls">
+      <p>Select a branch on the map to reveal its concepts and definitions below.</p>
+      <div class="toolbar-actions">
+        <button class="control" id="close-branch" type="button">Close open section</button>
+      </div>
+    </div>
+
+    <section class="map-shell" aria-label="Interactive Media literacy spider-web map">
+      <div class="map-scroll">
+        <div class="map-stage">
+          <svg class="map-connectors" viewBox="0 0 720 620" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M360 310 C315 310 280 98 235 98" />
+            <path d="M360 310 C315 310 280 238 235 238" />
+            <path d="M360 310 C315 310 280 378 235 378" />
+            <path d="M360 310 C315 310 280 518 235 518" />
+            <path d="M360 310 C405 310 440 98 485 98" />
+            <path d="M360 310 C405 310 440 238 485 238" />
+            <path d="M360 310 C405 310 440 378 485 378" />
+            <path d="M360 310 C405 310 440 518 485 518" />
+          </svg>
+          <div class="root-node">Media literacy</div>
+          <div id="board" aria-label="Media literacy branches"></div>
+        </div>
+      </div>
+      <section class="detail" id="branch-detail" aria-live="polite" hidden></section>
+    </section>
+
+    <footer class="footer">
+      <p>Source: approved Notion challenge-and-build hierarchy, visually reviewed in WiseMapping.</p>
+      <p>Mastery progress is stored on this device.</p>
+    </footer>
+  </main>
+
+  <script>
+    const branches = [
+      {
+        title: "Foundations and media language",
+        question: "What are the basic objects and relationships of media literacy?",
+        concepts: [
+          ["Media message", "Meaning communicated through words, images, sound, design or their combination", "A thirty-second video can communicate a claim through narration, editing, music and on-screen text, not through words alone"],
+          ["Medium", "The channel or material form through which a message is communicated", "A written article, podcast and short video can report the same event, but each medium affords different kinds of evidence and attention"],
+          ["Media literacy", "The ability to access, analyse, evaluate, create and act using media", "A media-literate person can examine a viral post, judge its reliability, respond responsibly and make their own message clearly"],
+          ["Information literacy", "The ability to recognise an information need and find, assess and use information effectively and ethically", "Before sharing health advice, a reader identifies what needs checking, locates suitable evidence and records where it came from"],
+          ["Representation", "The selective construction of people, places, events or ideas in media", "A news montage that repeatedly shows empty streets may represent a city as deserted even when other areas are busy"],
+          ["Audience", "The people a message is designed for, reaches or is interpreted by", "The same financial advert may use different language and examples when aimed at first-time savers rather than professional investors"]
+        ]
+      },
+      {
+        title: "Production and purpose",
+        question: "How are media messages constructed and why?",
+        concepts: [
+          ["Authorship", "The people or organisations responsible for creating or commissioning a message", "A campaign video may feature one speaker while its script, funding and distribution were shaped by a larger organisation"],
+          ["Purpose", "The outcome a media message is intended to achieve", "A documentary may aim to inform, an advert to persuade and a parody to entertain while criticising its subject"],
+          ["Genre", "A recognised type of media with characteristic purposes, forms and audience expectations", "A news report, opinion column and sponsored feature may appear on the same site but make different promises to the reader"],
+          ["Selection and omission", "The inclusion of some material and exclusion of other material when constructing a message", "A two-minute report may quote officials and residents but omit workers whose experience would complicate the account"],
+          ["Framing", "The way an issue is defined or presented so that some aspects become more prominent than others", "Describing housing primarily as an investment issue foregrounds prices; describing it as a shelter issue foregrounds access and security"],
+          ["Codes and conventions", "Shared visual, verbal and audio techniques that help audiences recognise and interpret media", "Urgent music, red graphics and a rapid voice-over signal danger before a news segment has presented its evidence"],
+          ["Production context", "The social, political, economic and historical conditions surrounding a message's creation", "A photograph made during an election campaign may need to be understood in relation to the contest, timing and intended publicity"]
+        ]
+      },
+      {
+        title: "Media institutions and power",
+        question: "Which organisations and incentives shape what becomes visible?",
+        concepts: [
+          ["Ownership", "Control of a media organisation, platform or distribution channel", "When several outlets share one owner, apparently separate publications may still reflect common commercial priorities"],
+          ["Gatekeeping", "The process by which people or systems decide what is selected, rejected or prioritised", "An editor chooses which investigation leads the homepage while platform ranking systems decide how widely it travels"],
+          ["Editorial independence", "Freedom of editorial decisions from improper influence by owners, advertisers, governments or other interests", "A newsroom protects independence when a major sponsor cannot suppress an unfavourable but well-supported report"],
+          ["Business model", "The way a media service funds its operation and creates economic value", "A subscription publication depends on paying readers, while an advertising-funded platform may optimise for attention and targeting"],
+          ["Advertising and sponsorship", "Paid or supported communication intended to promote an organisation, product, service or idea", "An influencer's enthusiastic product video is advertising when payment or free goods shaped the recommendation"],
+          ["Public-service media", "Media organised to serve public purposes such as universal access, education and informed citizenship", "A publicly funded broadcaster may be required to provide accessible news and cultural programming without maximising advertising revenue"],
+          ["Media regulation", "Rules and oversight governing media conduct, competition, access and accountability", "Broadcast rules may require clear separation of advertising from editorial content and provide a route for complaints"]
+        ]
+      },
+      {
+        title: "Platforms and distribution",
+        question: "How do digital systems organise reach and attention?",
+        concepts: [
+          ["Platform", "A digital service that hosts, organises or distributes content and interactions", "A video platform supplies publishing tools, search, recommendations, comments and advertising around creators' uploads"],
+          ["Algorithmic curation", "Automated selection and ordering of content according to programmed objectives and data", "Two users following similar accounts may still receive different feeds because ranking models predict different interests"],
+          ["Recommender system", "A system that predicts and suggests content a user may value or engage with", "After someone watches several cooking clips, the service recommends more from related creators"],
+          ["Personalisation", "Adaptation of content, advertising or interfaces using information about a user or context", "A news app changes its homepage according to location, reading history and selected topics"],
+          ["Engagement metrics", "Measures of user interaction such as clicks, watch time, comments or shares", "A provocative headline may receive greater distribution because it increases clicks even when readers quickly abandon the article"],
+          ["Attention economy", "An environment in which organisations compete to capture and monetise limited human attention", "Endless scrolling and frequent notifications can increase time spent because attention supports advertising or retention goals"],
+          ["Amplification and virality", "The rapid expansion of a message's reach through sharing, recommendation or coordinated promotion", "A misleading clip can move from a small account to millions of viewers after influential reposts and automated recommendations"]
+        ]
+      },
+      {
+        title: "Source and evidence evaluation",
+        question: "How can the origin and support for a media claim be checked?",
+        concepts: [
+          ["Provenance", "The traceable origin and history of a piece of content", "Reverse-image searching reveals that a dramatic photograph was first published years before the event it supposedly depicts"],
+          ["Source expertise", "Relevant knowledge or experience that affects a source's ability to support a claim", "A climate scientist may have strong expertise on atmospheric data but no special authority about an unrelated legal dispute"],
+          ["Evidence", "Information offered to support or challenge a claim", "A report's conclusion is better supported by accessible data and documented methods than by an unnamed assertion alone"],
+          ["Corroboration", "Independent confirmation of a claim or detail from additional reliable sources", "Before accepting breaking news, a reader checks whether separate organisations with their own reporting confirm the event"],
+          ["Lateral reading", "Leaving a page to investigate its source and claims through other sources", "Rather than judging a polished website by appearance, a reader opens new tabs to see who runs it and what reputable sources say"],
+          ["Primary and secondary sources", "Original evidence or records compared with accounts that interpret, analyse or report them", "A court judgment is a primary source for what the court ruled; a newspaper analysis is a secondary interpretation of that ruling"],
+          ["Original context", "The surrounding time, place, sequence and purpose needed to interpret a content item accurately", "A short clip appears violent until the full recording shows it came from a staged rehearsal"],
+          ["Verification", "A documented process for testing whether content, identities, locations or claims are authentic and accurate", "A verifier checks upload history, landmarks, weather and independent footage before concluding where a video was recorded"]
+        ]
+      },
+      {
+        title: "Information disorder and manipulation",
+        question: "What forms can misleading or harmful information take?",
+        concepts: [
+          ["Misinformation", "False or misleading information shared without an intention to deceive", "Someone reposts an outdated evacuation map believing it is current"],
+          ["Disinformation", "False or misleading information deliberately created or distributed to deceive", "An operator fabricates polling figures and presents them as official data to influence voters"],
+          ["Malinformation", "Genuine information used out of context or disclosed to cause harm", "A private address is published during a dispute to expose someone to harassment"],
+          ["Propaganda", "Strategic communication designed to shape attitudes or behaviour in support of a cause or power", "A state campaign repeatedly presents one group as responsible for complex national problems while suppressing contrary evidence"],
+          ["Clickbait", "A headline or presentation designed primarily to provoke curiosity and clicks, often by withholding or exaggerating information", "You will not believe what happened next promises a revelation that the article itself does not support"],
+          ["Manipulated and synthetic media", "Audio, images or video altered or generated so that they can misrepresent people or events", "An AI-generated voice recording imitates a public figure saying words they never spoke"],
+          ["Coordinated inauthentic behaviour", "Organised use of deceptive accounts or identities to manipulate public discussion", "A network of accounts pretends to be unrelated citizens while posting the same talking points at planned times"]
+        ]
+      },
+      {
+        title: "Interpretation and effects",
+        question: "How do audiences make meaning, and what patterns can media reinforce?",
+        concepts: [
+          ["Active audience", "The principle that audiences interpret media using their own knowledge, identities and circumstances", "Viewers can read the same film as inspiring, unrealistic or politically troubling rather than receiving one fixed meaning"],
+          ["Bias", "A systematic tendency in selection, interpretation or presentation that favours some perspectives or outcomes", "A source may consistently scrutinise one party's errors while describing similar errors by another party more sympathetically"],
+          ["Stereotype", "A simplified and repeated representation that assigns assumed traits to a group", "Repeatedly portraying older people as incapable with technology narrows the range of identities audiences are shown"],
+          ["Agenda-setting", "The influence media attention can have on which issues audiences regard as important", "Heavy coverage of street crime may make it feel like the dominant public problem even when other harms are more widespread"],
+          ["Media effects", "Changes in knowledge, feeling, norms or behaviour associated with media exposure and its context", "A public-information campaign may improve recognition of symptoms, but its effect depends on repetition, trust and audience circumstances"]
+        ]
+      },
+      {
+        title: "Creation, participation and responsibility",
+        question: "How can people create, share and participate responsibly?",
+        concepts: [
+          ["Media production", "The planned creation and editing of a message for a medium and audience", "A community group chooses interviewees, framing, images and captions when making a campaign video"],
+          ["Attribution and copyright", "Acknowledging creators and respecting legal rights governing the use and adaptation of works", "A presentation credits the photographer and uses an image under terms that permit reuse"],
+          ["Privacy and personal data", "Control and responsibility concerning information that identifies or describes people", "Before posting a group photograph, a creator considers consent, location clues and how the platform may process the image"],
+          ["Responsible sharing", "Checking context, likely accuracy and possible harm before forwarding content", "A user pauses before sharing an alarming claim, finds the original source and corrects the caption when it is outdated"],
+          ["Civic participation", "Using media to take part in public discussion, community life and collective decision-making", "Residents compare local proposals, ask officials questions and publish evidence about an overlooked accessibility problem"],
+          ["Counter-speech", "Communication that challenges hatred, deception or harmful narratives without reproducing their harm", "A response corrects a false rumour, supports the targeted group and links to reliable information rather than repeating abusive imagery"],
+          ["Reflective media practice", "Reviewing one's own media habits, interpretations and effects in order to make deliberate changes", "A person audits which accounts shape their feed, notices habitual outrage-sharing and changes how they verify and respond"]
+        ]
+      }
+    ];
+
+    const board = document.querySelector("#board");
+
+    const detail = document.querySelector("#branch-detail");
+    const sideByIndex = ["right", "right", "right", "right", "left", "left", "left", "left"];
+    const rowByIndex = [0, 1, 2, 3, 0, 1, 2, 3];
+    const masteryKey = "media-literacy-concept-mastery-v1";
+    let mastered = new Set();
+    try {
+      mastered = new Set(JSON.parse(localStorage.getItem(masteryKey) || "[]"));
+    } catch (error) {
+      mastered = new Set();
+    }
+    let activeBranch = null;
+
+    function conceptId(branchIndex, conceptIndex) {
+      return `${branchIndex + 1}.${conceptIndex + 1}`;
+    }
+
+    function masteredCount(branchIndex) {
+      return branches[branchIndex].concepts.reduce((count, concept, conceptIndex) =>
+        count + Number(mastered.has(conceptId(branchIndex, conceptIndex))), 0);
+    }
+
+    function branchLabel(branchIndex) {
+      const branch = branches[branchIndex];
+      return `<span class="map-number">${branchIndex + 1}</span><span class="map-name">${branch.title}</span><span class="map-progress${masteredCount(branchIndex) === branch.concepts.length ? ' complete' : ''}">${masteredCount(branchIndex)}/${branch.concepts.length}</span>`;
+    }
+
+    function refreshBranchProgress(branchIndex) {
+      document.querySelectorAll(".map-branch")[branchIndex].innerHTML = branchLabel(branchIndex);
+      if (activeBranch === branchIndex) {
+        detail.querySelector(".detail-progress").textContent = `${masteredCount(branchIndex)}/${branches[branchIndex].concepts.length}`;
+      }
+    }
+
+    function toggleMastery(branchIndex, conceptIndex, card) {
+      const id = conceptId(branchIndex, conceptIndex);
+      if (mastered.has(id)) mastered.delete(id);
+      else mastered.add(id);
+      localStorage.setItem(masteryKey, JSON.stringify([...mastered]));
+      const isMastered = mastered.has(id);
+      card.classList.toggle("mastered", isMastered);
+      card.setAttribute("aria-pressed", String(isMastered));
+      refreshBranchProgress(branchIndex);
+    }
+
+    function renderMapBranch(branch, branchIndex) {
+      const button = document.createElement("button");
+      button.className = `map-branch ${sideByIndex[branchIndex]}`;
+      button.type = "button";
+      button.style.setProperty("--top", `${34 + rowByIndex[branchIndex] * 140}px`);
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-controls", "branch-detail");
+      button.innerHTML = branchLabel(branchIndex);
+      button.addEventListener("click", () => toggleBranch(branchIndex));
+      return button;
+    }
+
+    function conceptCards(branch, branchIndex) {
+      return branch.concepts.map(([name, definition, example], conceptIndex) => `
+        <article class="concept${mastered.has(conceptId(branchIndex, conceptIndex)) ? " mastered" : ""}" role="button" tabindex="0" aria-pressed="${mastered.has(conceptId(branchIndex, conceptIndex))}" data-concept-index="${conceptIndex}">
+          <div class="concept-code"><span class="concept-index">${branchIndex + 1}.${conceptIndex + 1}</span><span class="concept-dot" aria-hidden="true">·</span><span class="concept-name">${name}</span><span class="mastery-check" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M5 10.5 8.5 14 15.5 6.5"/></svg></span></div>
+          <p class="concept-definition">${definition}</p>
+          <div class="concept-divider" aria-hidden="true"></div>
+          <p class="concept-example">Example: ${example}</p>
+        </article>`).join("");
+    }
+
+    function toggleBranch(branchIndex) {
+      const shouldClose = activeBranch === branchIndex;
+      document.querySelectorAll(".map-branch").forEach(button => button.setAttribute("aria-expanded", "false"));
+      if (shouldClose) {
+        activeBranch = null;
+        detail.hidden = true;
+        detail.innerHTML = "";
+        return;
+      }
+      activeBranch = branchIndex;
+      const branch = branches[branchIndex];
+      document.querySelectorAll(".map-branch")[branchIndex].setAttribute("aria-expanded", "true");
+      detail.innerHTML = `
+        <header class="detail-head">
+          <div class="detail-code">${branchIndex + 1}</div>
+          <h2 class="detail-title">${branch.title}</h2>
+          <p class="detail-question">${branch.question}</p>
+          <div class="detail-progress">${masteredCount(branchIndex)}/${branch.concepts.length}</div>
+        </header>
+        <div class="concept-panel">${conceptCards(branch, branchIndex)}</div>`;
+      detail.hidden = false;
+      detail.querySelectorAll(".concept").forEach(card => {
+        const conceptIndex = Number(card.dataset.conceptIndex);
+        card.addEventListener("click", () => toggleMastery(branchIndex, conceptIndex, card));
+        card.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleMastery(branchIndex, conceptIndex, card);
+          }
+        });
+      });
+      detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    branches.forEach((branch, index) => board.appendChild(renderMapBranch(branch, index)));
+    function updateConnectors() {
+      const stage = document.querySelector('.map-stage');
+      const svg = stage.querySelector('.map-connectors');
+      const bounds = stage.getBoundingClientRect();
+      const root = stage.querySelector('.root-node').getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+      svg.innerHTML = [...board.querySelectorAll('.map-branch')].map(button => {
+        const box = button.getBoundingClientRect();
+        const left = button.classList.contains('left');
+        const x = (left ? box.right : box.left) - bounds.left;
+        const y = box.top + box.height / 2 - bounds.top;
+        const rx = (left ? root.left - 10 : root.right + 10) - bounds.left;
+        const ry = root.top + root.height / 2 - bounds.top;
+        const mid = (x + rx) / 2;
+        return `<path d="M${x} ${y} C${mid} ${y} ${mid} ${ry} ${rx} ${ry}" />`;
+      }).join('');
+      svg.style.setProperty('stroke-width', getComputedStyle(board.querySelector('.map-branch')).borderTopWidth);
+    }
+    new ResizeObserver(updateConnectors).observe(document.querySelector('.map-stage'));
+    document.fonts.ready.then(updateConnectors);
+
+    document.querySelector("#close-branch").addEventListener("click", () => {
+      if (activeBranch !== null) toggleBranch(activeBranch);
+    });
+  </script>
+</body>
+</html>
