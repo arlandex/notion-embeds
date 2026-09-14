@@ -34,9 +34,7 @@
 </p>
 
 
-<p>
-<a href="https://arlandex.github.io/notion-embeds/c5.0-personal-finance.html">C5.0 | Personal finance | MVP</a>
-</p>
+<p><a href="https://arlandex.github.io/notion-embeds/c5.0-personal-finance.html">C5.0 | Personal finance | MVP</a></p>
 
 
 <p>
@@ -54,9 +52,9 @@
 
 [Media literacy concept tree](https://arlandex.github.io/notion-embeds/media-literacy-concept-tree.html?v=2)
 
-
 [Definition flow](https://arlandex.github.io/notion-embeds/definitions-flow.html?v=2)
 
+[Diagramatic decision & action flow](https://arlandex.github.io/notion-embeds/diagramatic-decision-action-flow.html?v=1)
 
 [Content Picks](https://arlandex.github.io/notion-embeds/content-picks.html?v=9)  
 [Content Picks mobile](https://arlandex.github.io/notion-embeds/content-picks-articles-mobile.html?v=3)  
@@ -66,8 +64,6 @@
 
 ## Naming convention
 
-
 Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | <Framework> | <Use case or variant>`, `C<n>.02`, and so on for children. Use sentence case and preserve the existing child indentation and ordering.
-
 
 These are display labels. Existing filenames, link destinations and Notion embed URLs stay unchanged unless a URL migration is explicitly requested.
