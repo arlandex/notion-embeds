@@ -50,7 +50,7 @@
 
 ### Other pages
 
-[Decision intelligence mind map](https://arlandex.github.io/notion-embeds/decision-intelligence-mind-map.html?v=1)
+[Decision intelligence mind map](https://arlandex.github.io/notion-embeds/decision-intelligence-mind-map.html?v=2)
 
 [Media literacy concept tree](https://arlandex.github.io/notion-embeds/media-literacy-concept-tree.html?v=2)
 
