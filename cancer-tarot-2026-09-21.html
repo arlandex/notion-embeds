@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Cancer · 21–27 September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#F0EFEC;color:#48494B;font:17px/1.45 'Source Sans 3',system-ui,sans-serif}main{padding:12px;max-width:1100px;margin:auto}.video{width:100%;aspect-ratio:16/9;min-height:200px;max-height:520px;background:#0D1015}iframe{display:block;width:100%;height:100%;border:0}.meta{color:#6C6D6C;font-size:14px;margin:10px 0}.statusbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:14px;color:#6C6D6C;margin:8px 0 16px}button{font:inherit;cursor:pointer;color:inherit}.pause{border:1px solid #D8C9B6;background:transparent;border-radius:4px;padding:4px 12px}.pause:hover{background:#EAE1D7}details{border-top:1px solid #D8C9B6;padding-top:12px}summary{cursor:pointer;color:#0D1015;font-size:20px;font-weight:700}ol{list-style:none;margin:10px 0 0;padding:0}.moment{border:0;background:transparent;width:100%;display:grid;grid-template-columns:58px 1fr;gap:10px;text-align:left;padding:9px 8px;border-radius:4px;align-items:baseline}.moment:hover,.moment[aria-current=true]{background:#EAE1D7}.moment[aria-current=true]{box-shadow:inset 3px 0 #48494B}.time{font-variant-numeric:tabular-nums;text-decoration:underline;text-underline-offset:3px;color:#6C6D6C}button:focus-visible,summary:focus-visible{outline:2px solid #48494B;outline-offset:2px}.release{font-size:11px;color:#6C6D6C;margin:16px 8px 0}#error{margin:8px 0;color:#48494B}#error:empty{display:none}@media(max-width:480px){main{padding:8px}.moment{font-size:16px;grid-template-columns:50px 1fr;gap:6px}.video{min-height:200px}.meta{font-size:13px}}
+</style>
+</head>
+<body>
+<main>
+<div class="video"><div id="player"></div></div>
+<p class="meta">Posted: 20 September 2026, 16:00 CEST | Length: 24:12</p>
+<div class="statusbar"><span id="status" role="status">Loading player…</span><button class="pause" id="playPause" type="button" disabled>Play</button></div>
+<p id="error" role="alert"></p>
+<details open>
+<summary>Useful moments</summary>
+<ol>
+<li><button class="moment" type="button" data-seconds="259"><span class="time">4:19</span><span>Scarcity thinking, settling for less and playing small</span></button></li>
+<li><button class="moment" type="button" data-seconds="384"><span class="time">6:24</span><span>The Magician: recognising and using the resources you already have</span></button></li>
+<li><button class="moment" type="button" data-seconds="514"><span class="time">8:34</span><span>The Hanged Man and Devil: perspective, limbo and resistance to change</span></button></li>
+<li><button class="moment" type="button" data-seconds="737"><span class="time">12:17</span><span>Partnerships, work and unequal power dynamics</span></button></li>
+<li><button class="moment" type="button" data-seconds="941"><span class="time">15:41</span><span>Timing, asking for help and rebuilding trust</span></button></li>
+<li><button class="moment" type="button" data-seconds="1020"><span class="time">17:00</span><span>Rethinking work, income and your direction</span></button></li>
+<li><button class="moment" type="button" data-seconds="1128"><span class="time">18:48</span><span>Independence and possible work, money or learning opportunities</span></button></li>
+<li><button class="moment" type="button" data-seconds="1241"><span class="time">20:41</span><span>Agency, plans and the hopeful closing message</span></button></li>
+<li><button class="moment" type="button" data-seconds="1406"><span class="time">23:26</span><span>Doing the work and allowing others to be disappointed</span></button></li>
+</ol>
+</details>
+<p class="release">V1 | 25 September 2026</p>
+</main>
+<script>
+'use strict';
+let player,ready=false,pending=null;
+const status=document.getElementById('status'),error=document.getElementById('error'),playPause=document.getElementById('playPause');
+const moments=[...document.querySelectorAll('.moment')];
+const time=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+function refresh(){
+ if(!ready)return;
+ const t=player.getCurrentTime()||0,state=player.getPlayerState();
+ const label=state===1?'Playing':state===2?'Paused':state===3?'Buffering':'Ready';
+ status.textContent=label+' · '+time(t)+' / '+time(player.getDuration()||1452)+' · '+player.getPlaybackRate()+'×';
+ playPause.textContent=state===1?'Pause':'Play';
+ let current=-1;moments.forEach((b,i)=>{if(t>=Number(b.dataset.seconds))current=i});
+ moments.forEach((b,i)=>b.setAttribute('aria-current',String(i===current)));
+}
+function seek(seconds){
+ if(!ready){pending=seconds;status.textContent='Loading player for '+time(seconds)+'…';return}
+ error.textContent='';player.seekTo(seconds,true);player.playVideo();
+}
+moments.forEach(b=>b.addEventListener('click',()=>seek(Number(b.dataset.seconds))));
+playPause.addEventListener('click',()=>{if(ready){player.getPlayerState()===1?player.pauseVideo():player.playVideo()}});
+window.onYouTubeIframeAPIReady=()=>{
+ player=new YT.Player('player',{
+  videoId:'-Ys_DzVExKw',width:'100%',height:'100%',
+  playerVars:{origin:location.origin,playsinline:1,rel:0,cc_load_policy:0},
+  events:{
+   onReady:e=>{ready=true;playPause.disabled=false;e.target.setPlaybackRate(1.25);e.target.unloadModule('captions');refresh();if(pending!==null){seek(pending);pending=null}},
+   onStateChange:refresh,
+   onApiChange:e=>{if(e.target.getOptions().includes('captions'))e.target.unloadModule('captions')},
+   onPlaybackRateChange:refresh,
+   onAutoplayBlocked:()=>{error.textContent='Press Play in the video to continue at the selected time.'},
+   onError:e=>{error.textContent='YouTube could not play this video (code '+e.data+'). Reload this reading after checking the connection.'}
+  }
+ });
+};
+const api=document.createElement('script');api.src='https://www.youtube.com/iframe_api';api.onerror=()=>{error.textContent='The YouTube player could not load. Reload this reading to try again.'};document.head.append(api);
+setInterval(refresh,500);
+</script>
+</body>
+</html>
