@@ -62,7 +62,7 @@
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
 
 
-[Cancer tarot · 21–27 September 2026 · Interactive player](https://arlandex.github.io/notion-embeds/cancer-tarot-2026-09-21.html?v=1)
+[Video & useful moments · Reusable player](https://arlandex.github.io/notion-embeds/youtube-moments-player.html?v=1)
 
 ## Naming convention
 
