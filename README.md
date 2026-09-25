@@ -62,6 +62,8 @@
 [Subscription decision flow](https://arlandex.github.io/notion-embeds/subscription-decision-flow.html)
 
 
+[Cancer tarot · 21–27 September 2026 · Interactive player](https://arlandex.github.io/notion-embeds/cancer-tarot-2026-09-21.html?v=1)
+
 ## Naming convention
 
 Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | <Framework> | <Use case or variant>`, `C<n>.02`, and so on for children. Use sentence case and preserve the existing child indentation and ordering.
