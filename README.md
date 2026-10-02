@@ -15,7 +15,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c2.2-product-anatomy-editable-template.html?v=4">C2.02 | Product anatomy | Editable template</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c2.3-product-anatomy-working-copy.html?v=3">C2.03 | Product anatomy | Working copy</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c2.4-product-anatomy-bare-wireframe.html?v=2">C2.04 | Product anatomy | Bare wireframe</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c2.05-product-anatomy.html?v=4">C2.05 | Product anatomy</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c2.05-product-anatomy.html?v=5">C2.05 | Product anatomy</a>
 </p>
 
 
