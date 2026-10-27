@@ -70,3 +70,7 @@
 Directory labels use `C<n>.0 | <Framework> | MVP` for the parent and `C<n>.01 | <Framework> | <Use case or variant>`, `C<n>.02`, and so on for children. Use sentence case and preserve the existing child indentation and ordering.
 
 These are display labels. Existing filenames, link destinations and Notion embed URLs stay unchanged unless a URL migration is explicitly requested.
+
+## Retired workflow
+
+[Cloud card editor — retired 27 October 2026](https://arlandex.github.io/notion-embeds/use-case-cards/?v=9). The editor no longer connects to Supabase. Standalone templates and published cards remain available above.
