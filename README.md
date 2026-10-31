@@ -26,7 +26,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.2-personal-use-case-personal-learning-system-in-notion.html?v=3">C3.02 | Personal use case card | Personal learning system in Notion</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/use-case-cards/c3-template.html?v=5">C3.100 | Personal use case card | Master</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.100-transactions-overview.html?v=5">C3.101 | Personal use case card | Transactions overview</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.102-personal-use-case-voice-note-to-notion.html?v=1">C3.102 | Personal use case card | Voice note to Notion</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://arlandex.github.io/notion-embeds/c3.102-voice-note.html?v=2">C3.102 | Personal use case card | Voice note to Notion</a>
 </p>
 
 
